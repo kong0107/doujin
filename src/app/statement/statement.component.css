@@ -1,0 +1,12 @@
+ul {
+    list-style-type: none;
+}
+
+ul li {
+    margin: .5em 0;
+}
+
+ul li:before {
+    content: '→';
+    padding-right: .5rem;
+}

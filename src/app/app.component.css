@@ -1,0 +1,35 @@
+header {
+    background-color: #000;
+}
+h1 {
+    padding-left: 0.5em;
+}
+h1 > a {
+    color: #fff;
+    text-decoration: none;
+}
+
+nav ul {
+    margin-top: 0;
+}
+
+nav li {
+    display: inline-block;
+}
+
+nav a {
+    display: inline-block;
+    color: #ccc;
+    text-decoration: none;
+    padding: .5em;
+    border: 1px solid #444;
+}
+
+nav a:hover {
+    background-color: #369;
+}
+
+#main {
+    padding: 0 1rem;
+    line-height: 150%;
+}
