@@ -1,6 +1,6 @@
 <h2>自訂契約</h2>
 
-<section>
+<section id="contractCategory">
     <h3>契約類型</h3>
     <fieldset>
         <legend><h3>非出版性委託</h3></legend>
@@ -31,19 +31,6 @@
                 多人合本
             </label>
         </div>
-    </fieldset>
-    <fieldset>
-        <legend><h3>請求授權二創</h3></legend>
-        <div>
-            <label>
-                <input type="radio" [(ngModel)]="category" value="二創">
-                單次授權
-            </label>
-        </div>
-        <p class="small">
-            若繪師想要對不特定人概括授權，建議直接參考
-            <a target="_blank" href="https://creativecommons.org/licenses/by-nc/3.0/tw/">CC「姓名標示、非商業性」（CC BY-NC 3.0 TW）條款</a>
-        </p>
     </fieldset>
 </section>
 
@@ -209,4 +196,25 @@
         <dt>屬於「重大修改」的類型</dt>
         <dd><textarea [(ngModel)]="seriousityDefinition" placeholder="改骨架，etc."></textarea></dd>
     </dl>
+</section>
+
+<hr>
+<section>
+    <h3>契約內文</h3>
+    
+    <section>
+        <h4>第一部分：委託規格約定、契約執行規則、報酬給付方式</h4>
+        <fieldset>
+            <legend>條款設計說明</legend>
+            <ol>
+                <li><mark>工作方式-先收全額</mark> 跟 <mark>工作方式-尾款草稿</mark> 在「完稿」階段，因為繪師都已經拿到全部的款項、不用擔心委託主苛扣，所以不需要提供委託主「完稿預覽」、可以直接拿「完稿檔案」進行驗收。<mark>工作方式-尾款定稿</mark> 跟 <mark>工作方式-完稿全額</mark> 還是有風險，所以條款設計中會有保留拿「完稿預覽」作為驗收。</li>
+                <li>我的設定是：如果連草稿都不能準時交出第一次，那就直接退全額報酬或全額定金了。（但是在 <mark>工作方式-完稿全額</mark> 沒有這種狀況）</li>
+                <li>對於超過一次大修、太多次改稿或逾期提出改稿的人，我設定是繪師可以加價並另行商議期限。那如果委託主不肯，那就解約。但委託主只能拿回違約金或定金的 1/3。（但是在 <mark>工作方式-完稿全額</mark> 沒有這種狀況）</li>
+                <li><mark>工作方式-完稿全額</mark> 幾乎沒什麼保障。連 3.都沒有。但我想不到有更好的辦法。雖然可以設計違約金，但說白一點，討錢對繪師來是會是個實際問題。（司法程序很貴的，就算是小額訴訟也要一千台幣的訴訟費呢。我看最有良心的作法大概就是上警語，建議只有在小額委託上使用這個選擇了。）</li>
+            </ol>
+        </fieldset>
+    </section>
+    
+    
+    
 </section>

@@ -10,11 +10,10 @@ select {
     border-radius: .3em;
 }
 
-fieldset {
+#contractCategory > fieldset {
     display: inline-block;
     float: left;
     width: 10em;
-    min-height: 15em;
 }
 
 fieldset > div {

@@ -67,7 +67,7 @@ body {
 	display: block;
 	clear: both;
 }
-#main:after { padding-bottom: 2em; }
+#main:after { padding-bottom: 4em; }
 #footer {
 	width: 100%;
 	position: absolute;

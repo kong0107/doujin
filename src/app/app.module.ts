@@ -7,13 +7,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { StatementComponent } from './statement/statement.component';
 import { FaqComponent } from './faq/faq.component';
-import { StartComponent } from './start/start.component';
-import { BlueprintComponent } from './blueprint/blueprint.component';
-import { SingleComponent } from './single/single.component';
-import { IllustrateComponent } from './illustrate/illustrate.component';
-import { TogetherComponent } from './together/together.component';
-import { AuthorizeComponent } from './authorize/authorize.component';
-import { HireOfWorkComponent } from './hire-of-work/hire-of-work.component';
+import { MainComponent } from './main/main.component';
 
 
 @NgModule({
@@ -21,13 +15,7 @@ import { HireOfWorkComponent } from './hire-of-work/hire-of-work.component';
     AppComponent,
     StatementComponent,
     FaqComponent,
-    StartComponent,
-    BlueprintComponent,
-    SingleComponent,
-    IllustrateComponent,
-    TogetherComponent,
-    AuthorizeComponent,
-    HireOfWorkComponent
+    MainComponent
   ],
   imports: [
     BrowserModule,
