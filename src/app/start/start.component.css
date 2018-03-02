@@ -20,3 +20,24 @@ fieldset {
 fieldset > div {
     margin: .5rem 0;
 }
+
+input:invalid {
+  border: 2px solid red;
+}
+
+input:valid {
+  border: 2px solid black;
+}
+
+input.short {
+    width: 4em;
+}
+
+input.long {
+    width: 12em;
+}
+
+textarea {
+    width: 95%;
+    min-height: 4em;
+}
