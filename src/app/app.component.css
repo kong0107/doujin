@@ -1,9 +1,11 @@
 header {
     background-color: #000;
 }
+
 h1 {
     padding-left: 0.5em;
 }
+
 h1 > a {
     color: #fff;
     text-decoration: none;

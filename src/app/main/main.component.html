@@ -6,13 +6,13 @@
         <legend><h3>非出版性委託</h3></legend>
         <div>
             <label>
-                <input type="radio" [(ngModel)]="category" value="設定圖">
+                <input type="radio" [(ngModel)]="contract.category" value="設定圖">
                 設定圖
             </label>
         </div>
         <div>
             <label>
-                <input type="radio" [(ngModel)]="category" value="非出版單張">
+                <input type="radio" [(ngModel)]="contract.category" value="非出版單張">
                 單張圖
             </label>
         </div>
@@ -21,37 +21,37 @@
         <legend><h3>出版性委託</h3></legend>
         <div>
             <label>
-                <input type="radio" [(ngModel)]="category" value="出版插圖">
+                <input type="radio" [(ngModel)]="contract.category" value="出版插圖">
                 插圖
             </label>
         </div>
         <div>
             <label>
-                <input type="radio" [(ngModel)]="category" value="合本">
+                <input type="radio" [(ngModel)]="contract.category" value="合本">
                 多人合本
             </label>
         </div>
     </fieldset>
 </section>
 
-<section *ngIf="['出版插圖', '合本'].indexOf(category)>-1">
+<section *ngIf="['出版插圖', '合本'].indexOf(contract.category)>-1">
     <h3>是否有商家出資？</h3>
     <label>
-        <input type="radio" [(ngModel)]="contributor" value="是">
+        <input type="radio" [(ngModel)]="contract.contributor" value="是">
         是
     </label>
     <label>
-        <input type="radio" [(ngModel)]="contributor" value="否">
+        <input type="radio" [(ngModel)]="contract.contributor" value="否">
         否
     </label>
 </section>
 
-<section *ngIf="['設定圖', '非出版單張', '出版插圖'].indexOf(category)>-1">
+<section *ngIf="['設定圖', '非出版單張', '出版插圖'].indexOf(contract.category)>-1">
     <h3>工作方式</h3>
     <ul class="radio-list">
         <li>
             <label>
-                <input type="radio" [(ngModel)]="workType" value="先收全額">
+                <input type="radio" [(ngModel)]="contract.workType" value="先收全額">
                 先收全額
             </label>
             <ul>
@@ -62,7 +62,7 @@
         </li>
         <li>
             <label>
-                <input type="radio" [(ngModel)]="workType" value="尾款草稿">
+                <input type="radio" [(ngModel)]="contract.workType" value="尾款草稿">
                 尾款草稿
             </label>
             <ul>
@@ -73,7 +73,7 @@
         </li>
         <li>
             <label>
-                <input type="radio" [(ngModel)]="workType" value="尾款定稿">
+                <input type="radio" [(ngModel)]="contract.workType" value="尾款定稿">
                 尾款定稿
             </label>
             <ul>
@@ -84,7 +84,7 @@
         </li>
         <li>
             <label>
-                <input type="radio" [(ngModel)]="workType" value="完稿全額">
+                <input type="radio" [(ngModel)]="contract.workType" value="完稿全額">
                 完稿全額
             </label>
             <ul>
@@ -94,113 +94,113 @@
         </li>
     </ul>
 
-    <ul *ngIf="workType=='先收全額'">
-        <li>草稿於<input type="date" [(ngModel)]="draftDeadline"><!--草稿繳交期限-->前繳交給委託主；定稿於<input type="date" [(ngModel)]="finalDeadline"><!--定稿繳交期限-->前繳交給委託主。</li>
-        <li>委託主應於簽約後<input type="number" [(ngModel)]="fullPayPeriod" placeholder="付全額期間">日內付全額報酬共新台幣<input type="number" [(ngModel)]="fullPayAmount" placeholder="全額報酬數額">元整給繪師（繪師收到報酬後契約才生效）；違約金數額約定為新台幣<input type="number" [(ngModel)]="penaltyAmount" placeholder="違約金數額">元整。委託主沒有在期限內付清全額報酬，視同契約自始不成立。</li>
-        <li>繪師交出草稿後，委託主應於<input type="number" [(ngModel)]="draftFirstOpinionPeriod" placeholder="草稿初次意見期間">日內回應，委託主如果希望大修請於此時限前提出。逾期未回應者視同同意繪師目前的工作方向、放棄提出大修之要求。</li>
-        <li>除了上一款的回應以外，委託主還可以在繪師交出草稿後<input type="number" [(ngModel)]="draftFixRequestPeriod" placeholder="草稿開放小修期間">日內（請填寫比定稿繳交期限{{finalDeadline}}更早的時限），跟繪師提出<input type="number" [(ngModel)]="draftFixNumber" placeholder="改稿次數">次的小修要求。繪師接到小修要求後應於<input type="number" [(ngModel)]="draftFixRespondPeriod" placeholder="草稿小修回應期間">日內回應。</li>
-        <li>繪師在定稿繳交期限{{finalDeadline}}前交出定稿後給委託主後，委託主應該在<input type="number" [(ngModel)]="acceptPeriod" placeholder="驗收期間" min="1" pattern="\d+">日內通知繪師驗收結果。</li>
+    <ul *ngIf="contract.workType=='先收全額'">
+        <li>草稿於<input type="date" [(ngModel)]="contract.draftDeadline"><!--草稿繳交期限-->前繳交給委託主；定稿於<input type="date" [(ngModel)]="contract.finalDeadline"><!--定稿繳交期限-->前繳交給委託主。</li>
+        <li>委託主應於簽約後<input type="number" [(ngModel)]="contract.fullPayPeriod" placeholder="付全額期間">日內付全額報酬共新台幣<input type="number" [(ngModel)]="contract.fullPayAmount" placeholder="全額報酬數額">元整給繪師（繪師收到報酬後契約才生效）；違約金數額約定為新台幣<input type="number" [(ngModel)]="contract.penaltyAmount" placeholder="違約金數額">元整。委託主沒有在期限內付清全額報酬，視同契約自始不成立。</li>
+        <li>繪師交出草稿後，委託主應於<input type="number" [(ngModel)]="contract.draftFirstOpinionPeriod" placeholder="草稿初次意見期間">日內回應，委託主如果希望大修請於此時限前提出。逾期未回應者視同同意繪師目前的工作方向、放棄提出大修之要求。</li>
+        <li>除了上一款的回應以外，委託主還可以在繪師交出草稿後<input type="number" [(ngModel)]="contract.draftFixRequestPeriod" placeholder="草稿開放小修期間">日內（請填寫比定稿繳交期限{{finalDeadline}}更早的時限），跟繪師提出<input type="number" [(ngModel)]="contract.draftFixNumber" placeholder="改稿次數">次的小修要求。繪師接到小修要求後應於<input type="number" [(ngModel)]="contract.draftFixRespondPeriod" placeholder="草稿小修回應期間">日內回應。</li>
+        <li>繪師在定稿繳交期限{{finalDeadline}}前交出定稿後給委託主後，委託主應該在<input type="number" [(ngModel)]="contract.acceptPeriod" placeholder="驗收期間" min="1" pattern="\d+">日內通知繪師驗收結果。</li>
     </ul>
-    <ul *ngIf="workType=='尾款草稿'">
-        <li>草稿於<input type="date" [(ngModel)]="draftDeadline"><!--草稿繳交期限-->前繳交給委託主；定稿於<input type="date" [(ngModel)]="finalDeadline"><!--定稿繳交期限-->前繳交給委託主。</li>
-        <li>委託主應於簽約後<input type="number" [(ngModel)]="earnestMoneyPeriod" placeholder="付定金期間">日內付定金共新台幣<input type="number" [(ngModel)]="earnestMoneyAmount" placeholder="定金數額">元整給繪師（繪師收到定金後契約才生效）。委託主沒有在期限內付清全額定金，視同契約自始不成立。</li>
-        <li>繪師第一次交出草稿後，委託主應於<input type="number" [(ngModel)]="finalPayPeriod" placeholder="付尾款期間">日內付剩餘報酬共新台幣<input type="number" [(ngModel)]="finalPayAmount" placeholder="尾款數額">元給繪師。委託主沒有在期限內付清尾款視同解約，並且無法收回定金。</li>
-        <li>繪師交出草稿後，委託主應於<input type="number" [(ngModel)]="draftFirstOpinionPeriod" placeholder="草稿初次意見期間">日內回應，委託主如果希望大修請於此時限前提出。逾期未回應者視同同意繪師目前的工作方向、放棄提出大修之要求。</li>
-        <li>除了上一款的回應以外，委託主還可以在繪師交出草稿後<input type="number" [(ngModel)]="draftFixRequestPeriod" placeholder="草稿開放小修期間">日內（請填寫比定稿繳交期限{{finalDeadline}}更早的時限），跟繪師提出<input type="number" [(ngModel)]="draftFixNumber" placeholder="改稿次數">次的小修要求。繪師接到小修要求後應於<input type="number" [(ngModel)]="draftFixRespondPeriod" placeholder="草稿小修回應期間">日內回應。</li>
-        <li>繪師在定稿繳交期限{{finalDeadlinef}}前交出定稿後給委託主後，委託主應該在<input type="number" [(ngModel)]="acceptPeriod" placeholder="驗收期間" min="1" pattern="\d+">日內通知繪師驗收結果。</li>
+    <ul *ngIf="contract.workType=='尾款草稿'">
+        <li>草稿於<input type="date" [(ngModel)]="contract.draftDeadline"><!--草稿繳交期限-->前繳交給委託主；定稿於<input type="date" [(ngModel)]="contract.finalDeadline"><!--定稿繳交期限-->前繳交給委託主。</li>
+        <li>委託主應於簽約後<input type="number" [(ngModel)]="contract.earnestMoneyPeriod" placeholder="付定金期間">日內付定金共新台幣<input type="number" [(ngModel)]="contract.earnestMoneyAmount" placeholder="定金數額">元整給繪師（繪師收到定金後契約才生效）。委託主沒有在期限內付清全額定金，視同契約自始不成立。</li>
+        <li>繪師第一次交出草稿後，委託主應於<input type="number" [(ngModel)]="contract.finalPayPeriod" placeholder="付尾款期間">日內付剩餘報酬共新台幣<input type="number" [(ngModel)]="contract.finalPayAmount" placeholder="尾款數額">元給繪師。委託主沒有在期限內付清尾款視同解約，並且無法收回定金。</li>
+        <li>繪師交出草稿後，委託主應於<input type="number" [(ngModel)]="contract.draftFirstOpinionPeriod" placeholder="草稿初次意見期間">日內回應，委託主如果希望大修請於此時限前提出。逾期未回應者視同同意繪師目前的工作方向、放棄提出大修之要求。</li>
+        <li>除了上一款的回應以外，委託主還可以在繪師交出草稿後<input type="number" [(ngModel)]="contract.draftFixRequestPeriod" placeholder="草稿開放小修期間">日內（請填寫比定稿繳交期限{{finalDeadline}}更早的時限），跟繪師提出<input type="number" [(ngModel)]="contract.draftFixNumber" placeholder="改稿次數">次的小修要求。繪師接到小修要求後應於<input type="number" [(ngModel)]="contract.draftFixRespondPeriod" placeholder="草稿小修回應期間">日內回應。</li>
+        <li>繪師在定稿繳交期限{{finalDeadlinef}}前交出定稿後給委託主後，委託主應該在<input type="number" [(ngModel)]="contract.acceptPeriod" placeholder="驗收期間" min="1" pattern="\d+">日內通知繪師驗收結果。</li>
     </ul>
-    <ul *ngIf="workType=='尾款定稿'">
+    <ul *ngIf="contract.workType=='尾款定稿'">
         <li>還沒改寫</li>
     </ul>
-    <ul *ngIf="workType=='完稿全額'">
+    <ul *ngIf="contract.workType=='完稿全額'">
         <li>還沒改寫</li>
     </ul>
 </section>
 
-<section *ngIf="workType">
+<section *ngIf="contract.workType">
     <h3>雙方資料</h3>
     <section>
         <h4>甲方：繪師</h4>
         <dl>
             <dt>姓名</dt>
-            <dd><input [(ngModel)]="a_name"></dd>
+            <dd><input [(ngModel)]="contract.a_name"></dd>
             <dt>戶籍地址</dt>
-            <dd><input [(ngModel)]="a_permanentAddress"></dd>
+            <dd><input [(ngModel)]="contract.a_permanentAddress"></dd>
             <dt>身分證號</dt>
-            <dd><input [(ngModel)]="a_id" pattern="[A-Z]\d{9}"></dd>
+            <dd><input [(ngModel)]="contract.a_id" pattern="[A-Z]\d{9}"></dd>
             <dt>電子郵件</dt>
-            <dd><input [(ngModel)]="a_email" type="email"></dd>
+            <dd><input [(ngModel)]="contract.a_email" type="email"></dd>
             <dt>通訊地址</dt>
-            <dd><input [(ngModel)]="a_correspondenceAddress"></dd>
+            <dd><input [(ngModel)]="contract.a_correspondenceAddress"></dd>
             <dt>連絡電話</dt>
-            <dd><input [(ngModel)]="a_phone"></dd>
+            <dd><input [(ngModel)]="contract.a_phone"></dd>
         </dl>
     </section>
-    <section *ngIf="['出版插圖', '合本'].indexOf(category)> -1 && contributor=='是'">
+    <section *ngIf="['出版插圖', '合本'].indexOf(category)> -1 && contract.contributor=='是'">
         <h4>乙方：委託商</h4>
         <dl>
             <dt>商家名稱</dt>
-            <dd><input [(ngModel)]="b_name"></dd>
+            <dd><input [(ngModel)]="contract.b_name"></dd>
             <dt>登記地址</dt>
-            <dd><input [(ngModel)]="b_permanentAddress"></dd>
+            <dd><input [(ngModel)]="contract.b_permanentAddress"></dd>
             <dt>統一編號</dt>
-            <dd><input [(ngModel)]="b_id" pattern="\d{8}"></dd>
+            <dd><input [(ngModel)]="contract.b_id" pattern="\d{8}"></dd>
             <dt>代表人</dt>
-            <dd><input [(ngModel)]="b_chairperson"></dd>
+            <dd><input [(ngModel)]="contract.b_chairperson"></dd>
             <dt>通訊地址</dt>
-            <dd><input [(ngModel)]="b_correspondenceAddress"></dd>
+            <dd><input [(ngModel)]="contract.b_correspondenceAddress"></dd>
             <dt>聯絡電話</dt>
-            <dd><input [(ngModel)]="b_phone"></dd>
+            <dd><input [(ngModel)]="contract.b_phone"></dd>
         </dl>
     </section>
-    <section *ngIf="['出版插圖', '合本'].indexOf(category)==-1 || !contributor">
+    <section *ngIf="['出版插圖', '合本'].indexOf(category)==-1 || !contract.contributor">
         <h4>乙方：委託主</h4>
         <dl>
             <dt>姓名</dt>
-            <dd><input [(ngModel)]="b_name"></dd>
+            <dd><input [(ngModel)]="contract.b_name"></dd>
             <dt>戶籍地址</dt>
-            <dd><input [(ngModel)]="b_permanentAddress"></dd>
+            <dd><input [(ngModel)]="contract.b_permanentAddress"></dd>
             <dt>身分證號</dt>
-            <dd><input [(ngModel)]="b_id" pattern="[A-Z]\d{9}"></dd>
+            <dd><input [(ngModel)]="contract.b_id" pattern="[A-Z]\d{9}"></dd>
             <dt>電子郵件</dt>
-            <dd><input [(ngModel)]="b_email" type="email"></dd>
+            <dd><input [(ngModel)]="contract.b_email" type="email"></dd>
             <dt>通訊地址</dt>
-            <dd><input [(ngModel)]="b_correspondenceAddress"></dd>
+            <dd><input [(ngModel)]="contract.b_correspondenceAddress"></dd>
             <dt>連絡電話</dt>
-            <dd><input [(ngModel)]="b_phone"></dd>
+            <dd><input [(ngModel)]="contract.b_phone"></dd>
         </dl>
     </section>
 </section>
 
-<section *ngIf="workType">
+<section *ngIf="contract.workType">
     <h3>匯款資料：繪師帳戶</h3>
     <dl>
         <dt>銀行名稱-代號</dt>
-        <dd><input [(ngModel)]="bank"></dd>
+        <dd><input [(ngModel)]="contract.bank"></dd>
         <dt>戶名</dt>
-        <dd><input [(ngModel)]="accountName"></dd>
+        <dd><input [(ngModel)]="contract.accountName"></dd>
         <dt>帳號</dt>
-        <dd><input [(ngModel)]="accountNumber"></dd>
+        <dd><input [(ngModel)]="contract.accountNumber"></dd>
     </dl>
 </section>
 
-<section *ngIf="workType">
+<section *ngIf="contract.workType">
     <h3>委託內容</h3>
     <dl>
         <dt>委託名稱</dt>
-        <dd><input [(ngModel)]="delegation_name" class="long"></dd>
+        <dd><input [(ngModel)]="contract.delegation_name" (change)="terms[0].counter=1"></dd>
         <dt>委託內容</dt>
-        <dd><textarea [(ngModel)]="delegation_content" placeholder="對角色和畫面之描述"></textarea></dd>
+        <dd><textarea [(ngModel)]="contract.delegation_content" placeholder="對角色和畫面之描述"></textarea></dd>
         <dt>委託規格</dt>
-        <dd><textarea [(ngModel)]="delegation_format" placeholder="（本段預設為草稿與完稿為數位檔，紙本或其他實體請額外註明相關規格）完稿的解析度、繳交檔案格式與其他規格；草稿檔案跟完稿預覽檔案的解析度、檔案格式與其他規格；交付以上檔案之方式（上傳網路硬碟讓委託主下載、郵寄隨身碟或光碟等）"></textarea></dd>
+        <dd><textarea [(ngModel)]="contract.delegation_format" placeholder="（本段預設為草稿與完稿為數位檔，紙本或其他實體請額外註明相關規格）完稿的解析度、繳交檔案格式與其他規格；草稿檔案跟完稿預覽檔案的解析度、檔案格式與其他規格；交付以上檔案之方式（上傳網路硬碟讓委託主下載、郵寄隨身碟或光碟等）"></textarea></dd>
         <dt>屬於「重大修改」的類型</dt>
-        <dd><textarea [(ngModel)]="seriousityDefinition" placeholder="改骨架，etc."></textarea></dd>
+        <dd><textarea [(ngModel)]="contract.seriousityDefinition" placeholder="改骨架，etc."></textarea></dd>
     </dl>
 </section>
 
 <hr>
-<section>
-    <h3>契約內文</h3>
+<section *ngIf="false">
+    <h3>契約內文（還沒好）</h3>
     
     <section>
         <h4>第一部分：委託規格約定、契約執行規則、報酬給付方式</h4>
@@ -213,8 +213,28 @@
                 <li><mark>工作方式-完稿全額</mark> 幾乎沒什麼保障。連 3.都沒有。但我想不到有更好的辦法。雖然可以設計違約金，但說白一點，討錢對繪師來是會是個實際問題。（司法程序很貴的，就算是小額訴訟也要一千台幣的訴訟費呢。我看最有良心的作法大概就是上警語，建議只有在小額委託上使用這個選擇了。）</li>
             </ol>
         </fieldset>
+        
+        <section *ngFor="let part of terms">
+            <h5>{{part.title}}</h5>
+            <article *ngFor="let article of part.articles">
+                <h6>第XX條 <span>{{article.title}}</span></h6>
+                <p>{{article.content |replace:contract }}</p>
+            </article>
+        </section>
+        
+        <section>
+            <h5>第一部分：委託規格約定、契約執行規則、報酬給付方式</h5>
+            <article>
+                <h6><span></span></h6>
+                <p>乙方委託甲方為乙方產品完成圖像設計之工作。</p>
+            </article>
+            <article>
+                <h6><span></span><span>（規格）</span></h6>
+                <p>甲方應完成之詳細工作內容、規格及交付方式，依本契約【附件一】「{{contract.delegation_name}}<!--委託名稱-->工作成果規格書」之約定。【附件一】內容如須增刪調整，應由雙方另以附約方式議定之。</p>
+            </article>
+        </section>
+        
     </section>
-    
     
     
 </section>

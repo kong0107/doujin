@@ -9,13 +9,16 @@ import { StatementComponent } from './statement/statement.component';
 import { FaqComponent } from './faq/faq.component';
 import { MainComponent } from './main/main.component';
 
+import { ReplacePipe } from './replace.pipe';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     StatementComponent,
     FaqComponent,
-    MainComponent
+    MainComponent,
+    ReplacePipe
   ],
   imports: [
     BrowserModule,
