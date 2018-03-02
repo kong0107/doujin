@@ -1,10 +1,31 @@
-<!--h2>選擇型態</h2-->
+<h2>選擇契約類型</h2>
 
-<section>
+<fieldset>
+    <legend><h3>非出版性委託</h3></legend>
+    <div><a class="button" routerLink="/blueprint">設定圖</a></div>
+    <div><a class="button" routerLink="/single">單張圖</a></div>
+</fieldset>
+
+<fieldset>
+    <legend><h3>出版性委託</h3></legend>
+    <div><a class="button" routerLink="/illustrate">插畫</a></div>
+    <div><a class="button" routerLink="/together">多人合本</a></div>
+</fieldset>
+
+<fieldset>
+    <legend><h3>請求授權二創</h3></legend>
+    <div><a class="button" routerLink="/authorize">單次授權</a></div>
+    <p class="small">
+        若繪師想要對不特定人概括授權，建議直接參考
+        <a target="_blank" href="https://creativecommons.org/licenses/by-nc/3.0/tw/">CC「姓名標示、非商業性」（CC BY-NC 3.0 TW）條款</a>
+    </p>
+</fieldset>
+
+
+<!--section>
     <h3>契約類型</h3>
     <select [(ngModel)]="category" (change)="check()"
         size="8" style="overflow: hidden">
-        <!--option disabled>請選擇</option-->
         <optgroup label="非出版性委託">
             <option>設定圖</option>
             <option>單張圖</option>
@@ -39,15 +60,6 @@
     </select>
 </section>
 
-<!--section *ngIf="showCopyrightOwner">
-    <h3>著作權歸屬</h3>
-    <select [(ngModel)]="copyrightOwner" (change)="check()"
-        size="2" style="overflow: hidden">
-        <option>全部給委託主</option>
-        <option>全部給繪師</option>
-    </select>
-</section-->
-
 <div *ngIf="showGoToCommision">
     <button>選好了，前往「填寫雙方資料及委託規格」</button>（還沒做）
 </div>
@@ -58,4 +70,4 @@
         <a target="_blank" href="https://creativecommons.org/licenses/by-nc/3.0/tw/">CC「姓名標示、非商業性」（CC BY-NC 3.0 TW）條款</a>
     </p>
     <button disabled>選好了，前往「填寫雙方資料及授權內容」</button>（還沒做）
-</section>
+</section-->

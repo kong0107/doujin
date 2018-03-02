@@ -8,6 +8,12 @@ import { AppRoutingModule } from './/app-routing.module';
 import { StatementComponent } from './statement/statement.component';
 import { FaqComponent } from './faq/faq.component';
 import { StartComponent } from './start/start.component';
+import { BlueprintComponent } from './blueprint/blueprint.component';
+import { SingleComponent } from './single/single.component';
+import { IllustrateComponent } from './illustrate/illustrate.component';
+import { TogetherComponent } from './together/together.component';
+import { AuthorizeComponent } from './authorize/authorize.component';
+import { HireOfWorkComponent } from './hire-of-work/hire-of-work.component';
 
 
 @NgModule({
@@ -15,7 +21,13 @@ import { StartComponent } from './start/start.component';
     AppComponent,
     StatementComponent,
     FaqComponent,
-    StartComponent
+    StartComponent,
+    BlueprintComponent,
+    SingleComponent,
+    IllustrateComponent,
+    TogetherComponent,
+    AuthorizeComponent,
+    HireOfWorkComponent
   ],
   imports: [
     BrowserModule,
