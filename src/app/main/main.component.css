@@ -50,3 +50,7 @@ article > h6 > span:nth-child(2) {
     padding-left: .5em;
     font-size: smaller;
 }
+
+.clickable {
+    cursor: pointer;
+}

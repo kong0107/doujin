@@ -1,38 +1,13 @@
 html, body {
     margin: 0;
     padding: 0;
+    font-size: 16px;
 }
 
 #footer {
     background-color: #ccc;
     text-align: right;
     padding: .5rem;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    margin: 0 auto;
-    padding: 0.5rem 0;
-}
-
-h1 { font-size: 200%; }
-h2 { font-size: 175%; }
-h3 { font-size: 150%; }
-h4 { font-size: 140%; }
-h5 { font-size: 130%; }
-h6 { font-size: 120%; }
-
-button, .button {
-    display: inline-block;
-    text-decoration: none;
-    border: 1px solid #666;
-    border-radius: .25rem;
-    padding: .5rem;
-    background-color: #bcd;
-}
-
-button:hover, .button:hover {
-    text-decoration: underline;
-    background-color: #feb;
 }
 
 label {

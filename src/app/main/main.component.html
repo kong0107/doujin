@@ -1,38 +1,64 @@
 <h2>自訂契約</h2>
 
-<section id="contractCategory">
+<section [class.selected]="!setting.category.display">
     <h3>契約類型</h3>
-    <fieldset>
-        <legend><h3>非出版性委託</h3></legend>
-        <div>
-            <label>
-                <input type="radio" [(ngModel)]="contract.category" value="設定圖">
-                設定圖
-            </label>
-        </div>
-        <div>
-            <label>
-                <input type="radio" [(ngModel)]="contract.category" value="非出版單張">
-                單張圖
-            </label>
-        </div>
-    </fieldset>
-    <fieldset>
-        <legend><h3>出版性委託</h3></legend>
-        <div>
-            <label>
-                <input type="radio" [(ngModel)]="contract.category" value="出版插圖">
-                插圖
-            </label>
-        </div>
-        <div>
-            <label>
-                <input type="radio" [(ngModel)]="contract.category" value="合本">
-                多人合本
-            </label>
-        </div>
-    </fieldset>
+    <div *ngIf="setting.category.display">
+        <fieldset>
+            <legend><h3>非出版性委託</h3></legend>
+            <button class="btn btn-default" (click)="set({category: '設定圖'})">設定圖</button>
+            <button (click)="set({category: '非出版單張'})">單張圖</button>
+        </fieldset>
+        <fieldset>
+            <legend><h3>出版性委託</h3></legend>
+            <button (click)="set({category: '出版插圖'})">插圖</button>
+            <button (click)="set({category: '合本'})">多人合本</button>
+        </fieldset>
+    </div>
+    <div *ngIf="!setting.category.display">
+        {{setting.category.value}}
+        <span class="clickable glyphicon glyphicon-pencil" (click)="setting.category.display=true"></span>
+    </div>
 </section>
+
+<!--section id="contractCategory">
+    <h3>契約類型</h3>
+    <div *ngIf="!contract.category || showSetting.category">
+        <fieldset>
+            <legend><h3>非出版性委託</h3></legend>
+            <div>
+                <label>
+                    <input type="radio" [(ngModel)]="contract.category" value="設定圖">
+                    設定圖
+                </label>
+            </div>
+            <div>
+                <label>
+                    <input type="radio" [(ngModel)]="contract.category" value="非出版單張">
+                    單張圖
+                </label>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend><h3>出版性委託</h3></legend>
+            <div>
+                <label>
+                    <input type="radio" [(ngModel)]="contract.category" value="出版插圖">
+                    插圖
+                </label>
+            </div>
+            <div>
+                <label>
+                    <input type="radio" [(ngModel)]="contract.category" value="合本">
+                    多人合本
+                </label>
+            </div>
+        </fieldset>
+    </div>
+    <div *ngIf="contract.category">
+        {{contract.category}}
+        <button (click)="showSetting.category=true">重選</button>
+    </div>
+</section-->
 
 <section *ngIf="['出版插圖', '合本'].indexOf(contract.category)>-1">
     <h3>是否有商家出資？</h3>
@@ -199,42 +225,18 @@
 </section>
 
 <hr>
-<section *ngIf="false">
+<section>
     <h3>契約內文（還沒好）</h3>
-    
-    <section>
-        <h4>第一部分：委託規格約定、契約執行規則、報酬給付方式</h4>
-        <fieldset>
-            <legend>條款設計說明</legend>
-            <ol>
-                <li><mark>工作方式-先收全額</mark> 跟 <mark>工作方式-尾款草稿</mark> 在「完稿」階段，因為繪師都已經拿到全部的款項、不用擔心委託主苛扣，所以不需要提供委託主「完稿預覽」、可以直接拿「完稿檔案」進行驗收。<mark>工作方式-尾款定稿</mark> 跟 <mark>工作方式-完稿全額</mark> 還是有風險，所以條款設計中會有保留拿「完稿預覽」作為驗收。</li>
-                <li>我的設定是：如果連草稿都不能準時交出第一次，那就直接退全額報酬或全額定金了。（但是在 <mark>工作方式-完稿全額</mark> 沒有這種狀況）</li>
-                <li>對於超過一次大修、太多次改稿或逾期提出改稿的人，我設定是繪師可以加價並另行商議期限。那如果委託主不肯，那就解約。但委託主只能拿回違約金或定金的 1/3。（但是在 <mark>工作方式-完稿全額</mark> 沒有這種狀況）</li>
-                <li><mark>工作方式-完稿全額</mark> 幾乎沒什麼保障。連 3.都沒有。但我想不到有更好的辦法。雖然可以設計違約金，但說白一點，討錢對繪師來是會是個實際問題。（司法程序很貴的，就算是小額訴訟也要一千台幣的訴訟費呢。我看最有良心的作法大概就是上警語，建議只有在小額委託上使用這個選擇了。）</li>
-            </ol>
+
+    <section *ngFor="let articleGroup of articleGroups">
+        <h4>{{articleGroup.title}}</h4>
+        <fieldset style="float: right;">
+            <legend>顯示條件</legend>
+            {{articleGroup.condition | json}}
         </fieldset>
-        
-        <section *ngFor="let part of terms">
-            <h5>{{part.title}}</h5>
-            <article *ngFor="let article of part.articles">
-                <h6>第XX條 <span>{{article.title}}</span></h6>
-                <p>{{article.content |replace:contract }}</p>
-            </article>
-        </section>
-        
-        <section>
-            <h5>第一部分：委託規格約定、契約執行規則、報酬給付方式</h5>
-            <article>
-                <h6><span></span></h6>
-                <p>乙方委託甲方為乙方產品完成圖像設計之工作。</p>
-            </article>
-            <article>
-                <h6><span></span><span>（規格）</span></h6>
-                <p>甲方應完成之詳細工作內容、規格及交付方式，依本契約【附件一】「{{contract.delegation_name}}<!--委託名稱-->工作成果規格書」之約定。【附件一】內容如須增刪調整，應由雙方另以附約方式議定之。</p>
-            </article>
-        </section>
-        
+        <article *ngFor="let article of articleGroup.articles">
+            <h6><span></span><span>{{article.title}}</span></h6>
+            <p>{{article.content}}</p>
+        </article>
     </section>
-    
-    
 </section>
