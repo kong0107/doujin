@@ -10,11 +10,30 @@ select {
     border-radius: .3em;
 }
 
-#contractCategory > fieldset {
+#settings {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+#settings > li {
+    display: inline-block;
+}
+
+#settings > li:not(:first-child):before {
+    content: "\226B";
+    padding-right: .2em;
+}
+
+#settings > li > span:only-child {
+    cursor: pointer;
+}
+
+/*#contractCategory > fieldset {
     display: inline-block;
     float: left;
     width: 10em;
-}
+}*/
 
 fieldset > div {
     margin: .5rem 0;
@@ -24,9 +43,9 @@ input:invalid {
   border: 2px solid red;
 }
 
-input:valid {
+/*input:valid {
   border: 2px solid black;
-}
+}*/
 
 input.short {
     width: 4em;
@@ -53,4 +72,13 @@ article > h6 > span:nth-child(2) {
 
 .clickable {
     cursor: pointer;
+}
+
+.btn:hover {
+    font-weight: bold;
+}
+
+dd {
+    margin-left: 2em;
+    font-size: small;
 }

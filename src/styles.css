@@ -21,7 +21,6 @@ label {
 section:after {
     content: "";
     display: block;
-    clear: both;
 }
 
 .radio-list {
