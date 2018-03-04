@@ -66,7 +66,11 @@ export class MainComponent implements OnInit {
         著作權條款: "copyrightTerms",
         著作財產權歸屬: "copyrightBelonging",
         繪師指定公開發表名稱: "a_pseudonym",
-        繪師利用範圍: "a_useRange"
+        繪師利用範圍: "a_useRange",
+        目的範圍: "purpose",
+        繪師利用限制: "a_useLimit",
+        利用範圍: "useLimitRange"
+        
     };
 
     set(attribute, value) {
@@ -106,6 +110,8 @@ export class MainComponent implements OnInit {
                 break;
             case "workType":
             case "copyrightBelonging":
+            case "a_useRange":
+            case "a_useLimit":
                 break;
             default:
                 throw new Error;

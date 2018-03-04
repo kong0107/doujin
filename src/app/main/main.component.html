@@ -1,6 +1,6 @@
 <h2>自訂契約</h2>
 
-<fieldset style="display: none; position: absolute; top: 0; right: 0; height: 100%; overflow: auto; background-color: #ccc; font-family: monospace; padding: .2em;">
+<fieldset style="position: absolute; top: 0; right: 0; height: 100%; overflow: auto; background-color: #ccc; font-family: monospace; padding: .2em;">
     <legend style="position: absolute; text-align: right; top: 0; right: 0; padding: 0 .2em; border: none; cursor: pointer;" onclick="this.parentNode.parentNode.removeChild(this.parentNode);" title="Click to close.">Debug</legend>
     <div style="white-space: pre;">{{settings | json}}</div>
 </fieldset>
@@ -57,6 +57,10 @@
                 <dd>本選項直接以「完稿預覽檔案」而非「完稿」進行驗收。</dd>
             </dl>
             <button *ngIf="settings.workType.decided" class="btn btn-primary btn-xs" (click)="unset('workType')">選擇其他方式</button>
+            <br>
+            <button *ngIf="settings.workType.decided" class="btn" (click)="settings.delegation_data.display=false; settings.copyrightTerms.display=true">
+                直接跳到「選擇著作財產權條款」（測試用）
+            </button>
         </section>
 
         <section *ngIf="settings.workType.decided">
@@ -168,7 +172,9 @@
         </dl>
     </section>
 
-    <button *ngIf="settings.workType.decided" class="btn" (click)="settings.delegation_data.display=false; settings.copyrightTerms.display=true">填好了，前往「選擇著作財產權條款」</button>
+    <button *ngIf="settings.workType.decided" class="btn" (click)="settings.delegation_data.display=false; settings.copyrightTerms.display=true">
+        填好了，前往「選擇著作財產權條款」
+    </button>
 </section>
 
 <section *ngIf="settings.copyrightTerms.display">
@@ -183,24 +189,82 @@
         <dl>
             <dt>繪師在公開發表時使用的名稱</dt>
             <dd><input [(ngModel)]="settings.a_pseudonym.value"></dd>
+        </dl>
+        <dl>
             <dt>繪師可利用的範圍（單選）</dt>
             <dd>
-                <select [(ngModel)]="settings.a_useRange.value">
-                    <option value="全部可轉授權">永久、全部業務範圍內利用，得轉授權</option>
-                    <option value="全部不可轉授權">永久、全部業務範圍內利用，不得轉授權</option>
-                    <option>還沒好</option>
-                </select>
+                <div *ngIf="!settings.a_useRange.decided || settings.a_useRange.value=='全部可轉授權'">
+                    <button class="btn"
+                        [class.btn-success]="settings.a_useRange.value=='全部可轉授權'"
+                        (click)="set('a_useRange', '全部可轉授權')"
+                    >永久、全部業務範圍內利用，得轉授權</button>
+                </div>
+                <div *ngIf="!settings.a_useRange.decided || settings.a_useRange.value=='全部不可轉授權'">
+                    <button class="btn"
+                        [class.btn-success]="settings.a_useRange.value=='全部不可轉授權'"
+                        (click)="set('a_useRange', '全部不可轉授權')"
+                    >永久、全部業務範圍內利用，不得轉授權</button>
+                </div>
+                <div *ngIf="!settings.a_useRange.decided || settings.a_useRange.value=='部分可轉授權'">
+                    <button class="btn"
+                        [class.btn-success]="settings.a_useRange.value=='部分可轉授權'"
+                        (click)="set('a_useRange', '部分可轉授權')"
+                    >永久、在特定目的、範圍內利用，得轉授權</button>
+                </div>
+                <div *ngIf="!settings.a_useRange.decided || settings.a_useRange.value=='部分不可轉授權'">
+                    <button class="btn"
+
+                        [class.btn-success]="settings.a_useRange.value=='部分不可轉授權'"
+                        (click)="set('a_useRange', '部分不可轉授權')"
+                    >永久、在特定目的、範圍內利用，不得轉授權</button>
+                </div>
+                <br>
+                <button *ngIf="settings.a_useRange.decided" class="btn btn-primary btn-xs" (click)="unset('a_useRange')">選擇其他方式</button>
+            </dd>
+            <dd *ngIf="settings.a_useRange.decided && (settings.a_useRange.value=='部分可轉授權' || settings.a_useRange.value=='部分不可轉授權')">
+                <dl>
+                    <dt>繪師能利用之目的</dt>
+                    <dd><textarea [(ngModel)]="settings.purpose.value" placeholder="例如「商業/非商業利用」"></textarea></dd>
+                </dl>
+                <dl>
+                    <dt>繪師在前述目的下能利用之範圍</dt>
+                    <dd>
+                        <button class="btn"
+                            [class.btn-success]="settings.a_useLimit.value=='無限制'"
+                            (click)="set('a_useLimit', '無限制')"
+                        >無限制</button>
+                        <br>
+                        <button class="btn"
+                            [class.btn-success]="settings.a_useLimit.value=='限制'"
+                            (click)="set('a_useLimit', '限制')"
+                        >有限制</button>
+                    </dd>
+                    <dd *ngIf="settings.a_useLimit.value=='限制'">
+                        <textarea [(ngModel)]="settings.useLimitRange.value" placeholder="請填入地區、次數、方式"></textarea>
+                        <dl>
+                            <dt>地區</dt>
+                            <dd>僅限台澎金馬或不限區域，並可另外就「語言版本」為約定。</dd>
+                            <dt>次數</dt>
+                            <dd>如果是出版相關就是版數、刷數等對發行數量的規定</dd>
+                            <dt>方式</dt>
+                            <dd>詳細部分請參考著作權法第 22 條及第 29 條，或至少就線上電子/線下實體做約定。</dd>
+                        </dl>
+                    </dd>
+                </dl>
             </dd>
         </dl>
-        還沒好
     </section>
     <section *ngIf="settings.copyrightBelonging.value=='全部歸繪師'">
         <dl>
             <dt>委託主可利用的範圍</dt>
-            <dd><select></select></dd>
+            <dd></dd>
         </dl>
         還沒好
     </section>
+
+    <button class="btn"
+        *ngIf="settings.copyrightBelonging.decided"
+    >我已經選擇完畢，確認以上內容為正確。請直接讓我看契約範本吧！</button>
 </section>
 
 <hr>
