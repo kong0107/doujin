@@ -1,0 +1,3 @@
+[submodule "src/number2chinese.js"]
+	path = src/number2chinese.js
+	url = https://github.com/kong0107/number2chinese.js.git
