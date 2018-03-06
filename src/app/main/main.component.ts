@@ -75,7 +75,7 @@ export class MainComponent implements OnInit {
                 switch(attribute) {
                     case "category":
                         d.category = true;
-                        s.unset("contributor");
+                        s.contributor.decided = false;
                         d.contributor = false;
                         break;
                     case "contributor":
@@ -87,6 +87,18 @@ export class MainComponent implements OnInit {
             }
         };
     })();
+    
+    hide = function(blockName) {
+        this.display[blockName] = false;
+    };
+    show = function(blockName) {
+        this.display[blockName] = true;
+    }
+    
+    withContributor = function() {
+        const c = this.settings.contributor;
+        return c.decided && (c.value == "是");
+    };
 
   constructor() {
     for(let key in this.dictionary) {

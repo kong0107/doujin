@@ -29,6 +29,13 @@ section:after {
     padding-left: 0;
 }
 
+
+@media print {
+    #header, h2, #debug, footer {
+        display: none;
+    }
+}
+
 /**
  * Put footer at the bottom of the page.
  *

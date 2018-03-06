@@ -54,5 +54,8 @@
 "繪師利用範圍": "a_useRange",
 "目的範圍": "purpose",
 "繪師利用限制": "a_useLimit",
-"利用範圍": "useLimitRange"
+"利用範圍": "useLimitRange",
+"繪師利用時註明委託主": "attribution",
+"約定首次公開發表由委託主發表": "firstPubliclyReleased",
+"委託主公開前繪師負有保密義務": "confidentialityObligation"
 }
