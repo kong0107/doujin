@@ -1,3 +1,27 @@
+#debug {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    overflow: auto;
+    background-color: #ccc;
+    font-family: monospace;
+    padding: .2em;
+}
+#debug > legend {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 5em;
+    padding: 0 .2em;
+    border: none;
+    cursor: pointer;
+    text-align: right;
+}
+#debug > *:not(legend) {
+    white-space: pre;
+}
+
 section {
     border-left: 2px solid #ccc;
     padding: 0 0 .1rem .5rem;
@@ -29,12 +53,6 @@ select {
     cursor: pointer;
 }
 
-/*#contractCategory > fieldset {
-    display: inline-block;
-    float: left;
-    width: 10em;
-}*/
-
 fieldset > div {
     margin: .5rem 0;
 }
@@ -42,10 +60,6 @@ fieldset > div {
 input:invalid {
   border: 2px solid red;
 }
-
-/*input:valid {
-  border: 2px solid black;
-}*/
 
 input.short {
     width: 4em;

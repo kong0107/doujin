@@ -10,6 +10,7 @@ import { FaqComponent } from './faq/faq.component';
 import { MainComponent } from './main/main.component';
 
 import { ReplacePipe } from './replace.pipe';
+import { SelectComponent } from './select/select.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { ReplacePipe } from './replace.pipe';
     StatementComponent,
     FaqComponent,
     MainComponent,
-    ReplacePipe
+    ReplacePipe,
+    SelectComponent
   ],
   imports: [
     BrowserModule,

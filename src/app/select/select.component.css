@@ -1,0 +1,7 @@
+.explanation {
+    margin: 0 0 1em 2em;
+    font-size: small;
+}
+.explanation > p {
+    margin-bottom: .2em;
+}

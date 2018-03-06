@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import * as number2chinese from '../../number2chinese.js/number2chinese.js';
 import * as Dictionary from '../dictionary.json';
 import * as ArticleGroups from './articles.json';
+import * as OptionGroups from './options.json';
 
 @Component({
   selector: 'app-main',
@@ -12,76 +13,98 @@ import * as ArticleGroups from './articles.json';
 export class MainComponent implements OnInit {
     dictionary = Dictionary;
     articleGroups = ArticleGroups;
+    optionGroups = OptionGroups;
 
-    settings: any= {};
+    display = {
+        category: true,
+        contributor: false,
+        delegation: false,
+        workType: true,
+        copyright: false,
+        contract: false
+    };
 
-    set(attribute, value) {
-        let s = this.settings;
-        s[attribute].value = value;
-        s[attribute].decided = true;
-        switch(attribute) {
-            case "category":
-                s[attribute].display = false;
-                switch(value) {
-                    case "設定圖":
-                    case "非出版單張":
-                        s.delegation_data.display = true;
-                        s.workType.display = true;
+    settings: any = (()=>{
+        const self = this;
+        return {
+            set: function(attribute: string, value: string) {
+                const d = self.display;
+                const s = self.settings;
+                s[attribute].decided = true;
+                s[attribute].value = value;
+                switch(attribute) {
+                    case "category":
+                        d.category = false;
+                        switch(value) {
+                            case "設定圖":
+                            case "非出版單張":
+                                d.delegation = true;
+                                d.workType = true;
+                                break;
+                            case "出版插圖":
+                            case "合本":
+                                d.contributor = true;
+                                break;
+                            default:
+                                console.error("unexpected value");
+                        }
                         break;
-                    case "出版插圖":
-                    case "合本":
-                        s.contributor.display = true;
+                    case "contributor":
+                        d.contributor = false;
+                        switch(s.category.value) {
+                            case "出版插圖":
+                                d.delegation = true;
+                                d.workType = true;
+                                break;
+                            case "合本":
+                                console.log("合本契約");
+                                break;
+                            default:
+                                console.error("unexpected value");
+                        }
                         break;
                     default:
-                        throw new Error;
+                        console.log("uncaught attribute");
                 }
-                break;
-            case "contributor":
-                s[attribute].display = false;
-                switch(s.category.value) {
-                    case "出版插圖":
-                        s.delegation_data.display = true;
-                        s.workType.display = true;
+            },
+            unset: function(attribute: string) {
+                const d = self.display;
+                const s = self.settings;
+                s[attribute].decided = false;
+                //s[attribute].value = "";
+                switch(attribute) {
+                    case "category":
+                        d.category = true;
+                        s.unset("contributor");
+                        d.contributor = false;
                         break;
-                    case "合本":
-                        console.log("合本契約");
+                    case "contributor":
+                        d.contributor = true;
                         break;
                     default:
-                        throw new Error;
+                        console.log("uncaught attribute");
                 }
-                break;
-            case "workType":
-            case "copyrightBelonging":
-            case "a_useRange":
-            case "a_useLimit":
-                break;
-            default:
-                throw new Error;
-        }
-    }
-    unset(attribute) {
-        this.settings[attribute].display = true;
-        this.settings[attribute].decided = false;
-    }
+            }
+        };
+    })();
 
   constructor() {
     for(let key in this.dictionary) {
       let attribute = this.dictionary[key];
-      this.settings[attribute] = {display: false, decided: false, value: ""};
+      this.settings[attribute] = {decided: false, value: ""};
     }
-    this.settings.category.display = true;
   }
 
   ngOnInit() {
-      console.log(this.articleGroups);
+    console.log(this.articleGroups);
   }
 
   ngDoCheck() {
     let articleHeaders = document.querySelectorAll("article > h6 > span:first-child");
     for(let i = 0; i < articleHeaders.length; ++i) {
-        let ah = articleHeaders[i];
-        let num = number2chinese(i+1);
-        ah.innerHTML = `第${num}條`;
+      let ah = articleHeaders[i];
+      let num = number2chinese(i+1);
+      ah.innerHTML = `第${num}條`;
     }
   }
 }
