@@ -118,8 +118,10 @@ export class MainComponent implements OnInit {
                 article.output = article.content.replace(/{{([^{}]+)}}/g,
                     (match, key) => {
                         const attribute = this.dictionary[key];
-                        return this.settings[attribute] ? this.settings[this.dictionary[key]].value : `__${attribute}__`;
-                        //this.settings[this.dictionary[key]].value
+                        let value = this.settings[attribute] ? this.settings[attribute].value : `__${key}__`;
+                        const number = parseInt(value); //< may be NaN
+                        if(!isNaN(number)) value = number2chinese(number, "T", "upper");
+                        return `<mark title="${key}">${value}</mark>`;
                     }
                 );
             });

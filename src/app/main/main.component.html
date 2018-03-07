@@ -321,7 +321,7 @@
         </fieldset-->
         <article *ngFor="let article of articleGroup.articles">
             <h5><span>{{article.number}}</span><span>{{article.title}}</span></h5>
-            <p>{{article.output}}</p>
+            <p [innerHTML]="article.output"></p>
         </article>
     </section>
 </section>

@@ -75,14 +75,12 @@ textarea {
     min-height: 4em;
 }
 
-article > h6 {
-    display: inline-block;
-}
-
-article > h6 > span:nth-child(2) {
-    display: inline-block;
-    padding-left: .5em;
-    font-size: smaller;
+article mark {
+    font-weight: bold;
+    padding: auto 1em;
+    font-size: larger;
+    background-color: #000;
+    color: #fff;
 }
 
 .clickable {

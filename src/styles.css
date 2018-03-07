@@ -29,6 +29,15 @@ section:after {
     padding-left: 0;
 }
 
+@media screen {
+    article mark {
+        font-weight: bold;
+        padding: auto 1em;
+        font-size: larger;
+        background-color: #000;
+        color: #fff;
+    }
+}
 
 @media print {
     #header, h2, #debug, footer {
