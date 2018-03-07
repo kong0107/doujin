@@ -12,8 +12,10 @@ import * as OptionGroups from './options.json';
 })
 export class MainComponent implements OnInit {
     dictionary = Dictionary;
-    articleGroups = ArticleGroups;
+    allArticleGroups = ArticleGroups;
     optionGroups = OptionGroups;
+
+    articleGroups: any= {};
 
     display = {
         category: true,
@@ -84,20 +86,47 @@ export class MainComponent implements OnInit {
                     default:
                         console.log("uncaught attribute");
                 }
+            },
+            check: function(attribute: string, value: any) {
+                const s = self.settings;
+                return s[attribute].decided && (s[attribute].value == value);
             }
         };
     })();
-    
-    hide = function(blockName) {
-        this.display[blockName] = false;
-    };
-    show = function(blockName) {
-        this.display[blockName] = true;
-    }
-    
+
+    check = this.settings.check;
+
     withContributor = function() {
+        /// 這個比較特別，因為沒得選的時候仍然是「非商家贊助」而非「未設定」。
         const c = this.settings.contributor;
         return c.decided && (c.value == "是");
+    };
+
+    showContract = function() {
+        const ags = this.allArticleGroups.filter(ag => {
+            for(let key in ag.condition) {
+                if(!this.check(this.dictionary[key], ag.condition[key])) return false;
+            }
+            return true;
+        });
+
+        let num = 0;
+        ags.forEach(ag => {
+            ag.articles.forEach(article => {
+                let chinese = number2chinese(++num);
+                article.number = `第${chinese}條`;
+                article.output = article.content.replace(/{{([^{}]+)}}/g,
+                    (match, key) => {
+                        const attribute = this.dictionary[key];
+                        return this.settings[attribute] ? this.settings[this.dictionary[key]].value : `__${attribute}__`;
+                        //this.settings[this.dictionary[key]].value
+                    }
+                );
+            });
+        });
+
+        this.articleGroups = ags;
+        this.display.contract = true;
     };
 
   constructor() {
@@ -108,15 +137,6 @@ export class MainComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.articleGroups);
-  }
-
-  ngDoCheck() {
-    let articleHeaders = document.querySelectorAll("article > h6 > span:first-child");
-    for(let i = 0; i < articleHeaders.length; ++i) {
-      let ah = articleHeaders[i];
-      let num = number2chinese(i+1);
-      ah.innerHTML = `第${num}條`;
-    }
+    console.log(this.allArticleGroups);
   }
 }

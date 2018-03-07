@@ -71,10 +71,10 @@
             <li>繪師在定稿繳交期限{{finalDeadlinef}}前交出定稿後給委託主後，委託主應該在<input type="number" [(ngModel)]="settings.acceptPeriod.value" placeholder="驗收期間" min="1" pattern="\d+">日內通知繪師驗收結果。</li>
         </ul>
         <ul *ngIf="settings.workType.value=='尾款定稿'">
-            <li>還沒改寫</li>
+            <li>還沒好</li>
         </ul>
         <ul *ngIf="settings.workType.value=='完稿全額'">
-            <li>還沒改寫</li>
+            <li>還沒好</li>
         </ul>
     </section>
 
@@ -186,7 +186,7 @@
                 <dd><input [(ngModel)]="settings.a_pseudonym.value"></dd>
             </dl>
             <dl>
-                <dt>繪師可利用的範圍（單選）</dt>
+                <dt>繪師可利用的範圍</dt>
                 <dd>
                     <app-select [attribute]="'a_useRange'" [settings]="settings"
                         [options]="optionGroups.a_useRange"
@@ -198,7 +198,7 @@
                         >選擇其他方式</button>
                     </div>
                 </dd>
-                <dd *ngIf="settings.a_useRange.decided && (settings.a_useRange.value=='部分可轉授權' || settings.a_useRange.value=='部分不可轉授權')">
+                <dd *ngIf="check('a_useRange', '部分可轉授權') || check('a_useRange', '部分不可轉授權')">
                     <dl>
                         <dt>繪師能利用之目的</dt>
                         <dd><textarea [(ngModel)]="settings.purpose.value" placeholder="例如「商業/非商業利用」"></textarea></dd>
@@ -247,34 +247,81 @@
         <section *ngIf="settings.copyrightBelonging.value=='全部歸繪師'">
             <dl>
                 <dt>委託主可利用的範圍</dt>
-                <dd></dd>
+                <dd>
+                    <app-select [attribute]="'b_useRange'" [settings]="settings"
+                        [options]="optionGroups.b_useRange"
+                    ></app-select>
+                    <div>
+                        <button class="btn btn-primary btn-xs"
+                            *ngIf="settings.b_useRange.decided"
+                            (click)="settings.unset('b_useRange')"
+                        >選擇其他方式</button>
+                    </div>
+                </dd>
+                <dd *ngIf="check('b_useRange', '部分可轉授權') || check('b_useRange', '部分不可轉授權')">
+                    <dl>
+                        <dt>委託主能利用之目的</dt>
+                        <dd><textarea [(ngModel)]="settings.purpose.value" placeholder="例如「商業/非商業利用」"></textarea></dd>
+                    </dl>
+                    <dl>
+                        <dt>委託主在前述目的下能利用之範圍</dt>
+                        <dd>
+                            <button class="btn"
+                                [class.btn-success]="settings.b_useLimit.value=='無限制'"
+                                (click)="settings.set('b_useLimit', '無限制')"
+                            >無限制</button>
+                            <button class="btn"
+                                [class.btn-success]="settings.b_useLimit.value=='限制'"
+                                (click)="settings.set('b_useLimit', '限制')"
+                            >有限制</button>
+                        </dd>
+                        <dd *ngIf="settings.b_useLimit.value=='限制'">
+                            <textarea [(ngModel)]="settings.useLimitRange.value" placeholder="請填入地區、次數、方式"></textarea>
+                            <dl>
+                                <dt>地區</dt>
+                                <dd>僅限台澎金馬或不限區域，並可另外就「語言版本」為約定；</dd>
+                                <dt>期間</dt>
+                                <dd>特定年數內或永久；</dd>
+                                <dt>次數</dt>
+                                <dd>如果是出版相關就是版數、刷數等對發行數量的規定</dd>
+                                <dt>方式</dt>
+                                <dd>詳細部分請參考著作權法第 22 條及第 29 條，或至少就線上電子/線下實體做約定。</dd>
+                            </dl>
+                        </dd>
+                        <dd *ngIf="settings.b_useLimit.value=='限制'">
+                            <dl class="inline">
+                                <dt><input type="checkbox" id="derivable" [(ngModel)]="settings.derivable.value"></dt>
+                                <dd><label for="derivable">委託主是否得因需求改動作品？</label></dd>
+                            </dl>
+                        </dd>
+                    </dl>
+                </dd>
             </dl>
-            還沒好
         </section>
 
         <button *ngIf="settings.copyrightBelonging.decided" class="btn"
-            (click)="hide('copyright'); show('contract')"
+            (click)="display.copyright = false; showContract();"
         >我已經選擇完畢，確認以上內容為正確。請直接讓我看契約範本吧！</button>
     </ng-container>
 </section>
 
 <section *ngIf="display.contract">
-    <h3>契約內文（還沒好）</h3>    
-    
+    <h3>契約內文（還沒好）</h3>
+
     <button class="btn" (click)="console.log('not ready')"
     >儲存為 PDF （還沒好）</button>
     <button class="btn" onclick="window.print()"
     >直接列印</button>
 
-    <section *ngFor="let articleGroup of articleGroups">
+    <section *ngFor="let articleGroup of articleGroups" style="clear: right;">
         <h4>{{articleGroup.title}}</h4>
-        <fieldset style="float: right;">
+        <!--fieldset style="float: right;">
             <legend>顯示條件</legend>
             {{articleGroup.condition | json}}
-        </fieldset>
+        </fieldset-->
         <article *ngFor="let article of articleGroup.articles">
-            <h6><span></span><span>{{article.title}}</span></h6>
-            <p>{{article.content}}</p>
+            <h5><span>{{article.number}}</span><span>{{article.title}}</span></h5>
+            <p>{{article.output}}</p>
         </article>
     </section>
 </section>

@@ -50,12 +50,17 @@
 
 "著作權條款": "copyrightTerms",
 "著作財產權歸屬": "copyrightBelonging",
+"目的範圍": "purpose",
+"利用範圍": "useLimitRange",
+
 "繪師指定公開發表名稱": "a_pseudonym",
 "繪師利用範圍": "a_useRange",
-"目的範圍": "purpose",
 "繪師利用限制": "a_useLimit",
-"利用範圍": "useLimitRange",
 "繪師利用時註明委託主": "attribution",
 "約定首次公開發表由委託主發表": "firstPubliclyReleased",
-"委託主公開前繪師負有保密義務": "confidentialityObligation"
+"委託主公開前繪師負有保密義務": "confidentialityObligation",
+
+"委託主利用範圍": "b_useRange",
+"委託主利用限制": "b_useLimit",
+"委託主得改作": "derivable"
 }
