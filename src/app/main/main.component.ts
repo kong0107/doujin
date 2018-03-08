@@ -14,7 +14,6 @@ export class MainComponent implements OnInit {
     dictionary = Dictionary;
     allArticleGroups = ArticleGroups;
     optionGroups = OptionGroups;
-
     articleGroups: any= [];
 
     display = {
@@ -22,26 +21,22 @@ export class MainComponent implements OnInit {
         contributor: false,
         delegation: false,
         workType: true,
+        delegationDetails: false,
         copyright: false,
         contract: false
-    };
-
-    displayAll = function() {
-        for(let block in this.display)
-            this.display[block] = true;
     };
 
     settings: any = (()=>{
         const self = this;
         return {
-            set: function(attribute: string, value: any) {
+            set: function(attribute: string, value: any, render: boolean= true) {
                 const d = self.display;
                 const s = self.settings;
                 s[attribute].decided = true;
                 s[attribute].value = value;
                 switch(attribute) {
                     case "category":
-                        //d.category = false;
+                        d.category = false;
                         switch(value) {
                             case "設定圖":
                             case "非出版單張":
@@ -53,11 +48,11 @@ export class MainComponent implements OnInit {
                                 d.contributor = true;
                                 break;
                             default:
-                                console.error("unexpected value");
+                                console.error(`unexpected value "${value}" for attribute "category"`);
                         }
                         break;
                     case "contributor":
-                        //d.contributor = false;
+                        d.contributor = false;
                         switch(s.category.value) {
                             case "出版插圖":
                                 d.delegation = true;
@@ -67,28 +62,32 @@ export class MainComponent implements OnInit {
                                 console.log("合本契約");
                                 break;
                             default:
-                                console.error("unexpected value");
+                                console.error(`unexpected category "${s.category.value}" while selecting contributor`);
                         }
+                        break;
+                    case "workType":
+                        d.delegationDetails = true;
                         break;
                     case "a_useRange":
                         if(value == "全部可轉授權" || value =="全部不可轉授權")
-                            s.set("a_useLimit", "無限制");
+                            s.set("a_useLimit", "無限制", false);
                         break;
                     case "firstPubliclyReleased":
                         if(value == false)
-                            s.set("confidentialityObligation", false);
+                            s.set("confidentialityObligation", false, false);
                         break;
                     case "b_useRange":
                         if(value == "全部可轉授權" || value == "全部不可轉授權")
-                            s.set("b_useLimit", "無限制");
+                            s.set("b_useLimit", "無限制", false);
                         break;
                     case "b_useLimit":
                         if(value == "無限制")
-                            s.set("derivable", true);
+                            s.set("derivable", true, false);
                         break;
                     default:
-                        console.log("uncaught attribute");
+                        console.log(`uncaught attribute "${attribute}"`);
                 }
+                if(render) self.renderArticles();
             },
             unset: function(attribute: string) {
                 const d = self.display;
@@ -106,6 +105,7 @@ export class MainComponent implements OnInit {
                     default:
                         console.log("uncaught attribute");
                 }
+                self.renderArticles();
             },
             check: function(attribute: string) {
                 const s = self.settings;
@@ -132,7 +132,7 @@ export class MainComponent implements OnInit {
         return c.decided && (c.value == "是");
     };
 
-    showContract = function() {
+    renderArticles = function() {
         let ags = [];
         this.allArticleGroups.forEach(ag => {
             for(let key in ag.condition) {
@@ -169,10 +169,14 @@ export class MainComponent implements OnInit {
             });
         });
 
-        console.log(ags);
         this.articleGroups = ags;
-        this.display.contract = true;
+        window['articleGroups'] = ags;
+        console.log(`rendered ${this.getArticleCount()} articles`);
     };
+
+    getArticleCount = function() {
+        return this.articleGroups.reduce((accumlator, current) => accumlator + current.articles.length, 0);
+    }
 
   constructor() {
     for(let key in this.dictionary) {
@@ -182,6 +186,6 @@ export class MainComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.allArticleGroups);
+    console.log(window['allArticleGroups'] = this.allArticleGroups);
   }
 }

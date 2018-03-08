@@ -28,6 +28,11 @@ section {
     padding: 0 0 .1rem .5rem;
     margin: .5rem 0;
 }
+section:after {
+    content: "";
+    display: block;
+    clear: both;
+}
 
 select {
     font-size: large;
@@ -77,6 +82,7 @@ textarea {
 
 article {
     page-break-inside: avoid;
+    clear: both;
 }
 
 article p {
@@ -85,10 +91,6 @@ article p {
 
 article mark {
     font-weight: bold;
-    padding: auto 1em;
-    font-size: larger;
-    background-color: #000;
-    color: #fff;
 }
 
 .clickable {

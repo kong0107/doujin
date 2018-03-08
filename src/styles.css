@@ -32,10 +32,6 @@ section:after {
 @media screen {
     article mark {
         font-weight: bold;
-        padding: auto 1em;
-        font-size: larger;
-        background-color: #000;
-        color: #fff;
     }
 }
 
