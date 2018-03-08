@@ -7,8 +7,8 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class SelectComponent implements OnInit {
   @Input() attribute: string;
-  @Input() options: any[];
   @Input() settings: object;
+  @Input() options: any[];
 
   constructor() {}
   ngOnInit() {

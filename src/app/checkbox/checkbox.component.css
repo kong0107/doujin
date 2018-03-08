@@ -1,0 +1,8 @@
+div {
+    cursor: pointer;
+    display: inline-block;
+}
+
+button {
+    width: 2em;
+}

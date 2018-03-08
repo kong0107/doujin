@@ -260,7 +260,7 @@
     </section>
 
     <button *ngIf="settings.workType.decided" class="btn"
-        (click)="display.delegation=false; display.copyright=true;"
+        (click)="display.copyright=true;"
     >填好了，前往「選擇著作財產權條款」</button>
 </section>
 
@@ -329,20 +329,22 @@
                     </dl>
                 </dd>
             </dl>
-            <dl class="inline">
-                <dt><input type="checkbox" id="attribution" [(ngModel)]="settings.attribution.value"></dt>
-                <dd><label for="attribution">繪師利用時是否要標明委託主？</label></dd>
-            </dl>
-            <dl class="inline">
-                <dt><input type="checkbox" id="firstPubliclyReleased" [(ngModel)]="settings.firstPubliclyReleased.value"></dt>
-                <dd>
-                    <label for="firstPubliclyReleased">由委託主首次公開發表？</label>
-                    <dl *ngIf="settings.firstPubliclyReleased.value" class="inline">
-                        <dt><input type="checkbox" id="confidentialityObligation" [(ngModel)]="settings.confidentialityObligation.value"></dt>
-                        <dd><label for="confidentialityObligation">委託主公開前，繪師是否有保密義務？</label></dd>
-                    </dl>
-                </dd>
-            </dl>
+            <div>
+                <app-checkbox [attribute]="'attribution'" [settings]="settings"
+                    [text]="'繪師利用時是否要標明委託主？'"
+                ></app-checkbox>
+            </div>
+            <br>
+            <div>
+                <app-checkbox [attribute]="'firstPubliclyReleased'" [settings]="settings"
+                    [text]="'由委託主首次公開發表？'"
+                ></app-checkbox>
+                <div *ngIf="check('firstPubliclyReleased', true)" style="margin-left: 2em">
+                    <app-checkbox [attribute]="'confidentialityObligation'" [settings]="settings"
+                        [text]="'委託主公開前，繪師是否有保密義務？'"
+                    ></app-checkbox>
+                </div>
+            </div>
         </section>
         <section *ngIf="settings.copyrightBelonging.value=='全部歸繪師'">
             <dl>
@@ -389,10 +391,9 @@
                             </dl>
                         </dd>
                         <dd *ngIf="settings.b_useLimit.value=='限制'">
-                            <dl class="inline">
-                                <dt><input type="checkbox" id="derivable" [(ngModel)]="settings.derivable.value"></dt>
-                                <dd><label for="derivable">委託主是否得因需求改動作品？</label></dd>
-                            </dl>
+                            <app-checkbox [attribute]="'derivable'" [settings]="settings"
+                                [text]="'委託主是否得因需求改動作品？'"
+                            ></app-checkbox>
                         </dd>
                     </dl>
                 </dd>
@@ -400,7 +401,7 @@
         </section>
 
         <button *ngIf="settings.copyrightBelonging.decided" class="btn"
-            (click)="display.copyright = false; showContract();"
+            (click)="showContract()"
         >我已經選擇完畢，確認以上內容為正確。請直接讓我看契約範本吧！</button>
     </ng-container>
 </section>
@@ -409,17 +410,21 @@
     <h3>契約內文（還沒好）</h3>
     <div>
         <button class="btn" onclick="window.print()">列印</button>
-        <p class="text-info">如果瀏覽器支援，也許可以「印成 PDF 檔」。</p>
+        <p class="text-muted">如果瀏覽器支援，也許可以「印成 PDF 檔」。</p>
         <button class="btn btn-warning" (click)="showContract(); displayAll();">重整條文</button>
     </div>
 
     <section *ngFor="let articleGroup of articleGroups" style="clear: right;">
         <h4>{{articleGroup.title}}</h4>
         <fieldset style="float: right; border: 1px solid #888">
-            <legend>顯示條件</legend>
+            <legend>區塊顯示條件</legend>
             {{articleGroup.condition | json}}
         </fieldset>
         <article *ngFor="let article of articleGroup.articles">
+            <fieldset *ngIf="article.condition" style="float: right; border: 1px solid #888">
+                <legend>條文顯示條件</legend>
+                {{article.condition | json}}
+            </fieldset>
             <h5><span>{{article.number}}</span><span>{{article.title}}</span></h5>
             <p [innerHTML]="article.output"></p>
         </article>

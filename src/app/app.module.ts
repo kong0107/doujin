@@ -11,6 +11,7 @@ import { MainComponent } from './main/main.component';
 
 import { ReplacePipe } from './replace.pipe';
 import { SelectComponent } from './select/select.component';
+import { CheckboxComponent } from './checkbox/checkbox.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { SelectComponent } from './select/select.component';
     FaqComponent,
     MainComponent,
     ReplacePipe,
-    SelectComponent
+    SelectComponent,
+    CheckboxComponent
   ],
   imports: [
     BrowserModule,

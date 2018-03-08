@@ -34,14 +34,14 @@ export class MainComponent implements OnInit {
     settings: any = (()=>{
         const self = this;
         return {
-            set: function(attribute: string, value: string) {
+            set: function(attribute: string, value: any) {
                 const d = self.display;
                 const s = self.settings;
                 s[attribute].decided = true;
                 s[attribute].value = value;
                 switch(attribute) {
                     case "category":
-                        d.category = false;
+                        //d.category = false;
                         switch(value) {
                             case "設定圖":
                             case "非出版單張":
@@ -57,7 +57,7 @@ export class MainComponent implements OnInit {
                         }
                         break;
                     case "contributor":
-                        d.contributor = false;
+                        //d.contributor = false;
                         switch(s.category.value) {
                             case "出版插圖":
                                 d.delegation = true;
@@ -69,6 +69,22 @@ export class MainComponent implements OnInit {
                             default:
                                 console.error("unexpected value");
                         }
+                        break;
+                    case "a_useRange":
+                        if(value == "全部可轉授權" || value =="全部不可轉授權")
+                            s.set("a_useLimit", "無限制");
+                        break;
+                    case "firstPubliclyReleased":
+                        if(value == false)
+                            s.set("confidentialityObligation", false);
+                        break;
+                    case "b_useRange":
+                        if(value == "全部可轉授權" || value == "全部不可轉授權")
+                            s.set("b_useLimit", "無限制");
+                        break;
+                    case "b_useLimit":
+                        if(value == "無限制")
+                            s.set("derivable", true);
                         break;
                     default:
                         console.log("uncaught attribute");
@@ -97,11 +113,18 @@ export class MainComponent implements OnInit {
                 for(let i = 1; i < arguments.length; ++i)
                     if(s[attribute].value == arguments[i]) return true;
                 return false;
+            },
+            toggle: function(attribute: string) {
+                const s = self.settings;
+                const v = !s[attribute].value;
+                s.set(attribute, v);
+                return v;
             }
         };
     })();
 
     check = this.settings.check;
+    toggle = this.settings.toggle;
 
     withContributor = function() {
         /// 這個比較特別，因為沒得選的時候仍然是「非商家贊助」而非「未設定」。
@@ -110,11 +133,22 @@ export class MainComponent implements OnInit {
     };
 
     showContract = function() {
-        const ags = this.allArticleGroups.filter(ag => {
+        let ags = [];
+        this.allArticleGroups.forEach(ag => {
             for(let key in ag.condition) {
-                if(!this.check(this.dictionary[key], ag.condition[key])) return false;
+                if(!this.check(this.dictionary[key], ag.condition[key])) return;
             }
-            return true;
+            ags.push({
+                title: ag.title,
+                condition: ag.condition,
+                articles: ag.articles.filter(article => {
+                    if(typeof article.condition == "undefined") return true;
+                    for(let key in article.condition) {
+                        if(!this.check(this.dictionary[key], article.condition[key])) return false;
+                    }
+                    return true;
+                })
+            });
         });
 
         let num = 0;
@@ -135,6 +169,7 @@ export class MainComponent implements OnInit {
             });
         });
 
+        console.log(ags);
         this.articleGroups = ags;
         this.display.contract = true;
     };
