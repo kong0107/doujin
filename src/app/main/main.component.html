@@ -1,18 +1,20 @@
-<h2>自訂契約</h2>
+<header>
+    <h2>自訂契約</h2>
 
-<fieldset id="debug">
-    <legend onclick="this.parentNode.style.display='none';" title="Click to close.">Debug</legend>
-    <div>{{display | json}}</div>
-    <div>{{settings | json}}</div>
-</fieldset>
+    <fieldset id="debug">
+        <legend onclick="this.parentNode.style.display='none';" title="Click to close.">Debug</legend>
+        <div>{{display | json}}</div>
+        <div>{{settings | json}}</div>
+    </fieldset>
 
-<ul id="settings">
-    <li *ngIf="settings.category.decided"><span (click)="settings.unset('category')">{{settings.category.value}}</span></li>
-    <li *ngIf="settings.contributor.decided"><span (click)="settings.unset('contributor')">{{settings.contributor.value=="是"?"有":"無"}}商家出資</span></li>
-    <li *ngIf="settings.workType.decided"><span (click)="settings.unset('workType')">{{settings.workType.value}}</span></li>
-    <li *ngIf="settings.copyrightBelonging.decided"><span (click)="settings.unset('copyrightBelonging')">著作財產權{{settings.copyrightBelonging.value.substr(2)}}</span></li>
-    <li *ngIf="settings.a_useRange.decided"><span (click)="settings.unset('a_useRange')">繪師{{settings.a_useRange.value}}</span></li>
-</ul>
+    <ul id="settings">
+        <li *ngIf="settings.category.decided"><span (click)="settings.unset('category')">{{settings.category.value}}</span></li>
+        <li *ngIf="settings.contributor.decided"><span (click)="settings.unset('contributor')">{{settings.contributor.value=="是"?"有":"無"}}商家出資</span></li>
+        <li *ngIf="settings.workType.decided"><span (click)="settings.unset('workType')">{{settings.workType.value}}</span></li>
+        <li *ngIf="settings.copyrightBelonging.decided"><span (click)="settings.unset('copyrightBelonging')">著作財產權{{settings.copyrightBelonging.value.substr(2)}}</span></li>
+        <li *ngIf="settings.a_useRange.decided"><span (click)="settings.unset('a_useRange')">繪師{{settings.a_useRange.value}}</span></li>
+    </ul>
+</header>
 
 <section *ngIf="display.category">
     <h3 (click)="settings.unset('category')">契約類型</h3>
@@ -414,18 +416,20 @@
     </ng-container>
 </section>
 
-<section *ngIf="display.contract">
-    <h2>
-        契約內文（還沒好）
-        <small>共{{getArticleCount()}}條</small>
-    </h2>
-    <div>
-        <button class="btn" onclick="window.print()">列印</button>
-        <p class="text-muted">如果瀏覽器支援，也許可以「印成 PDF 檔」。</p>
-        <button class="btn btn-warning" (click)="renderArticles();">重整條文</button>
-    </div>
+<section *ngIf="display.contract" class="print">
+    <header class="no-print">
+        <h2>
+            契約內文（還沒好）
+            <small>共{{getArticleCount()}}條</small>
+        </h2>
+        <div>
+            <button class="btn" onclick="window.print()">列印</button>
+            <p class="text-muted">如果瀏覽器支援，也許可以「印成 PDF 檔」。</p>
+            <button class="btn btn-warning" (click)="renderArticles();">重整條文</button>
+        </div>
+    </header>
 
-    <section *ngFor="let articleGroup of articleGroups" style="clear: right;">
+    <section *ngFor="let articleGroup of articleGroups" class="articleGroup print">
         <h3>{{articleGroup.title}}</h3>
         <!--fieldset style="float: right; border: 1px solid #888">
             <legend>區塊顯示條件</legend>

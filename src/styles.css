@@ -36,7 +36,7 @@ section:after {
 }
 
 @media print {
-    #header, h2, #debug, footer {
+    #header, header, footer, #main section:not(.print) {
         display: none;
     }
 }

@@ -80,6 +80,10 @@ textarea {
     min-height: 4em;
 }
 
+.articleGroup {
+    clear: right;
+}
+
 article {
     page-break-inside: avoid;
     clear: both;
