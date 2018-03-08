@@ -15,7 +15,7 @@ export class MainComponent implements OnInit {
     allArticleGroups = ArticleGroups;
     optionGroups = OptionGroups;
 
-    articleGroups: any= {};
+    articleGroups: any= [];
 
     display = {
         category: true,
@@ -24,6 +24,11 @@ export class MainComponent implements OnInit {
         workType: true,
         copyright: false,
         contract: false
+    };
+
+    displayAll = function() {
+        for(let block in this.display)
+            this.display[block] = true;
     };
 
     settings: any = (()=>{
@@ -73,7 +78,6 @@ export class MainComponent implements OnInit {
                 const d = self.display;
                 const s = self.settings;
                 s[attribute].decided = false;
-                //s[attribute].value = "";
                 switch(attribute) {
                     case "category":
                         d.category = true;
@@ -87,9 +91,12 @@ export class MainComponent implements OnInit {
                         console.log("uncaught attribute");
                 }
             },
-            check: function(attribute: string, value: any) {
+            check: function(attribute: string) {
                 const s = self.settings;
-                return s[attribute].decided && (s[attribute].value == value);
+                if(!s[attribute].decided) return false;
+                for(let i = 1; i < arguments.length; ++i)
+                    if(s[attribute].value == arguments[i]) return true;
+                return false;
             }
         };
     })();
@@ -118,9 +125,10 @@ export class MainComponent implements OnInit {
                 article.output = article.content.replace(/{{([^{}]+)}}/g,
                     (match, key) => {
                         const attribute = this.dictionary[key];
-                        let value = this.settings[attribute] ? this.settings[attribute].value : `__${key}__`;
+                        let value = this.settings[attribute] ? this.settings[attribute].value : `?!${key}!?`;
                         const number = parseInt(value); //< may be NaN
                         if(!isNaN(number)) value = number2chinese(number, "T", "upper");
+                        if(!value) value = `__${key}__`;
                         return `<mark title="${key}">${value}</mark>`;
                     }
                 );

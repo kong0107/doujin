@@ -75,6 +75,14 @@ textarea {
     min-height: 4em;
 }
 
+article {
+    page-break-inside: avoid;
+}
+
+article p {
+    white-space: pre-line;
+}
+
 article mark {
     font-weight: bold;
     padding: auto 1em;
@@ -91,16 +99,17 @@ article mark {
     font-weight: bold;
 }
 
-dd {
-    margin-left: 2em;
-    font-size: small;
-}
 
 dl.inline > dt {
     float: left;
 }
+
 dl.inline:after {
     content: "";
     display: block;
     clear: left;
+}
+
+dl.inline > dd {
+    margin-left: 1em;
 }

@@ -4,11 +4,12 @@
 
 "工作方式": "workType",
 "草稿繳交期限": "draftDeadline",
-"定稿繳交期限": "finalDeadline",
+"定稿繳交期間": "finalDeadline",
 "付全額期間": "fullPayPeriod",
 "全額報酬數額": "fullPayAmount",
 "違約金數額": "penaltyAmount",
 "草稿初次意見期間": "draftFirstOpinionPeriod",
+"草稿初次改稿回應期間": "draftSeriousFixRespondPeriod",
 "草稿開放小修期間": "draftFixRequestPeriod",
 "改稿次數": "draftFixNumber",
 "草稿小修回應期間": "draftFixRespondPeriod",
@@ -17,6 +18,7 @@
 "定金數額": "earnestMoneyAmount",
 "付尾款期間": "finalPayPeriod",
 "尾款數額": "finalPayAmount",
+"檔案交付期間": "deliverPeriod",
 
 "繪師姓名": "a_name",
 "繪師戶籍地址": "a_permanentAddress",
