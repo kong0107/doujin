@@ -40,22 +40,22 @@ select {
     border-radius: .3em;
 }
 
-#settings {
+#breadcrumb {
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
 
-#settings > li {
+#breadcrumb > li {
     display: inline-block;
 }
 
-#settings > li:not(:first-child):before {
+#breadcrumb > li:not(:first-child):before {
     content: "\226B";
     padding-right: .2em;
 }
 
-#settings > li > span:only-child {
+#breadcrumb > li > span:only-child {
     cursor: pointer;
 }
 
@@ -78,10 +78,6 @@ input.long {
 textarea {
     width: 95%;
     min-height: 4em;
-}
-
-.articleGroup {
-    clear: right;
 }
 
 article {

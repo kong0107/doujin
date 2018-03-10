@@ -1,3 +1,4 @@
+<section id="settings">
 <header>
     <h2>自訂契約</h2>
 
@@ -7,7 +8,12 @@
         <div>{{settings | json}}</div>
     </fieldset>
 
-    <ul id="settings">
+    <fieldset>
+        <button class="btn btn-warning" (click)="load(demoData)">套用測試資料</button>
+        <button class="btn btn-danger" (click)="load(false)">清空</button>
+    </fieldset>
+
+    <ul id="breadcrumb">
         <li *ngIf="settings.category.decided"><span (click)="settings.unset('category')">{{settings.category.value}}</span></li>
         <li *ngIf="settings.contributor.decided"><span (click)="settings.unset('contributor')">{{settings.contributor.value=="是"?"有":"無"}}商家出資</span></li>
         <li *ngIf="settings.workType.decided"><span (click)="settings.unset('workType')">{{settings.workType.value}}</span></li>
@@ -18,13 +24,13 @@
 
 <section *ngIf="display.category">
     <h3 (click)="settings.unset('category')">契約類型</h3>
-    <fieldset class="col-md-4">
+    <fieldset class="col-md-2">
         <legend><h4>非出版性委託</h4></legend>
         <app-select [attribute]="'category'" [settings]="settings"
             [options]="optionGroups.nonPublishDelegation"
         ></app-select>
     </fieldset>
-    <fieldset class="col-md-4">
+    <fieldset class="col-md-2">
         <legend><h4>出版性委託</h4></legend>
         <app-select [attribute]="'category'" [settings]="settings"
             [options]="optionGroups.publishDelegation"
@@ -202,7 +208,7 @@
                         <dt>通訊地址</dt>
                         <dd><input [(ngModel)]="settings.a_correspondenceAddress.value"></dd>
                         <dt>連絡電話</dt>
-                        <dd><input [(ngModel)]="settings.a_phone.value"></dd>
+                        <dd><input [(ngModel)]="settings.a_phone.value" type="tel"></dd>
                     </dl>
                 </section>
                 <section *ngIf="withContributor()">
@@ -219,7 +225,7 @@
                         <dt>通訊地址</dt>
                         <dd><input [(ngModel)]="settings.b_correspondenceAddress.value"></dd>
                         <dt>聯絡電話</dt>
-                        <dd><input [(ngModel)]="settings.b_phone.value"></dd>
+                        <dd><input [(ngModel)]="settings.b_phone.value" type="tel"></dd>
                     </dl>
                 </section>
                 <section *ngIf="!withContributor()">
@@ -236,7 +242,7 @@
                         <dt>通訊地址</dt>
                         <dd><input [(ngModel)]="settings.b_correspondenceAddress.value"></dd>
                         <dt>連絡電話</dt>
-                        <dd><input [(ngModel)]="settings.b_phone.value"></dd>
+                        <dd><input [(ngModel)]="settings.b_phone.value" type="tel"></dd>
                     </dl>
                 </section>
             </section>
@@ -249,7 +255,7 @@
                     <dt>戶名</dt>
                     <dd><input [(ngModel)]="settings.accountName.value"></dd>
                     <dt>帳號</dt>
-                    <dd><input [(ngModel)]="settings.accountNumber.value"></dd>
+                    <dd><input [(ngModel)]="settings.accountNumber.value" type="tel"></dd>
                 </dl>
             </section>
 
@@ -415,8 +421,9 @@
         >我已經選擇完畢，確認以上內容為正確。請直接讓我看契約範本吧！</button>
     </ng-container>
 </section>
+</section>
 
-<section *ngIf="display.contract" class="print">
+<section *ngIf="display.contract">
     <header class="no-print">
         <h2>
             契約內文（還沒好）
@@ -429,22 +436,25 @@
         </div>
     </header>
 
-    <section *ngFor="let articleGroup of articleGroups" class="articleGroup print">
-        <h3>{{articleGroup.title}}</h3>
-        <!--fieldset style="float: right; border: 1px solid #888">
-            <legend>區塊顯示條件</legend>
-            {{articleGroup.condition | json}}
-        </fieldset-->
-        <article *ngFor="let article of articleGroup.articles">
-            <!--fieldset *ngIf="article.condition" style="float: right; border: 1px solid #888; clear: right;">
-                <legend>條文顯示條件</legend>
-                {{article.condition | json}}
-            </fieldset-->
-            <h4>
-                {{article.number}}
-                <small *ngIf="article.title">（{{article.title}}）</small>
-            </h4>
-            <p [innerHTML]="article.output"></p>
-        </article>
+    <section id="contract">
+        <header>
+            <h2 class="text-center">出資聘人完成著作契約</h2>
+            <dl>
+                <dt>立約人：</dt>
+                <dd>甲方：{{settings.a_name.value}}</dd>
+                <dd>乙方：{{settings.b_name.value}}</dd>
+            </dl>
+            <p>緣乙方企畫並出資製作之{{settings.delegation_name.value}}（下稱乙方產品），其部分工作委由甲方承攬製作。甲乙雙方依誠信原則訂立本契約，條款如下：</p>
+        </header>
+        <section *ngFor="let articleGroup of articleGroups">
+            <h3>{{articleGroup.title}}</h3>
+            <article *ngFor="let article of articleGroup.articles">
+                <h4>
+                    {{article.number}}
+                    <small *ngIf="article.title">（{{article.title}}）</small>
+                </h4>
+                <p [innerHTML]="article.output"></p>
+            </article>
+        </section>
     </section>
 </section>

@@ -4,6 +4,7 @@ import * as number2chinese from '../../number2chinese.js/number2chinese.js';
 import * as Dictionary from '../dictionary.json';
 import * as ArticleGroups from './articles.json';
 import * as OptionGroups from './options.json';
+import * as DemoData from './demo-data.json';
 
 @Component({
   selector: 'app-main',
@@ -15,6 +16,7 @@ export class MainComponent implements OnInit {
     allArticleGroups = ArticleGroups;
     optionGroups = OptionGroups;
     articleGroups: any= [];
+    demoData = DemoData;
 
     display = {
         category: true,
@@ -89,7 +91,7 @@ export class MainComponent implements OnInit {
                 }
                 if(render) self.renderArticles();
             },
-            unset: function(attribute: string) {
+            unset: function(attribute: string, render: boolean= true) {
                 const d = self.display;
                 const s = self.settings;
                 s[attribute].decided = false;
@@ -105,7 +107,7 @@ export class MainComponent implements OnInit {
                     default:
                         console.log("uncaught attribute");
                 }
-                self.renderArticles();
+                if(render) self.renderArticles();
             },
             check: function(attribute: string) {
                 const s = self.settings;
@@ -160,8 +162,8 @@ export class MainComponent implements OnInit {
                     (match, key) => {
                         const attribute = this.dictionary[key];
                         let value = this.settings[attribute] ? this.settings[attribute].value : `?!${key}!?`;
-                        const number = parseInt(value); //< may be NaN
-                        if(!isNaN(number)) value = number2chinese(number, "T", "upper");
+                        const number = +value; //< may be NaN
+                        if(attribute != "accountNumber" && !isNaN(number)) value = number2chinese(number, "T", "upper");
                         if(!value) value = `__${key}__`;
                         return `<mark title="${key}">${value}</mark>`;
                     }
@@ -176,6 +178,20 @@ export class MainComponent implements OnInit {
 
     getArticleCount = function() {
         return this.articleGroups.reduce((accumlator, current) => accumlator + current.articles.length, 0);
+    }
+
+    load = function(data) {
+        const s = this.settings;
+        if(data) {
+            for(let attr in data)
+                if(s[attr]) s.set(attr, data[attr], false);
+        }
+        else {
+            for(let key in this.dictionary)
+                s.unset(this.dictionary[key], false);
+        }
+        this.renderArticles();
+        this.display.contract = !!data;
     }
 
   constructor() {

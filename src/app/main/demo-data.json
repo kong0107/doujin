@@ -1,0 +1,67 @@
+{
+"category": "設定圖",
+"商家出資": "contributor",
+
+"workType": "尾款草稿",
+"draftDeadline": "2018-07-01",
+"finalDeadline": "2019-01-01",
+"fullPayPeriod": "7",
+"fullPayAmount": "19600",
+"penaltyAmount": "9600",
+"draftFirstOpinionPeriod": "10",
+"draftSeriousFixRespondPeriod": "30",
+"draftFixRequestPeriod": "10",
+"draftFixNumber": "3",
+"draftFixRespondPeriod": "10",
+"acceptPeriod": "3",
+"earnestMoneyPeriod": "5",
+"earnestMoneyAmount": "6000",
+"finalPayPeriod": "7",
+"finalPayAmount": "12600",
+"檔案交付期間": "deliverPeriod",
+
+"a_name": "南門婚",
+"a_permanentAddress": "臺北市中正區重慶南路1段122號",
+"a_id": "F246813579",
+"a_email": "xx@gov.tw",
+"a_correspondenceAddress": "臺北市中正區重慶南路1段122號",
+"a_phone": "0987-654-321",
+
+"商家名稱": "b_name",
+"商家登記地址": "b_permanentAddress",
+"商家統一編號": "b_id",
+"商家代表人": "b_chairperson",
+"商家通訊地址": "b_correspondenceAddress",
+"商家聯絡電話": "b_phone",
+
+"b_name": "東門喜",
+"b_permanentAddress": "台中市霧峰區中正路734號",
+"b_id": "M135792468",
+"b_email": "xy@gov.tw",
+"b_correspondenceAddress": "台中市霧峰區中正路734號",
+"b_phone": "0913-579-426",
+
+"bank": "中華郵政臺北法院郵局",
+"accountName": "西門慶",
+"accountNumber": "0001182 0798888",
+
+"delegation_name": "北門喪",
+"delegation_content": "中國殭屍，帽子上頭寫著「北門」，胸前寫著「炒飯」，細瘦平胸四十歲女性",
+"delegation_format": "1080p / PNG",
+"seriousityDefinition": "改為非人類外型",
+
+"copyrightBelonging": "全部歸委託主",
+"purpose": "非商業使用",
+"useLimitRange": "不限區域，但不可實體印製。",
+
+"a_pseudonym": "小南不婚",
+"a_useRange": "部分可轉授權",
+"a_useLimit": "限制",
+"attribution": false,
+"firstPubliclyReleased": true,
+"confidentialityObligation": true,
+
+"委託主利用範圍": "b_useRange",
+"委託主利用限制": "b_useLimit",
+"委託主得改作": "derivable"
+}

@@ -14,7 +14,7 @@
 "改稿次數": "draftFixNumber",
 "草稿小修回應期間": "draftFixRespondPeriod",
 "驗收期間": "acceptPeriod",
-"付定金期間":"earnestMoneyPeriod",
+"付定金期間": "earnestMoneyPeriod",
 "定金數額": "earnestMoneyAmount",
 "付尾款期間": "finalPayPeriod",
 "尾款數額": "finalPayAmount",
@@ -35,7 +35,7 @@
 "商家聯絡電話": "b_phone",
 
 "委託主姓名": "b_name",
-"委託主戶籍地址": "b_permanantAddress",
+"委託主戶籍地址": "b_permanentAddress",
 "委託主身分證號": "b_id",
 "委託主電子郵件": "b_email",
 "委託主通訊地址": "b_correspondenceAddress",
@@ -50,7 +50,6 @@
 "委託規格": "delegation_format",
 "重大修改": "seriousityDefinition",
 
-"著作權條款": "copyrightTerms",
 "著作權歸屬": "copyrightBelonging",
 "目的範圍": "purpose",
 "利用範圍": "useLimitRange",
