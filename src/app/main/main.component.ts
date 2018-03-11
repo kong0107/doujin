@@ -194,6 +194,42 @@ export class MainComponent implements OnInit {
         this.display.contract = !!data;
     }
 
+    download = function(filename, content, type) {
+        if(!type) type = "text/html";
+        const a = document.createElement("a");
+        const blob = new Blob([content], {type: type});
+        a.href = URL.createObjectURL(blob);
+        a.download = filename;
+        a.click();
+        URL.revokeObjectURL(a.href);
+    }
+
+    downloadSettings = function() {
+        this.download("settings.json", JSON.stringify(this.settings, null, 2), "application/json");
+    }
+
+    downloadText = function() {
+        this.download("contract.txt", document.getElementById("contract").innerText, "text/plain");
+    }
+
+    downloadHTML = function() {
+        const html = `<!doctype html>
+            <html lang="zh-Hant-TW">
+            <head>
+              <meta charset="utf-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1">
+              <title>出資聘人完成著作契約</title>
+              <style type="text/css">
+                .text-center {text-align: center;}
+              </style>
+            </head>
+            <body>${document.getElementById("contract").innerHTML}</body>
+            </html>`
+        ;
+        this.download("contract.html", html, "text/html");
+    }
+
+
   constructor() {
     for(let key in this.dictionary) {
       let attribute = this.dictionary[key];
