@@ -53,14 +53,14 @@
             [options]="optionGroups.workType"
         ></app-select>
         <div>
-            <button *ngIf="settings.workType.decided" class="btn btn-primary btn-xs" (click)="settings.unset('workType')">選擇其他方式</button>
+            <button *ngIf="settings.workType.decided" class="btn btn-primary btn-xs" (click)="settings.unset('workType')">選擇其他工作方式</button>
         </div>
     </section>
 
     <ng-container *ngIf="settings.workType.decided">
         <button class="btn btn-primary" *ngIf="!display.delegationDetails"
             (click)="display.delegationDetails=true;"
-        >繼續填寫委託細節</button>
+        >修改委託細節</button>
 
         <ng-container *ngIf="display.delegationDetails">
             <button class="btn btn-warning"
@@ -273,6 +273,16 @@
                 </dl>
             </section>
 
+            <section>
+                <h4>其他</h4>
+                如果發生糾紛時，第一審管轄法院：
+                <select [(ngModel)]="settings.exerciseJurisdiction.value" (change)="renderArticles()">
+                    <option *ngFor="let court of optionGroups.exerciseJurisdiction">
+                        {{court}}
+                    </option>
+                </select>
+            </section>
+
             <button class="btn"
                 (click)="display.delegationDetails=false; display.copyright=true"
             >填好了，前往「選擇著作財產權條款」</button>
@@ -416,9 +426,11 @@
             </dl>
         </section>
 
-        <button *ngIf="settings.copyrightBelonging.decided" class="btn"
-            (click)="renderArticles(); display.contract = true;"
-        >我已經選擇完畢，確認以上內容為正確。請直接讓我看契約範本吧！</button>
+        <footer style="margin-top: 1em">
+            <button *ngIf="settings.a_useRange.decided || settings.b_useRange.decided" class="btn"
+                (click)="renderArticles(); display.contract = true;"
+            >我已經選擇完畢，確認以上內容為正確。請直接讓我看契約範本吧！</button>
+        </footer>
     </ng-container>
 </section>
 </section>
@@ -429,11 +441,9 @@
             契約內文（還沒好）
             <small>共{{getArticleCount()}}條</small>
         </h2>
-        <div>
-            <button class="btn" onclick="window.print()">列印</button>
-            <p class="text-muted">如果瀏覽器支援，也許可以「印成 PDF 檔」。</p>
-            <button class="btn btn-warning" (click)="renderArticles();">重整條文</button>
-        </div>
+        <button class="btn" onclick="window.print()">列印</button>
+        <p class="text-muted">如果瀏覽器支援，也許可以「印成 PDF 檔」。</p>
+        <button class="btn btn-warning" (click)="renderArticles();">重整條文</button>
     </header>
 
     <section id="contract">
@@ -446,6 +456,7 @@
             </dl>
             <p>緣乙方企畫並出資製作之{{settings.delegation_name.value}}（下稱乙方產品），其部分工作委由甲方承攬製作。甲乙雙方依誠信原則訂立本契約，條款如下：</p>
         </header>
+
         <section *ngFor="let articleGroup of articleGroups">
             <h3>{{articleGroup.title}}</h3>
             <article *ngFor="let article of articleGroup.articles">
@@ -456,5 +467,63 @@
                 <p [innerHTML]="article.output"></p>
             </article>
         </section>
+
+        <section id="personalData">
+            <h3>簽約人</h3>
+
+            <section>
+                <h4>甲方：</h4>
+                <dl class="dl-horizontal">
+                    <dt>戶籍地址：</dt><dd>{{settings.a_permanentAddress.value}}</dd>
+                    <dt>身分證號：</dt><dd>{{settings.a_id.value}}</dd>
+                    <dt>電子郵件：</dt><dd>{{settings.a_email.value}}</dd>
+                    <dt>通訊地址：</dt><dd>{{settings.a_correspondenceAddress.value}}</dd>
+                    <dt>連絡電話：</dt><dd>{{settings.a_phone.value}}</dd>
+                </dl>
+            </section>
+
+            <section>
+                <h4>乙方：</h4>
+                <dl class="dl-horizontal" *ngIf="!withContributor()">
+                    <dt>戶籍地址：</dt><dd>{{settings.b_permanentAddress.value}}</dd>
+                    <dt>身分證號：</dt><dd>{{settings.b_id.value}}</dd>
+                    <dt>電子郵件：</dt><dd>{{settings.b_email.value}}</dd>
+                    <dt>通訊地址：</dt><dd>{{settings.b_correspondenceAddress.value}}</dd>
+                    <dt>連絡電話：</dt><dd>{{settings.b_phone.value}}</dd>
+                </dl>
+                <dl class="dl-horizontal" *ngIf="withContributor()">
+                    <dt>登記地址：</dt><dd>{{settings.b_permanentAddress.value}}</dd>
+                    <dt>統一編號：</dt><dd>{{settings.b_id.value}}</dd>
+                    <dt>代表人：</dt><dd>{{settings.chairperson.value}}</dd>
+                    <dt>通訊地址：</dt><dd>{{settings.b_correspondenceAddress.value}}</dd>
+                    <dt>連絡電話：</dt><dd>{{settings.b_phone.value}}</dd>
+                </dl>
+            </section>
+
+            <footer>
+                簽約日期：
+                <span class="underline" style="width: 3em">&nbsp;</span>年
+                <span class="underline" style="width: 2em">&nbsp; &nbsp;</span>月
+                <span class="underline" style="width: 2em">&nbsp; &nbsp;</span>日
+            </footer>
+        </section>
+
+        <section id="attachment">
+            <h2 class="text-center">【附件一】{{settings.delegation_name.value}}工作成果規格書</h2>
+
+            <h3>一、甲方應完成之工作內容：</h3>
+            <p>{{settings.delegation_content.value}}</p>
+
+            <h3>二、甲方應交付之工作成果規格與交付方式：</h3>
+            <p>{{settings.delegation_format.value}}</p>
+
+            <h3>三、乙方得提出之重大修訂類別：</h3>
+            <p>{{settings.seriousityDefinition.value}}</p>
+        </section>
     </section>
+
+    <footer>
+        <button class="btn" onclick="window.print()">列印</button>
+        <p class="text-muted">如果瀏覽器支援，也許可以「印成 PDF 檔」。</p>
+    </footer>
 </section>

@@ -49,6 +49,7 @@
 "委託內容": "delegation_content",
 "委託規格": "delegation_format",
 "重大修改": "seriousityDefinition",
+"第一審管轄法院": "exerciseJurisdiction",
 
 "著作權歸屬": "copyrightBelonging",
 "目的範圍": "purpose",

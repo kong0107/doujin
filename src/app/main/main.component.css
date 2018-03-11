@@ -23,11 +23,6 @@
     white-space: pre;
 }
 
-section {
-    border-left: 2px solid #ccc;
-    padding: 0 0 .1rem .5rem;
-    margin: .5rem 0;
-}
 section:after {
     content: "";
     display: block;
@@ -51,7 +46,8 @@ select {
 }
 
 #breadcrumb > li:not(:first-child):before {
-    content: "\226B";
+    content: "\00BB";
+    /* http://www.fileformat.info/info/unicode/char/bb/index.htm */
     padding-right: .2em;
 }
 
@@ -80,12 +76,12 @@ textarea {
     min-height: 4em;
 }
 
-article {
+article, #personalData, #attachment {
     page-break-inside: avoid;
     clear: both;
 }
 
-article p {
+article p, #attachment p {
     white-space: pre-line;
 }
 
@@ -114,4 +110,10 @@ dl.inline:after {
 
 dl.inline > dd {
     margin-left: 1em;
+}
+
+.underline {
+    /*text-decoration: underline;*/
+    border-bottom: 1px solid #000;
+    display: inline-block;
 }
