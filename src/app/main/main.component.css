@@ -76,44 +76,10 @@ textarea {
     min-height: 4em;
 }
 
-article, #personalData, #attachment {
-    page-break-inside: avoid;
-    clear: both;
-}
-
-article p, #attachment p {
-    white-space: pre-line;
-}
-
-article mark {
-    font-weight: bold;
-}
-
 .clickable {
     cursor: pointer;
 }
 
 .btn:hover {
     font-weight: bold;
-}
-
-
-dl.inline > dt {
-    float: left;
-}
-
-dl.inline:after {
-    content: "";
-    display: block;
-    clear: left;
-}
-
-dl.inline > dd {
-    margin-left: 1em;
-}
-
-.underline {
-    /*text-decoration: underline;*/
-    border-bottom: 1px solid #000;
-    display: inline-block;
 }

@@ -1,0 +1,18 @@
+article, #personalData, #attachment {
+    page-break-inside: avoid;
+    clear: both;
+}
+
+article p, #attachment p {
+    white-space: pre-line;
+}
+
+article mark {
+    font-weight: bold;
+}
+
+.underline {
+    /*text-decoration: underline;*/
+    border-bottom: 1px solid #000;
+    display: inline-block;
+}

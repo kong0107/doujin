@@ -5,11 +5,12 @@ import * as Dictionary from '../dictionary.json';
 import * as ArticleGroups from './articles.json';
 import * as OptionGroups from './options.json';
 import * as DemoData from './demo-data.json';
+import * as ContractStyle from './contract.css';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.css']
+  styleUrls: ['./main.component.css', './contract.css']
 })
 export class MainComponent implements OnInit {
     dictionary = Dictionary;
@@ -17,8 +18,10 @@ export class MainComponent implements OnInit {
     optionGroups = OptionGroups;
     articleGroups: any= [];
     demoData = DemoData;
+    contractStyle = ContractStyle;
 
     display = {
+        paste: false,
         category: true,
         contributor: false,
         delegation: false,
@@ -205,7 +208,13 @@ export class MainComponent implements OnInit {
     }
 
     downloadSettings = function() {
-        this.download("settings.json", JSON.stringify(this.settings, null, 2), "application/json");
+        const result = {};
+        const s = this.settings
+        for(let attr in s) {
+            if(s[attr].hasOwnProperty("value"))
+                result[attr] = s[attr].value;
+        }
+        this.download("settings.json", JSON.stringify(result, null, 2), "application/json");
     }
 
     downloadText = function() {
@@ -221,12 +230,24 @@ export class MainComponent implements OnInit {
               <title>出資聘人完成著作契約</title>
               <style type="text/css">
                 .text-center {text-align: center;}
+                ${this.contractStyle}
               </style>
             </head>
             <body>${document.getElementById("contract").innerHTML}</body>
             </html>`
         ;
         this.download("contract.html", html, "text/html");
+    }
+
+    loadUserSettings = function() {
+        try {
+            const us = JSON.parse(this.userSettings);
+            this.load(us);
+            this.display.paste = false;
+        } catch(e) {
+            const d = new Date;
+            this.loadError = `讀取錯誤 ${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`;
+        }
     }
 
 
