@@ -164,11 +164,22 @@ export class MainComponent implements OnInit {
                 article.output = article.content.replace(/{{([^{}]+)}}/g,
                     (match, key) => {
                         const attribute = this.dictionary[key];
-                        let value = this.settings[attribute] ? this.settings[attribute].value : `?!${key}!?`;
-                        const number = +value; //< may be NaN
-                        if(attribute != "accountNumber" && !isNaN(number)) value = number2chinese(number, "T", "upper");
-                        if(!value) value = `__${key}__`;
+                        let value = this.settings[attribute] ? this.settings[attribute].value : `?!${key}!?`; ///< 根本沒有對應的變數，確認 dictionary
+
+                        if(value) {
+                            const number = +value; ///< 轉換成整數。跟 parseInt 不同，丟入日期字串的話會是 NaN
+                            if(!isNaN(number)) {
+                                if(["accountNumber", "a_phone", "b_phone"].indexOf(attribute) == -1)
+                                    value = number2chinese(number, "T", "upper");
+                            }
+                            else if(/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+                                value = value.replace(/(\d{4})-(\d{2})-(\d{2})/, (match, y, m, d) => `${y}年${m}月${d}日`);
+                            }
+
+                        }
+                        else value = `__${key}__`; ///< 使用者在此欄位沒有填資料
                         return `<mark title="${key}">${value}</mark>`;
+
                     }
                 );
             });
