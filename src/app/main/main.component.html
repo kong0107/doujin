@@ -18,18 +18,18 @@
 
     <section>
         <div>
-            <button class="btn" (click)="load(demoData)">套用測試資料</button>
-            <button class="btn" (click)="load(false)">清空目前設定</button>
+            <button class="btn btn-sm btn-info" (click)="load(demoData)">套用測試資料</button>
+            <button class="btn btn-sm btn-info" (click)="load(false)">清空目前設定</button>
         </div>
         <div style="margin-top: .5em">
-            <button class="btn" (click)="downloadSettings()">下載現在的設定</button>
-            <button class="btn" (click)="display.paste=true; display.category=false">貼上之前下載的設定</button>
+            <button class="btn btn-sm btn-info" (click)="downloadSettings()">下載現在的設定</button>
+            <button class="btn btn-sm btn-info" (click)="display.paste=true; display.category=false">貼上之前下載的設定</button>
             <fieldset *ngIf="display.paste">
                 <legend>請貼上之前下載的 settings.json 的內容（可以用「記事本」打開）</legend>
                 <textarea [(ngModel)]="userSettings"></textarea>
                 <div>
-                    <button class="btn" (click)="loadUserSettings()">讀取</button>
-                    <button class="btn" (click)="display.paste=false; display.category=true">取消</button>
+                    <button class="btn btn-primary" (click)="loadUserSettings()">讀取</button>
+                    <button class="btn btn-warning" (click)="display.paste=false; display.category=true">取消</button>
                 </div>
                 <div *ngIf="loadError">{{loadError}}</div>
             </fieldset>
@@ -299,7 +299,7 @@
                 </select>
             </section>
 
-            <button class="btn"
+            <button class="btn btn-warning"
                 (click)="display.delegationDetails=false; display.copyright=true"
             >填好了，前往「選擇著作財產權條款」</button>
         </ng-container>
@@ -349,10 +349,12 @@
                         <dt>繪師在前述目的下能利用之範圍</dt>
                         <dd>
                             <button class="btn"
+                                [class.btn-default]="settings.a_useLimit.value!='無限制'"
                                 [class.btn-success]="settings.a_useLimit.value=='無限制'"
                                 (click)="settings.set('a_useLimit', '無限制')"
                             >無限制</button>
                             <button class="btn"
+                                [class.btn-default]="settings.a_useLimit.value!='限制'"
                                 [class.btn-success]="settings.a_useLimit.value=='限制'"
                                 (click)="settings.set('a_useLimit', '限制')"
                             >有限制</button>
@@ -443,7 +445,7 @@
         </section>
 
         <footer style="margin-top: 1em">
-            <button *ngIf="settings.a_useRange.decided || settings.b_useRange.decided" class="btn"
+            <button *ngIf="settings.a_useRange.decided || settings.b_useRange.decided" class="btn btn-warning"
                 (click)="renderArticles(); display.contract = true;"
             >我已經選擇完畢，確認以上內容為正確。請直接讓我看契約範本吧！</button>
         </footer>
@@ -458,10 +460,10 @@
             <small>共{{getArticleCount()}}條</small>
         </h2>
         <div>
-            <button class="btn" onclick="window.print()">列印</button>
-            <button class="btn btn-succes" (click)="downloadText()">下載純文字</button>
-            <button class="btn btn-succes" (click)="downloadHTML()">下載網頁</button>
-            <button class="btn" (click)="downloadSettings()">下載設定檔</button>
+            <button class="btn btn-info" onclick="window.print()">列印</button>
+            <button class="btn btn-info" (click)="downloadText()">下載純文字</button>
+            <button class="btn btn-info" (click)="downloadHTML()">下載網頁</button>
+            <button class="btn btn-info" (click)="downloadSettings()">下載設定檔</button>
             <p class="text-muted">如果瀏覽器支援，也許可以「印成 PDF 檔」。</p>
         </div>
         <button class="btn btn-warning" (click)="renderArticles();">重整條文</button>
@@ -544,10 +546,10 @@
     </section>
 
     <footer>
-        <button class="btn" onclick="window.print()">列印</button>
-        <button class="btn btn-succes" (click)="downloadText()">下載純文字</button>
-        <button class="btn btn-succes" (click)="downloadHTML()">下載網頁</button>
-        <button class="btn" (click)="downloadSettings()">下載設定檔</button>
+        <button class="btn btn-info" onclick="window.print()">列印</button>
+        <button class="btn btn-info" (click)="downloadText()">下載純文字</button>
+        <button class="btn btn-info" (click)="downloadHTML()">下載網頁</button>
+        <button class="btn btn-info" (click)="downloadSettings()">下載設定檔</button>
         <p class="text-muted">如果瀏覽器支援，也許可以「印成 PDF 檔」。</p>
     </footer>
 </section>
