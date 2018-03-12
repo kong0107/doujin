@@ -128,6 +128,11 @@ export class MainComponent implements OnInit {
                     if(s[attribute].value == arguments[i]) return true;
                 return false;
             },
+            withContributor: function() {
+                /// 這個比較特別，因為沒得選的時候仍然是「非商家贊助」而非「未設定」。
+                const c = self.settings.contributor;
+                return c.decided && (c.value == "是");
+            },
             toggle: function(attribute: string) {
                 const s = self.settings;
                 const v = !s[attribute].value;
@@ -138,13 +143,12 @@ export class MainComponent implements OnInit {
     })();
 
     check = this.settings.check;
+    withContributor = this.settings.withContributor;
     toggle = this.settings.toggle;
 
-    withContributor = function() {
-        /// 這個比較特別，因為沒得選的時候仍然是「非商家贊助」而非「未設定」。
-        const c = this.settings.contributor;
-        return c.decided && (c.value == "是");
-    };
+    render = function(dump: any) {
+        this.renderArticles();
+    }
 
     renderArticles = function() {
         let ags = [];

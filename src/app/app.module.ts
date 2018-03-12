@@ -9,9 +9,10 @@ import { StatementComponent } from './statement/statement.component';
 import { FaqComponent } from './faq/faq.component';
 import { MainComponent } from './main/main.component';
 
-import { ReplacePipe } from './replace.pipe';
 import { SelectComponent } from './select/select.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
+
+import { DelegationComponent } from './delegation/delegation.component';
 
 
 @NgModule({
@@ -20,9 +21,9 @@ import { CheckboxComponent } from './checkbox/checkbox.component';
     StatementComponent,
     FaqComponent,
     MainComponent,
-    ReplacePipe,
     SelectComponent,
-    CheckboxComponent
+    CheckboxComponent,
+    DelegationComponent
   ],
   imports: [
     BrowserModule,
