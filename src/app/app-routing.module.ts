@@ -9,7 +9,7 @@ const routes: Routes = [
     { path: '', redirectTo: '/statement', pathMatch: 'full' },
     { path: 'statement', component: StatementComponent },
     { path: 'faq', component: FaqComponent },
-    { path: 'main', component: MainComponent },
+    { path: 'main', component: MainComponent }
 ];
 
 @NgModule({

@@ -64,7 +64,16 @@ export class MainComponent implements OnInit {
                                 d.workType = true;
                                 break;
                             case "合本":
-                                console.log("合本契約");
+                                switch(value) {
+                                    case "是":
+                                        console.log("合本契約、商家出資");
+                                        break;
+                                    case "否":
+                                        console.log("合本契約、無商家");
+                                        break;
+                                    default:
+                                        console.error(`unexpected value "${value}" for attribute "contributor"`);
+                                }
                                 break;
                             default:
                                 console.error(`unexpected category "${s.category.value}" while selecting contributor`);
