@@ -283,6 +283,6 @@ export class MainComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(window['allArticleGroups'] = this.allArticleGroups);
+    //console.log(window['allArticleGroups'] = this.allArticleGroups);
   }
 }

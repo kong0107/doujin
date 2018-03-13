@@ -65,6 +65,20 @@
         [optionGroups]="optionGroups"
         [display]="display"
     ></app-delegation>
+
+  <div class="col-md-6">
+    <app-anthology-with-contributor
+        [settings]="settings"
+        [optionGroups]="optionGroups"
+        [display]="display"
+    ></app-anthology-with-contributor>
+  </div>
+  <div class="col-md-6">
+    <app-anthology-without-contributor
+        [settings]="settings"
+        [display]="display"
+    ></app-anthology-without-contributor>
+  </div>
 </section>
 
 <section *ngIf="display.contract">

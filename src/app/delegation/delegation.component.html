@@ -1,5 +1,6 @@
 <section *ngIf="display.delegation">
     <h3>委託資料及委託規格</h3>
+    <p *ngIf="!settings.workType.decided">說明：這個網頁是「非合本」的繪圖委託需要填的內容，如果是合本類型的委託，請關掉網頁、回到開頭重新選擇「多人合本」。</p>
     <section *ngIf="display.workType">
         <h4 (click)="settings.unset('workType')">工作方式</h4>
         <app-select [attribute]="'workType'" [settings]="settings"

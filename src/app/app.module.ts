@@ -13,6 +13,8 @@ import { SelectComponent } from './select/select.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
 
 import { DelegationComponent } from './delegation/delegation.component';
+import { AnthologyWithContributorComponent } from './anthology-with-contributor/anthology-with-contributor.component';
+import { AnthologyWithoutContributorComponent } from './anthology-without-contributor/anthology-without-contributor.component';
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import { DelegationComponent } from './delegation/delegation.component';
     MainComponent,
     SelectComponent,
     CheckboxComponent,
-    DelegationComponent
+    DelegationComponent,
+    AnthologyWithContributorComponent,
+    AnthologyWithoutContributorComponent
   ],
   imports: [
     BrowserModule,

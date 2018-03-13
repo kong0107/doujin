@@ -64,5 +64,15 @@
 
 "委託主利用範圍": "b_useRange",
 "委託主利用限制": "b_useLimit",
-"委託主得改作": "derivable"
+"委託主得改作": "derivable",
+
+"合本名稱": "anthology_title",
+"定稿繳交期限": "finalDeadline",
+"授權金數額": "licensingFee",
+"專屬發行期": "exclusivityPeriod",
+
+"分紅的期間": "dividend_period",
+"分紅的時間點": "dividend_time",
+"分紅結算的方式": "dividend_method",
+"支票到期期間": "checkExpirationPeriod"
 }

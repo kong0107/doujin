@@ -25,3 +25,11 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## Unsolved Issues
+
+* 「定稿繳交期間」 input type for non-anthology delegation
+* download error on Safari on iPhone (and maybe other non-Chrome browsers)
+* form validation
+* user interface (e.g. input box for numbers are too long)
+* terminology explanation

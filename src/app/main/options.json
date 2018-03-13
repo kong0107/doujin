@@ -85,5 +85,12 @@
 "useLimit": [
     {"value": "無限制", "text": "無限制"},
     {"value": "限制", "text": "有限制", "explanation": "請填入地區、次數、方式"}
+],
+
+"dividend_period": [
+    "每季", "每半年", "每一年", "本子全部銷售完為止"
+],
+"dividend_method": [
+    "匯款", "現金", "支票"
 ]
 }

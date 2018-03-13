@@ -9,6 +9,7 @@ export class SelectComponent implements OnInit {
   @Input() attribute: string;
   @Input() settings: object;
   @Input() options: any[];
+  @Input() addResetButton?: boolean;
 
   constructor() {}
   ngOnInit() {

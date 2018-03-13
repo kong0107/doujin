@@ -10,3 +10,9 @@
         </div>
     </div>
 </ng-container>
+<div style="margin-top: .5em">
+    <button class="btn btn-primary btn-xs"
+        *ngIf="settings[attribute].decided"
+        (click)="settings.unset(attribute)"
+    >重新選擇</button>
+</div>
