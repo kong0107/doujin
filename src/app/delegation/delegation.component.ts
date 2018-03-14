@@ -9,7 +9,7 @@ import {
 @Component({
   selector: 'app-delegation',
   templateUrl: './delegation.component.html',
-  styleUrls: ['./delegation.component.css']
+  styleUrls: ['./delegation.component.css', '../form.css']
 })
 export class DelegationComponent implements OnInit {
   @Input() settings: object;

@@ -28,8 +28,9 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Unsolved Issues
 
-* 「定稿繳交期間」 input type for non-anthology delegation
+* implement form of anthology without contributors
+* implement articles for anthology with and without contributors
 * download error on Safari on iPhone (and maybe other non-Chrome browsers)
 * form validation
-* user interface (e.g. input box for numbers are too long)
+* optimize user interface
 * terminology explanation

@@ -5,12 +5,10 @@
         <h4 (click)="settings.unset('workType')">工作方式</h4>
         <app-select [attribute]="'workType'" [settings]="settings"
             [options]="optionGroups.workType"
+            [addResetButton]="true"
         ></app-select>
 
         <ng-container *ngIf="settings.workType.decided">
-            <button class="btn btn-primary btn-xs" (click)="settings.unset('workType')">選擇其他工作方式</button>
-            <br>
-
             <button *ngIf="!display.delegationDetails" class="btn btn-primary"
                 (click)="display.delegationDetails=true;"
             >修改委託內容與個人資料</button>
@@ -25,36 +23,50 @@
                     草稿於
                     <input title="草稿繳交期限" type="date" [(ngModel)]="settings.draftDeadline.value">
                     前繳交給委託主；
-                    定稿於
-                    <input title="定稿繳交期限" type="date" [(ngModel)]="settings.finalDeadline.value">
-                    前繳交給委託主。
+                    定稿於前述期限後
+                    <input title="定稿繳交期間" [(ngModel)]="settings.finalPeriod.value"
+                        type="number" class="small"
+                    >
+                    日內繳交給委託主。
                 </li>
                 <li *ngIf="settings.check('workType', '尾款定稿', '完稿全額')">
                     草稿於
                     <input title="草稿繳交期限" type="date" [(ngModel)]="settings.draftDeadline.value">
                     前繳交給委託主；
-                    定稿預覽檔案於
-                    <input title="定稿繳交期限" type="date" [(ngModel)]="settings.finalDeadline.value">
-                    前繳交給委託主。
+                    定稿預覽檔案於前述期限後
+                    <input title="定稿繳交期間" [(ngModel)]="settings.finalPeriod.value"
+                        type="number" class="small"
+                    >
+                    日內繳交給委託主。
                 </li>
 
                 <!-- 草稿前的繳費期限 -->
                 <li *ngIf="settings.check('workType', '先收全額')">
                     委託主應於簽約後
-                    <input placeholder="付全額期間" type="number" [(ngModel)]="settings.fullPayPeriod.value">
+                    <input title="付全額期間" [(ngModel)]="settings.fullPayPeriod.value"
+                        type="number" class="small"
+                    >
                     日內付全額報酬共新台幣
-                    <input placeholder="全額報酬數額" type="number" [(ngModel)]="settings.fullPayAmount.value">
+                    <input title="全額報酬數額" [(ngModel)]="settings.fullPayAmount.value"
+                        type="number" class="large"
+                    >
                     元整給繪師（繪師收到報酬後契約才生效）；
                     違約金數額約定為新台幣
-                    <input placeholder="違約金數額" type="number" [(ngModel)]="settings.penaltyAmount.value">
+                    <input title="違約金數額" [(ngModel)]="settings.penaltyAmount.value"
+                        type="number" class="large"
+                    >
                     元整。
                     委託主沒有在期限內付清全額報酬，視同契約自始不成立。
                 </li>
                 <li *ngIf="settings.check('workType', '尾款草稿', '尾款定稿')">
                     委託主應於簽約後
-                    <input placeholder="付定金期間" type="number" [(ngModel)]="settings.earnestMoneyPeriod.value">
+                    <input title="付定金期間" [(ngModel)]="settings.earnestMoneyPeriod.value"
+                        type="number" class="small"
+                    >
                     日內付定金共新台幣
-                    <input placeholder="定金數額" type="number" [(ngModel)]="settings.earnestMoneyAmount.value">
+                    <input title="定金數額" [(ngModel)]="settings.earnestMoneyAmount.value"
+                        type="number" class="large"
+                    >
                     元整給繪師（繪師收到定金後契約才生效）。
                     委託主沒有在期限內付清全額定金，視同契約自始不成立。
                 </li>
@@ -62,9 +74,13 @@
                 <!-- 尾款草稿 -->
                 <li *ngIf="settings.check('workType', '尾款草稿')">
                     繪師第一次交出草稿後，委託主應於
-                    <input placeholder="付尾款期間" type="number" [(ngModel)]="settings.finalPayPeriod.value">
+                    <input title="付尾款期間" [(ngModel)]="settings.finalPayPeriod.value"
+                        type="number" class="small"
+                    >
                     日內付剩餘報酬共新台幣
-                    <input placeholder="尾款數額" type="number" [(ngModel)]="settings.finalPayAmount.value">
+                    <input title="尾款數額" [(ngModel)]="settings.finalPayAmount.value"
+                        type="number" class="large"
+                    >
                     元給繪師。
                     委託主沒有在期限內付清尾款視同解約，並且無法收回定金。
                 </li>
@@ -72,55 +88,75 @@
                 <!-- 大修 -->
                 <li>
                     繪師交出草稿後，委託主應於
-                    <input placeholder="草稿初次意見期間" type="number" [(ngModel)]="settings.draftFirstOpinionPeriod.value">
+                    <input title="草稿初次意見期間" [(ngModel)]="settings.draftFirstOpinionPeriod.value"
+                        type="number" class="small"
+                    >
                     日內回應，
                     委託主如果希望大修請於此時限前提出。
                     逾期未回應者視同同意繪師目前的工作方向、放棄提出大修之要求。
                     繪師接到委託主大修要求後，應於
-                    <input placeholder="草稿初次改稿回應期間" type="number" [(ngModel)]="settings.draftSeriousFixRespondPeriod.value">
+                    <input title="草稿初次改稿回應期間" [(ngModel)]="settings.draftSeriousFixRespondPeriod.value"
+                        type="number" class="small"
+                    >
                     日內修正並交給委託主。
                 </li>
 
                 <!-- 小修 -->
                 <li>
                     除了上一款的回應以外，委託主還可以在繪師交出草稿後
-                    <input placeholder="草稿開放小修期間" type="number" [(ngModel)]="settings.draftFixRequestPeriod.value">
-                    日內（請填寫比定稿繳交期限{{finalDeadline}}更早的時限），
+                    <input title="草稿開放小修期間" [(ngModel)]="settings.draftFixRequestPeriod.value"
+                        type="number" class="small"
+                    >
+                    日內（請填寫比定稿繳交期限更早的時限），
                     跟繪師提出
-                    <input placeholder="改稿次數" type="number" [(ngModel)]="settings.draftFixNumber.value">
+                    <input title="改稿次數" [(ngModel)]="settings.draftFixNumber.value"
+                        type="number" class="small"
+                    >
                     次的小修要求。
                     繪師接到小修要求後應於
-                    <input placeholder="草稿小修回應期間" type="number" [(ngModel)]="settings.draftFixRespondPeriod.value">
+                    <input title="草稿小修回應期間" [(ngModel)]="settings.draftFixRespondPeriod.value"
+                        type="number" class="small"
+                    >
                     日內回應。
                 </li>
 
                 <!-- 定稿驗收。差在「預覽檔案」四字 -->
                 <li *ngIf="settings.check('workType', '先收全額', '尾款草稿')">
-                    繪師在定稿繳交期限{{finalDeadline}}前交出定稿後給委託主後，
+                    繪師在定稿繳交期限前交出定稿後給委託主後，
                     委託主應該在
-                    <input placeholder="驗收期間" type="number" [(ngModel)]="settings.acceptPeriod.value" min="1" pattern="\d+">
+                    <input title="驗收期間" [(ngModel)]="settings.acceptPeriod.value"
+                        type="number" class="small"
+                    >
                     日內通知繪師驗收結果。
                 </li>
                 <li *ngIf="settings.check('workType', '尾款定稿', '完稿全額')">
-                    繪師在定稿繳交期限{{finalDeadline}}前交出定稿預覽檔案後給委託主後，
+                    繪師在定稿繳交期限前交出定稿預覽檔案後給委託主後，
                     委託主應該在
-                    <input placeholder="驗收期間" type="number" [(ngModel)]="settings.acceptPeriod.value" min="1" pattern="\d+">
+                    <input title="驗收期間" [(ngModel)]="settings.acceptPeriod.value"
+                        type="number" class="small"
+                    >
                     日內通知繪師驗收結果。
                 </li>
 
                 <!-- 尾款定稿 -->
                 <li *ngIf="settings.check('workType', '尾款定稿')">
-                    繪師在定稿繳交期限{{finalDeadline}}前交出定稿預覽檔案後給委託主後，
+                    繪師在定稿繳交期限前交出定稿預覽檔案後給委託主後，
                     委託主應於
-                    <input placeholder="付尾款期間" type="number" [(ngModel)]="settings.finalPayPeriod.value" min="1" pattern="\d+">
+                    <input title="付尾款期間" [(ngModel)]="settings.finalPayPeriod.value"
+                        type="number" class="small"
+                    >
                     日內付尾款（剩餘報酬）共新台幣
-                    <input placeholder="尾款數額" type="number" [(ngModel)]="settings.finalPayAmount.value">
+                    <input title="尾款數額" [(ngModel)]="settings.finalPayAmount.value"
+                        type="number" class="large"
+                    >
                     元給繪師。
                     委託主沒有在期限內付清尾款視同解約，並且無法收回定金。
                 </li>
                 <li *ngIf="settings.check('workType', '尾款定稿')">
                     繪師收到委託主所付的尾款後，應於
-                    <input placeholder="檔案交付期間" type="number" [(ngModel)]="settings.deliverPeriod.value">
+                    <input title="檔案交付期間" [(ngModel)]="settings.deliverPeriod.value"
+                        type="number" class="small"
+                    >
                     日內交出定稿檔案給委託主。
                 </li>
 
@@ -128,14 +164,20 @@
                 <li *ngIf="settings.check('workType', '完稿全額')">
                     繪師在定稿繳交期限{{finalDeadline}}前交出定稿預覽檔案給委託主後，
                     委託主應於
-                    <input placeholder="付全額期間" type="number" [(ngModel)]="settings.fullPayPeriod.value">
+                    <input title="付全額期間" [(ngModel)]="settings.fullPayPeriod.value"
+                        type="number" class="small"
+                    >
                     日內付全額報酬共新台幣
-                    <input placeholder="全額報酬數額" type="number" [(ngModel)]="settings.fullPayAmount.value">
+                    <input title="全額報酬數額" [(ngModel)]="settings.fullPayAmount.value"
+                        type="number" class="large"
+                    >
                     元給繪師。
                 </li>
                 <li *ngIf="settings.check('workType', '完稿全額')">
                     繪師收到委託主所付的全額報酬後，應於
-                    <input placeholder="檔案交付期間" type="number" [(ngModel)]="settings.deliverPeriod.value">
+                    <input title="檔案交付期間" [(ngModel)]="settings.deliverPeriod.value"
+                        type="number" class="small"
+                    >
                     日內交出定稿檔案給委託主。
                 </li>
             </ul>
@@ -151,13 +193,13 @@
                     <dt>姓名</dt>
                     <dd><input [(ngModel)]="settings.a_name.value"></dd>
                     <dt>戶籍地址</dt>
-                    <dd><input [(ngModel)]="settings.a_permanentAddress.value"></dd>
+                    <dd><input [(ngModel)]="settings.a_permanentAddress.value" class="address"></dd>
                     <dt>身分證號</dt>
                     <dd><input [(ngModel)]="settings.a_id.value" pattern="[A-Z][12]\d{8}"></dd>
                     <dt>電子郵件</dt>
                     <dd><input [(ngModel)]="settings.a_email.value" type="email"></dd>
                     <dt>通訊地址</dt>
-                    <dd><input [(ngModel)]="settings.a_correspondenceAddress.value"></dd>
+                    <dd><input [(ngModel)]="settings.a_correspondenceAddress.value" class="address"></dd>
                     <dt>連絡電話</dt>
                     <dd><input [(ngModel)]="settings.a_phone.value" type="tel"></dd>
                 </dl>
@@ -168,13 +210,13 @@
                     <dt>商家名稱</dt>
                     <dd><input [(ngModel)]="settings.b_name.value"></dd>
                     <dt>登記地址</dt>
-                    <dd><input [(ngModel)]="settings.b_permanentAddress.value"></dd>
+                    <dd><input [(ngModel)]="settings.b_permanentAddress.value" class="address"></dd>
                     <dt>統一編號</dt>
                     <dd><input [(ngModel)]="settings.b_id.value" pattern="\d{8}"></dd>
                     <dt>代表人</dt>
                     <dd><input [(ngModel)]="settings.b_chairperson.value"></dd>
                     <dt>通訊地址</dt>
-                    <dd><input [(ngModel)]="settings.b_correspondenceAddress.value"></dd>
+                    <dd><input [(ngModel)]="settings.b_correspondenceAddress.value" class="address"></dd>
                     <dt>聯絡電話</dt>
                     <dd><input [(ngModel)]="settings.b_phone.value" type="tel"></dd>
                 </dl>
@@ -185,13 +227,13 @@
                     <dt>姓名</dt>
                     <dd><input [(ngModel)]="settings.b_name.value"></dd>
                     <dt>戶籍地址</dt>
-                    <dd><input [(ngModel)]="settings.b_permanentAddress.value"></dd>
+                    <dd><input [(ngModel)]="settings.b_permanentAddress.value" class="address"></dd>
                     <dt>身分證號</dt>
                     <dd><input [(ngModel)]="settings.b_id.value" pattern="[A-Z][12]\d{8}"></dd>
                     <dt>電子郵件</dt>
                     <dd><input [(ngModel)]="settings.b_email.value" type="email"></dd>
                     <dt>通訊地址</dt>
-                    <dd><input [(ngModel)]="settings.b_correspondenceAddress.value"></dd>
+                    <dd><input [(ngModel)]="settings.b_correspondenceAddress.value" class="address"></dd>
                     <dt>連絡電話</dt>
                     <dd><input [(ngModel)]="settings.b_phone.value" type="tel"></dd>
                 </dl>
@@ -380,7 +422,7 @@
 
         <footer style="margin-top: 1em">
             <button *ngIf="settings.a_useRange.decided || settings.b_useRange.decided" class="btn btn-warning"
-                (click)="renderArticles(); display.contract = true;"
+                (click)="render.emit(); display.contract = true;"
             >我已經選擇完畢，確認以上內容為正確。請直接讓我看契約範本吧！</button>
         </footer>
     </ng-container>

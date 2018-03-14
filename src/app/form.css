@@ -1,0 +1,30 @@
+select {
+    font-size: large;
+    border: 2px solid #aaa;
+    border-radius: .3em;
+}
+
+input:invalid {
+  border: 2px solid red;
+}
+
+input[type=number].small {
+    width: 4em;
+}
+
+input[type=number].large {
+    width: 6em;
+}
+
+input.address {
+    width: 95%;
+}
+
+textarea {
+    width: 95%;
+    min-height: 4em;
+}
+
+dl:not([class=dl-horizontal]) > dd {
+    margin-left: 2em;
+}

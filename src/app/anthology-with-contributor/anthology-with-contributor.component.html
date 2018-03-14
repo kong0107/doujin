@@ -8,13 +8,13 @@
             <dt>姓名</dt>
             <dd><input [(ngModel)]="settings.a_name.value"></dd>
             <dt>戶籍地址</dt>
-            <dd><input [(ngModel)]="settings.a_permanentAddress.value"></dd>
+            <dd><input [(ngModel)]="settings.a_permanentAddress.value" class="address"></dd>
             <dt>身分證號</dt>
             <dd><input [(ngModel)]="settings.a_id.value" pattern="[A-Z][12]\d{8}"></dd>
             <dt>電子郵件</dt>
             <dd><input [(ngModel)]="settings.a_email.value" type="email"></dd>
             <dt>通訊地址</dt>
-            <dd><input [(ngModel)]="settings.a_correspondenceAddress.value"></dd>
+            <dd><input [(ngModel)]="settings.a_correspondenceAddress.value" class="address"></dd>
             <dt>連絡電話</dt>
             <dd><input [(ngModel)]="settings.a_phone.value" type="tel"></dd>
         </dl>
@@ -25,13 +25,13 @@
             <dt>商家名稱</dt>
             <dd><input [(ngModel)]="settings.b_name.value"></dd>
             <dt>登記地址</dt>
-            <dd><input [(ngModel)]="settings.b_permanentAddress.value"></dd>
+            <dd><input [(ngModel)]="settings.b_permanentAddress.value" class="address"></dd>
             <dt>統一編號</dt>
             <dd><input [(ngModel)]="settings.b_id.value" pattern="\d{8}"></dd>
             <dt>代表人</dt>
             <dd><input [(ngModel)]="settings.b_chairperson.value"></dd>
             <dt>通訊地址</dt>
-            <dd><input [(ngModel)]="settings.b_correspondenceAddress.value"></dd>
+            <dd><input [(ngModel)]="settings.b_correspondenceAddress.value" class="address"></dd>
             <dt>聯絡電話</dt>
             <dd><input [(ngModel)]="settings.b_phone.value" type="tel"></dd>
         </dl>
@@ -41,12 +41,12 @@
 <section>
     <h3>工作內容</h3>
     <dl class="dl-horizontal">
-        <dt>這次合本的名稱</dt>
+        <dt>合本的名稱</dt>
         <dd><input [(ngModel)]="settings.anthology_title.value" placeholder="合本名稱"></dd>
         <dt>繪師交出定稿的期限</dt>
         <dd><input [(ngModel)]="settings.finalDeadline.value" title="定稿繳交期限" type="date"></dd>
         <dt>委託主收到定稿之後<br>驗收的期間</dt>
-        <dd><input [(ngModel)]="settings.acceptPeriod.value" placeholder="驗收期間" type="number">日內</dd>
+        <dd><input [(ngModel)]="settings.acceptPeriod.value" title="驗收期間" type="number" class="small">日內</dd>
         <dt>委託內容細節</dt>
         <dd><textarea [(ngModel)]="settings.delegation_content.value" placeholder="對角色和畫面之描述"></textarea></dd>
         <dt>委託的規格<br>跟交付方式</dt>
@@ -63,7 +63,7 @@
         <dt>繪師發表時的筆名</dt>
         <dd><input [(ngModel)]="settings.a_pseudonym.value" placeholder="繪師筆名"></dd>
         <dt>繪師在首次發行多久以後<br>可以非商業公開發表作品</dt>
-        <dd><input [(ngModel)]="settings.exclusivityPeriod.value" placeholder="專屬發行期" type="number">月後</dd>
+        <dd><input [(ngModel)]="settings.exclusivityPeriod.value" title="專屬發行期" type="number" class="small">月後</dd>
         <dt>繪師非商業公開發表的限制</dt>
         <dd><textarea [(ngModel)]="settings.a_useLimit.value" placeholder="請填入要求繪師自己做非商業公開發表時的限制，例如說不能發布高解析度的圖檔或 psd/ai 等原始檔、要註明商家跟合本的名稱等等"></textarea></dd>
     </dl>
@@ -75,7 +75,7 @@
         <dt>首次發行的授權金數額</dt>
         <dd>新台幣<input [(ngModel)]="settings.licensingFee.value" placeholder="授權金數額" type="number">元整</dd>
     </dl>
-    
+
     <h4>繪師的匯款資訊</h4>
     <dl class="dl-horizontal">
         <dt>銀行名稱-代號</dt>
@@ -110,3 +110,29 @@
         </dd>
     </dl>
 </section>
+
+<section>
+    <h3>其他</h3>
+    <dl>
+        <dt>違約金數額上限</dt>
+        <dd>
+            新台幣
+            <input title="違約金數額" [(ngModel)]="settings.penaltyAmount.value"
+                type="number" class="large"
+            >
+            元整
+        </dd>
+        <dt>如果發生糾紛時第一審管轄法院</dt>
+        <dd>
+            <select [(ngModel)]="settings.exerciseJurisdiction.value">
+                <option *ngFor="let court of optionGroups.exerciseJurisdiction">
+                    {{court}}
+                </option>
+            </select>
+        </dd>
+    </dl>
+</section>
+
+<button class="btn btn-warning">
+    我已經輸入完畢，確認以上內容為正確。請直接讓我看契約範本吧！
+</button>

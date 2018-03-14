@@ -23,18 +23,6 @@
     white-space: pre;
 }
 
-section:after {
-    content: "";
-    display: block;
-    clear: both;
-}
-
-select {
-    font-size: large;
-    border: 2px solid #aaa;
-    border-radius: .3em;
-}
-
 #breadcrumb {
     list-style-type: none;
     margin: 0;
@@ -53,33 +41,4 @@ select {
 
 #breadcrumb > li > span:only-child {
     cursor: pointer;
-}
-
-fieldset > div {
-    margin: .5rem 0;
-}
-
-input:invalid {
-  border: 2px solid red;
-}
-
-input.short {
-    width: 4em;
-}
-
-input.long {
-    width: 12em;
-}
-
-textarea {
-    width: 95%;
-    min-height: 4em;
-}
-
-.clickable {
-    cursor: pointer;
-}
-
-.btn:hover {
-    font-weight: bold;
 }

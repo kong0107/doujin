@@ -1,6 +1,6 @@
-import { 
-    Component, 
-    OnInit, 
+import {
+    Component,
+    OnInit,
     Input,
     Output,
     EventEmitter
@@ -9,13 +9,13 @@ import {
 @Component({
   selector: 'app-anthology-with-contributor',
   templateUrl: './anthology-with-contributor.component.html',
-  styleUrls: ['./anthology-with-contributor.component.css']
+  styleUrls: ['./anthology-with-contributor.component.css', '../form.css']
 })
 export class AnthologyWithContributorComponent implements OnInit {
-  @Input() settings: object;
+  @Input() settings: any;
   @Input() optionGroups: any;
   @Input() display: any;
-  
+
   @Output() render = new EventEmitter<any>();
 
   constructor() { }

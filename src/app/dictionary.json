@@ -4,7 +4,7 @@
 
 "工作方式": "workType",
 "草稿繳交期限": "draftDeadline",
-"定稿繳交期間": "finalDeadline",
+"定稿繳交期間": "finalPeriod",
 "付全額期間": "fullPayPeriod",
 "全額報酬數額": "fullPayAmount",
 "違約金數額": "penaltyAmount",
@@ -74,5 +74,14 @@
 "分紅的期間": "dividend_period",
 "分紅的時間點": "dividend_time",
 "分紅結算的方式": "dividend_method",
-"支票到期期間": "checkExpirationPeriod"
+"支票到期期間": "checkExpirationPeriod",
+
+"社團名稱": "club_name",
+"社團人數": "club_population",
+"首次公開發行期限": "firstPubliclyReleasedDate",
+"工作分配內容": "divisionOfLabour",
+"首次發行本子的細節": "firstPubliclyReleasedDetail",
+"發表作品時的工作細節": "publishAffairs",
+"著作財產權持有比例": "proportion2share",
+"財務查核期限": "financialCheckPeriod"
 }

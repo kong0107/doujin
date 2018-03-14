@@ -4,7 +4,7 @@
 
 "workType": "尾款草稿",
 "draftDeadline": "2018-07-01",
-"finalDeadline": "2019-01-01",
+"finalPeriod": "30",
 "fullPayPeriod": "7",
 "fullPayAmount": "19600",
 "penaltyAmount": "9600",
