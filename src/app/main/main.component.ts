@@ -52,9 +52,14 @@ export class MainComponent implements OnInit {
                             case "非出版單張":
                                 d.delegation = true;
                                 d.workType = true;
+                                s.set("isAnthology", false);
                                 break;
                             case "出版插圖":
+                                s.set("isAnthology", false);
+                                d.contributor = true;
+                                break;
                             case "合本":
+                                s.set("isAnthology", true);
                                 d.contributor = true;
                                 break;
                             default:
@@ -109,7 +114,7 @@ export class MainComponent implements OnInit {
                             s.set("derivable", true, false);
                         break;
                     default:
-                        console.log(`uncaught attribute "${attribute}"`);
+                        //console.log(`uncaught attribute "${attribute}"`);
                 }
                 if(render) self.renderArticles();
             },
@@ -127,7 +132,7 @@ export class MainComponent implements OnInit {
                         d.contributor = true;
                         break;
                     default:
-                        console.log("uncaught attribute");
+                        //console.log("uncaught attribute");
                 }
                 if(render) self.renderArticles();
             },
@@ -293,6 +298,7 @@ export class MainComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(window['settings'] = this.settings);
     //console.log(window['allArticleGroups'] = this.allArticleGroups);
   }
 }

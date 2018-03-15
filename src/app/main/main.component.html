@@ -61,6 +61,7 @@
     </section>
 
     <app-delegation
+        *ngIf="check('isAnthology', false)"
         [settings]="settings"
         [optionGroups]="optionGroups"
         [display]="display"
@@ -135,17 +136,17 @@
 
             <section>
                 <h4>乙方：</h4>
-                <dl class="dl-horizontal" *ngIf="!withContributor()">
-                    <dt>戶籍地址：</dt><dd>{{settings.b_permanentAddress.value}}</dd>
-                    <dt>身分證號：</dt><dd>{{settings.b_id.value}}</dd>
-                    <dt>電子郵件：</dt><dd>{{settings.b_email.value}}</dd>
-                    <dt>通訊地址：</dt><dd>{{settings.b_correspondenceAddress.value}}</dd>
-                    <dt>連絡電話：</dt><dd>{{settings.b_phone.value}}</dd>
-                </dl>
                 <dl class="dl-horizontal" *ngIf="withContributor()">
                     <dt>登記地址：</dt><dd>{{settings.b_permanentAddress.value}}</dd>
                     <dt>統一編號：</dt><dd>{{settings.b_id.value}}</dd>
                     <dt>代表人：</dt><dd>{{settings.chairperson.value}}</dd>
+                    <dt>通訊地址：</dt><dd>{{settings.b_correspondenceAddress.value}}</dd>
+                    <dt>連絡電話：</dt><dd>{{settings.b_phone.value}}</dd>
+                </dl>
+                <dl class="dl-horizontal" *ngIf="!withContributor()">
+                    <dt>戶籍地址：</dt><dd>{{settings.b_permanentAddress.value}}</dd>
+                    <dt>身分證號：</dt><dd>{{settings.b_id.value}}</dd>
+                    <dt>電子郵件：</dt><dd>{{settings.b_email.value}}</dd>
                     <dt>通訊地址：</dt><dd>{{settings.b_correspondenceAddress.value}}</dd>
                     <dt>連絡電話：</dt><dd>{{settings.b_phone.value}}</dd>
                 </dl>
