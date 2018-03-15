@@ -19,6 +19,8 @@
 
     <h4>所有繪師的資料</h4>
     <section>
+（還沒好）
+
 請輸入所有繪師的資料，並選擇誰是主揪（代表人）：
 
 這邊依照總人數的數字，跑出以下幾組欄位，並且每一組欄位前面會有一個「單選」的按鈕，選擇代表人
@@ -68,7 +70,7 @@
             ></app-select>
         </dd>
         <dt>分紅的時間點</dt>
-        <dd><input [(ngModel)]="settings.dividend_time" type="date"></dd>
+        <dd><input [(ngModel)]="settings.dividend_time.value" type="date"></dd>
         <dt>分紅結算的方式</dt>
         <dd>
             <app-select [attribute]="'dividend_method'" [settings]="settings"
@@ -80,6 +82,7 @@
                 日內到期
             </div>
             <div *ngIf="settings.check('dividend_method', '匯款')">
+（還沒好）
 跑出一個文字欄位，輸入所有人的匯款銀行帳戶
             </div>
         </dd>

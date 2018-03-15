@@ -96,7 +96,7 @@
             ></app-select>
         </dd>
         <dt>分紅的時間點</dt>
-        <dd><input [(ngModel)]="settings.dividend_time" type="date"></dd>
+        <dd><input [(ngModel)]="settings.dividend_time.value" type="date"></dd>
         <dt>分紅結算的方式</dt>
         <dd>
             <app-select [attribute]="'dividend_method'" [settings]="settings"

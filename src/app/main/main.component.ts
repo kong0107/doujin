@@ -24,10 +24,15 @@ export class MainComponent implements OnInit {
         paste: false,
         category: true,
         contributor: false,
+
         delegation: false,
         workType: true,
         delegationDetails: false,
         copyright: false,
+
+        anthologyWithContributor: false,
+        anthologyWithoutContributor: false,
+
         contract: false
     };
 
@@ -64,11 +69,16 @@ export class MainComponent implements OnInit {
                                 d.workType = true;
                                 break;
                             case "合本":
+                                d.delegation = false;
+                                d.anthologyWithContributor = false;
+                                d.anthologyWithoutContributor = false;
                                 switch(value) {
                                     case "是":
+                                        d.anthologyWithContributor = true;
                                         console.log("合本契約、商家出資");
                                         break;
                                     case "否":
+                                        d.anthologyWithoutContributor = true;
                                         console.log("合本契約、無商家");
                                         break;
                                     default:
