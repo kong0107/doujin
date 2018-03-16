@@ -19,6 +19,7 @@ export class MainComponent implements OnInit {
     articleGroups: any= [];
     demoData = DemoData;
     contractStyle = ContractStyle;
+    parties: any= [];
 
     display = {
         paste: false,
@@ -294,6 +295,18 @@ export class MainComponent implements OnInit {
     for(let key in this.dictionary) {
       let attribute = this.dictionary[key];
       this.settings[attribute] = {decided: false, value: ""};
+    }
+    for(let i = 0; i < 10; ++i) {
+        this.parties.push({
+            name: "",
+            permanantAddress: "",
+            telephone: "",
+            cellphone: "",
+            email: "",
+            correspondenceAddress: "",
+            bank: "",
+            bankAccount: ""
+        });
     }
   }
 

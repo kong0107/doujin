@@ -10,7 +10,7 @@
         <dt>這次合本有幾名繪師參與？</dt>
         <dd>
             <input [(ngModel)]="settings.club_population.value"
-                type="number" class="small"
+                type="number" class="small" min="3" max="10"
             >人
         </dd>
         <dt>這次合本第一次出本的時間</dt>
@@ -18,14 +18,19 @@
     </dl>
 
     <h4>所有繪師的資料</h4>
-    <section>
-（還沒好）
-
-請輸入所有繪師的資料，並選擇誰是主揪（代表人）：
-
-這邊依照總人數的數字，跑出以下幾組欄位，並且每一組欄位前面會有一個「單選」的按鈕，選擇代表人
-
-繪師本名、戶籍地址、聯絡電話、手機號碼、電子郵件、通訊地址
+    <section *ngFor="let party of parties.slice(0, settings.club_population.value || 3); let index = index;" class="col-md-6">
+        <h5>
+            {{partyNames[index]}}方
+            <small *ngIf="!index">（代表人）</small>
+        </h5>
+        <dl class="dl-horizontal">
+            <dt>繪師本名</dt><dd><input [(ngModel)]="party.name"></dd>
+            <dt>戶籍地址</dt><dd><input [(ngModel)]="party.permanantAddress" class="address"></dd>
+            <dt>聯絡電話</dt><dd><input [(ngModel)]="party.telephone" type="tel"></dd>
+            <dt>手機號碼</dt><dd><input [(ngModel)]="party.cellphone" type="tel"></dd>
+            <dt>電子郵件</dt><dd><input [(ngModel)]="party.email" type="email"></dd>
+            <dt>通訊地址</dt><dd><input [(ngModel)]="party.correspondenceAddress" class="address"></dd>
+        </dl>
     </section>
 </section>
 
@@ -81,10 +86,17 @@
                 <input placeholder="支票到期期間" [(ngModel)]="settings.checkExpirationPeriod.value" type="number">
                 日內到期
             </div>
-            <div *ngIf="settings.check('dividend_method', '匯款')">
-（還沒好）
-跑出一個文字欄位，輸入所有人的匯款銀行帳戶
-            </div>
+            <section *ngIf="settings.check('dividend_method', '匯款')">
+                <div *ngFor="let party of parties.slice(0, settings.club_population.value || 3); let index = index;" class="col-md-6">
+                    <h5>{{partyNames[index]}}方：{{party.name}}</h5>
+                    <dl class="dl-horizontal">
+                        <dt>銀行</dt>
+                        <dd><input [(ngModel)]="party.bank"></dd>
+                        <dt>帳號</dt>
+                        <dd><input [(ngModel)]="party.bankAccount" type="tel"></dd>
+                    </dl>
+                </div>
+            </section>
         </dd>
         <dt>個別繪師向主揪提出財務查核時，主揪要多久以內安排日期時間</dt>
         <dd>
