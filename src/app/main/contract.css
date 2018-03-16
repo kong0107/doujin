@@ -1,9 +1,13 @@
-article, #personalData, #attachment {
+article, #personalData, #attachments > section {
     page-break-inside: avoid;
     clear: both;
 }
 
-article p, #attachment p {
+#contract h2 {
+    text-align: center;
+}
+
+article p, #attachments p {
     white-space: pre-line;
 }
 

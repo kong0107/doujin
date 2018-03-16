@@ -73,7 +73,7 @@
         [optionGroups]="optionGroups"
         [display]="display"
     ></app-anthology-with-contributor>
-    
+
     <app-anthology-without-contributor
         *ngIf="display.anthologyWithoutContributor"
         [settings]="settings"
@@ -160,17 +160,59 @@
             </footer>
         </section>
 
-        <section id="attachment">
-            <h2 class="text-center">【附件一】{{settings.delegation_name.value}}工作成果規格書</h2>
+        <section id="attachments">
+            <ng-container *ngIf="check('isAnthology', false)">
+                <section>
+                    <h2>【附件一】{{settings.delegation_name.value}}工作成果規格書</h2>
 
-            <h3>一、甲方應完成之工作內容：</h3>
-            <p>{{settings.delegation_content.value}}</p>
+                    <h3>一、甲方應完成之工作內容：</h3>
+                    <p>{{settings.delegation_content.value}}</p>
 
-            <h3>二、甲方應交付之工作成果規格與交付方式：</h3>
-            <p>{{settings.delegation_format.value}}</p>
+                    <h3>二、甲方應交付之工作成果規格與交付方式：</h3>
+                    <p>{{settings.delegation_format.value}}</p>
 
-            <h3>三、乙方得提出之重大修訂類別：</h3>
-            <p>{{settings.seriousityDefinition.value}}</p>
+                    <h3>三、乙方得提出之重大修訂類別：</h3>
+                    <p>{{settings.seriousityDefinition.value}}</p>
+                </section>
+            </ng-container>
+
+            <ng-container *ngIf="check('category', '合本') && withContributor()">
+                <section>
+                    <h2>【附件一】{{settings.delegation_name.value}}工作成果規格書</h2>
+
+                    <h3>一、甲方應完成之工作內容：</h3>
+                    <p>{{settings.delegation_content.value}}</p>
+
+                    <h3>二、甲方應交付之工作成果規格與交付方式：</h3>
+                    <p>{{settings.delegation_format.value}}</p>
+                </section>
+                <section>
+                    <h2>【附件二】利用約定細項</h2>
+                    <p>{{settings.a_useLimit.value}}</p>
+
+                    <p>？！另外請填入後續銷售分紅時該給多少比例、多久結算一次、款項支付方式！？</p>
+                </section>
+            </ng-container>
+
+            <ng-container *ngIf="check('category', '合本') && !withContributor()">
+                <section>
+                    <h2>【附件一】工作分配表</h2>
+                    <p>請填寫工作規格、數量、完稿繳交期限等。如果有約定工作所生的成本或花費怎麼負擔，就另外標注。</p>
+                </section>
+
+                <section>
+                    <h2>【附件二】著作財產權持有比例表</h2>
+                    <p>請填寫各方持有著作權的比例。最簡單就是各方均分。</p>
+
+                </section>
+
+                <section>
+                    <h2>【附件三】代表人及利用約定細項</h2>
+                    <p>請填寫首次發行的數量（本子的印數）、方式（場上賣或通販、庫存誰處理）等資訊。還有主揪在公開發表（宣傳）著作時可以做什麼/要做什麼。</p>
+                    <p>另外，請填寫利用收益的結算期間（每三個月、每半年或每一年，到本子清完為止）、結算日期（每年幾月幾日結算）、</p>
+                    <p>最後是所有人的銀行帳戶～～</p>
+                </section>
+            </ng-container>
         </section>
     </section>
 

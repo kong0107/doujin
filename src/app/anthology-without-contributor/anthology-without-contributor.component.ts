@@ -9,7 +9,7 @@ import {
 @Component({
   selector: 'app-anthology-without-contributor',
   templateUrl: './anthology-without-contributor.component.html',
-  styleUrls: ['./anthology-without-contributor.component.css', '../form.css']
+  styleUrls: ['../form.css']
 })
 export class AnthologyWithoutContributorComponent implements OnInit {
   @Input() settings: any;
