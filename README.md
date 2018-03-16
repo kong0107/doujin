@@ -28,7 +28,6 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Unsolved Issues
 
-* implement articles for anthology without contributors
 * fix download error on Safari on iPhone (and maybe other non-Chrome browsers)
 * form validation
 * optimize user interface

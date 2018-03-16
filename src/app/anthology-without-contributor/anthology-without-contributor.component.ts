@@ -19,8 +19,6 @@ export class AnthologyWithoutContributorComponent implements OnInit {
 
   @Output() render = new EventEmitter<any>();
 
-  partyNames= "甲乙丙丁戊己庚辛壬癸".split("");
-
   constructor() { }
 
   ngOnInit() {

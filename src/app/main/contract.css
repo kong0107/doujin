@@ -3,6 +3,10 @@ article, #personalData, #attachments > section {
     clear: both;
 }
 
+#attachments > section {
+    border-top: 2px dotted #888;
+}
+
 #contract h2 {
     text-align: center;
 }

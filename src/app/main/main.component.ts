@@ -296,8 +296,9 @@ export class MainComponent implements OnInit {
       let attribute = this.dictionary[key];
       this.settings[attribute] = {decided: false, value: ""};
     }
-    for(let i = 0; i < 10; ++i) {
+    "甲乙丙丁戊己庚辛壬癸".split("").forEach(alias => {
         this.parties.push({
+            alias: alias,
             name: "",
             permanantAddress: "",
             telephone: "",
@@ -307,11 +308,12 @@ export class MainComponent implements OnInit {
             bank: "",
             bankAccount: ""
         });
-    }
+    });
   }
 
   ngOnInit() {
-    console.log(window['settings'] = this.settings);
-    //console.log(window['allArticleGroups'] = this.allArticleGroups);
+    this.settings.set("club_population", 3);
+    //window["settings"] = this.settings;
+    //window['allArticleGroups'] = this.allArticleGroups;
   }
 }

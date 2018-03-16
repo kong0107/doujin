@@ -100,14 +100,27 @@
     </header>
 
     <section id="contract">
-        <header>
-            <h2 class="text-center">出資聘人完成著作契約</h2>
+        <header *ngIf="!check('category', '合本') || withContributor()">
+            <h2>出資聘人完成著作契約</h2>
             <dl>
                 <dt>立約人：</dt>
                 <dd>甲方：{{settings.a_name.value}}</dd>
                 <dd>乙方：{{settings.b_name.value}}</dd>
             </dl>
             <p>緣乙方企畫並出資製作之{{settings.delegation_name.value}}（下稱乙方產品），其部分工作委由甲方承攬製作。甲乙雙方依誠信原則訂立本契約，條款如下：</p>
+        </header>
+        <header *ngIf="check('category', '合本') && !withContributor()">
+            <h2>多方合作約定共有著作權契約</h2>
+
+            立約人：
+            <dl class="dl-horizontal">
+                <ng-container *ngFor="let party of parties.slice(0, settings.club_population.value)">
+                    <dt>{{party.alias}}方</dt>
+                    <dd>{{party.name}}</dd>
+                </ng-container>
+            </dl>
+
+            <p>緣簽約各方（下稱各方）同意合作創作/製作{{settings.anthology_title.value}}著作（下稱本著作），各方為此達成協議並約定條款如下：</p>
         </header>
 
         <section *ngFor="let articleGroup of articleGroups">
@@ -216,20 +229,47 @@
             <ng-container *ngIf="check('category', '合本') && !withContributor()">
                 <section>
                     <h2>【附件一】工作分配表</h2>
-                    <p>請填寫工作規格、數量、完稿繳交期限等。如果有約定工作所生的成本或花費怎麼負擔，就另外標注。</p>
+                    <p [innerHTML]="settings.divisionOfLabour.value"></p>
                 </section>
 
                 <section>
-                    <h2>【附件二】著作財產權持有比例表</h2>
-                    <p>請填寫各方持有著作權的比例。最簡單就是各方均分。</p>
-
+                    <h2>【附件二】著作財產權持有比例</h2>
+                    <p [innerHTML]="settings.proportion2share.value"></p>
                 </section>
 
                 <section>
                     <h2>【附件三】代表人及利用約定細項</h2>
-                    <p>請填寫首次發行的數量（本子的印數）、方式（場上賣或通販、庫存誰處理）等資訊。還有主揪在公開發表（宣傳）著作時可以做什麼/要做什麼。</p>
-                    <p>另外，請填寫利用收益的結算期間（每三個月、每半年或每一年，到本子清完為止）、結算日期（每年幾月幾日結算）、</p>
-                    <p>最後是所有人的銀行帳戶～～</p>
+
+                    <section>
+                        <h3>首次發行時</h3>
+                        <p [innerHTML]="settings.firstPubliclyReleasedDetail.value"></p>
+                    </section>
+
+                    <section>
+                        <h3>代表人於公開發表（宣傳）時</h3>
+                        <p [innerHTML]="settings.publishAffairs.value"></p>
+                    </section>
+
+                    <section>
+                        <h3>收益結算</h3>
+                        <dl class="dl-horizontal">
+                            <dt>結算期間</dt><dd>{{settings.dividend_period.value}}</dd>
+                            <dt>結算日期</dt><dd>{{settings.dividend_time.value}}</dd>
+                        </dl>
+                    </section>
+
+                    <section *ngIf="settings.check('dividend_method', '匯款')">
+                        <h3>匯款資訊</h3>
+                        <div *ngFor="let party of parties.slice(0, settings.club_population.value)">
+                            <h4>{{party.alias}}方：{{party.name}}</h4>
+                            <dl class="dl-horizontal">
+                                <dt>銀行</dt>
+                                <dd>{{party.bank}}</dd>
+                                <dt>帳號</dt>
+                                <dd>{{party.bankAccount}}</dd>
+                            </dl>
+                        </div>
+                    </section>
                 </section>
             </ng-container>
         </section>

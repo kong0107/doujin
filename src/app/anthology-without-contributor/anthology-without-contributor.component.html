@@ -18,10 +18,10 @@
     </dl>
 
     <h4>所有繪師的資料</h4>
-    <section *ngFor="let party of parties.slice(0, settings.club_population.value || 3); let index = index;" class="col-md-6">
+    <section *ngFor="let party of parties.slice(0, settings.club_population.value); first as isFirst" class="col-md-6">
         <h5>
-            {{partyNames[index]}}方
-            <small *ngIf="!index">（代表人）</small>
+            {{party.alias}}方
+            <small *ngIf="isFirst">（代表人）</small>
         </h5>
         <dl class="dl-horizontal">
             <dt>繪師本名</dt><dd><input [(ngModel)]="party.name"></dd>
@@ -62,11 +62,8 @@
     <h3>著作財產權與分紅</h3>
     <dl>
         <dt>請輸入著作財產權持有比例，同時也是分紅（「利用收益分配」）的比例</dt>
-        <dd>
-            <textarea [(ngModel)]="settings.proportion2share.value"
-                placeholder="例：各方均分"
-            ></textarea>
-        </dd>
+        <dd><textarea [(ngModel)]="settings.proportion2share.value" placeholder="例：各方均分"></textarea></dd>
+
         <dt>分紅的期間</dt>
         <dd>
             <app-select [attribute]="'dividend_period'" [settings]="settings"
@@ -74,8 +71,10 @@
                 [addResetButton]="true"
             ></app-select>
         </dd>
+
         <dt>分紅的時間點</dt>
         <dd><input [(ngModel)]="settings.dividend_time.value" type="date"></dd>
+
         <dt>分紅結算的方式</dt>
         <dd>
             <app-select [attribute]="'dividend_method'" [settings]="settings"
@@ -83,12 +82,14 @@
                 [addResetButton]="true"
             ></app-select>
             <div *ngIf="settings.check('dividend_method', '支票')">
-                <input placeholder="支票到期期間" [(ngModel)]="settings.checkExpirationPeriod.value" type="number">
+                <input [(ngModel)]="settings.checkExpirationPeriod.value"
+                    title="支票到期期間" type="number" class="small"
+                >
                 日內到期
             </div>
             <section *ngIf="settings.check('dividend_method', '匯款')">
-                <div *ngFor="let party of parties.slice(0, settings.club_population.value || 3); let index = index;" class="col-md-6">
-                    <h5>{{partyNames[index]}}方：{{party.name}}</h5>
+                <div *ngFor="let party of parties.slice(0, settings.club_population.value)" class="col-md-6">
+                    <h5>{{party.alias}}方：{{party.name}}</h5>
                     <dl class="dl-horizontal">
                         <dt>銀行</dt>
                         <dd><input [(ngModel)]="party.bank"></dd>
@@ -98,12 +99,14 @@
                 </div>
             </section>
         </dd>
+
         <dt>個別繪師向主揪提出財務查核時，主揪要多久以內安排日期時間</dt>
         <dd>
             <input [(ngModel)]="settings.financialCheckPeriod.value"
                 type="number" class="small"
             >日內
         </dd>
+
         <dt>繪師在首次發行多久以後可以非商業公開發表作品</dt>
         <dd>
             <input [(ngModel)]="settings.exclusivityPeriod.value"
@@ -116,6 +119,14 @@
 <section>
     <h3>其他</h3>
     <dl>
+        <dt>終止契約通知期限</dt>
+        <dd>
+            如果有人想要提前終止契約，必須在
+            <input [(ngModel)]="settings.terminationNoticeDeadline.value" type="date">
+            前書面通知其他人。
+            （將在收到其他人的書面同意後才正式終止契約）
+        </dd>
+
         <dt>違約金數額上限</dt>
         <dd>
             新台幣
@@ -124,6 +135,7 @@
             >
             元整
         </dd>
+
         <dt>如果發生糾紛時第一審管轄法院</dt>
         <dd>
             <select [(ngModel)]="settings.exerciseJurisdiction.value">

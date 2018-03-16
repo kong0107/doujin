@@ -75,7 +75,7 @@
 "分紅的計算": "dividend_calculation",
 "分紅的期間": "dividend_period",
 "分紅的時間點": "dividend_time",
-"分紅結算的方式": "dividend_method",
+"結算支付方式": "dividend_method",
 "支票到期期間": "checkExpirationPeriod",
 
 "社團名稱": "club_name",
@@ -85,5 +85,6 @@
 "首次發行本子的細節": "firstPubliclyReleasedDetail",
 "發表作品時的工作細節": "publishAffairs",
 "著作財產權持有比例": "proportion2share",
-"財務查核期限": "financialCheckPeriod"
+"財務查核期限": "financialCheckPeriod",
+"終止契約通知期限": "terminationNoticeDeadline"
 }
