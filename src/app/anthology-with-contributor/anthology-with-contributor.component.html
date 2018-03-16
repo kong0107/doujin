@@ -92,6 +92,12 @@
 
     <h4>後續發行合本時，要分紅給繪師的比例、結算支付方式</h4>
     <dl class="dl-horizontal">
+        <dt>分紅的比例</dt>
+        <dd>
+            <input [(ngModel)]="settings.dividend_calculation.value"
+                type="number" class="small"
+            >％
+        </dd>
         <dt>分紅的期間</dt>
         <dd>
             <app-select [attribute]="'dividend_period'" [settings]="settings"
@@ -108,8 +114,9 @@
                 [addResetButton]="true"
             ></app-select>
             <div *ngIf="settings.check('dividend_method', '支票')">
-                <input placeholder="支票到期期間" [(ngModel)]="settings.checkExpirationPeriod.value" type="number">
-                日內到期
+                <input [(ngModel)]="settings.checkExpirationPeriod.value"
+                    type="number" class="small" title="支票到期期間"
+                >日內到期
             </div>
         </dd>
     </dl>

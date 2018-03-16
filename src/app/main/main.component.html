@@ -190,7 +190,25 @@
                     <h2>【附件二】利用約定細項</h2>
                     <p>{{settings.a_useLimit.value}}</p>
 
-                    <p>？！另外請填入後續銷售分紅時該給多少比例、多久結算一次、款項支付方式！？</p>
+                    <h3>分紅機制</h3>
+                    <dl class="dl-horizontal">
+                        <dt>甲方可得比例</dt>
+                        <dd>{{settings.dividend_calculation.value}}％</dd>
+                        <dt>分紅時間</dt>
+                        <dd>
+                            {{settings.dividend_time.value}}起
+                            {{settings.dividend_period.value}}
+                        </dd>
+                        <dt>款項支付方式</dt>
+                        <dd>
+                            {{settings.dividend_method.value}}
+                            <div *ngIf="settings.dividend_method.value=='支票'"
+                                class="dl-horizontal"
+                            >
+                                支票到期期間：{{settings.checkExpirationPeriod.value}}日
+                            </div>
+                        </dd>
+                    </dl>
                 </section>
             </ng-container>
 

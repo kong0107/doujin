@@ -8,6 +8,10 @@ input:invalid {
   border: 2px solid red;
 }
 
+input[type=number] {
+    text-align: right;
+}
+
 input[type=number].small {
     width: 4em;
 }

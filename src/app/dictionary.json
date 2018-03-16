@@ -72,6 +72,7 @@
 "授權金數額": "licensingFee",
 "專屬發行期": "exclusivityPeriod",
 
+"分紅的計算": "dividend_calculation",
 "分紅的期間": "dividend_period",
 "分紅的時間點": "dividend_time",
 "分紅結算的方式": "dividend_method",
