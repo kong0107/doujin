@@ -39,13 +39,13 @@
 
     <section *ngIf="display.category">
         <h3 (click)="settings.unset('category')">契約類型</h3>
-        <fieldset class="col-md-2">
+        <fieldset class="col-md-3">
             <legend><h4>非出版性委託</h4></legend>
             <app-select [attribute]="'category'" [settings]="settings"
                 [options]="optionGroups.nonPublishDelegation"
             ></app-select>
         </fieldset>
-        <fieldset class="col-md-2">
+        <fieldset class="col-md-3">
             <legend><h4>出版性委託</h4></legend>
             <app-select [attribute]="'category'" [settings]="settings"
                 [options]="optionGroups.publishDelegation"
@@ -83,7 +83,7 @@
     ></app-anthology-without-contributor>
 </section>
 
-<section *ngIf="display.contract">
+<section *ngIf="display.contract" id="contractContainer">
     <header class="no-print">
         <h2>
             契約內文

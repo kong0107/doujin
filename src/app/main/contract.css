@@ -24,3 +24,21 @@ article mark {
     border-bottom: 1px solid #000;
     display: inline-block;
 }
+
+@media (min-width: 992px) {
+    #settings {
+        width: 50%;
+        padding: 0 0.5em;
+    }
+    #contractContainer {
+        position: fixed;
+        height: 100vh;
+        overflow-y: scroll;
+        width: 50%;
+        top: 0;
+        right: 0;
+        background: #fff;
+        padding: 0 .5em;
+        border-left: 2px dotted #ccc;
+    }
+}
