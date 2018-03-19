@@ -4,8 +4,12 @@ select {
     border-radius: .3em;
 }
 
+input {
+    height: 1.5em;
+}
+
 input:invalid {
-  border: 2px solid red;
+    border: 2px solid red;
 }
 
 input[type=number] {

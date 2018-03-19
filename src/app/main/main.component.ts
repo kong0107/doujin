@@ -125,12 +125,29 @@ export class MainComponent implements OnInit {
                 s[attribute].decided = false;
                 switch(attribute) {
                     case "category":
-                        d.category = true;
                         s.contributor.decided = false;
+                        s.workType.decided = false;
+                        s.copyrightBelonging.decided = false;
+                        s.a_useRange.decided = false;
+
+                        d.category = true;
                         d.contributor = false;
+                        d.delegation = false;
+                        d.copyright = false;
+                        d.contract = false;
                         break;
                     case "contributor":
+                        s.workType.decided = false;
+                        s.copyrightBelonging.decided = false;
+                        s.a_useRange.decided = false;
+
                         d.contributor = true;
+                        d.delegation = false;
+                        d.copyright = false;
+                        d.contract = false;
+                        break;
+                    case "copyrightBelonging":
+
                         break;
                     default:
                         //console.log("uncaught attribute");
