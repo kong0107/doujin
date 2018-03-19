@@ -46,7 +46,7 @@
     <h3>工作內容</h3>
     <dl class="dl-horizontal">
         <dt>合本的名稱</dt>
-        <dd><input [(ngModel)]="settings.anthology_title.value" placeholder="合本名稱"></dd>
+        <dd><input [(ngModel)]="settings.delegation_name.value" placeholder="合本名稱"></dd>
         <dt>繪師交出定稿的期限</dt>
         <dd><input [(ngModel)]="settings.finalDeadline.value" title="定稿繳交期限" type="date"></dd>
         <dt>委託主收到定稿之後<br>驗收的期間</dt>
@@ -66,7 +66,7 @@
         <dd class="text-muted"><small>（除非商家同意，不然繪師不能就這些範圍自己來再利用）</small></dd>
         <dt>繪師發表時的筆名</dt>
         <dd><input [(ngModel)]="settings.a_pseudonym.value" placeholder="繪師筆名"></dd>
-        <dt>繪師在首次發行多久以後<br>可以非商業公開發表作品</dt>
+        <dt>繪師在首次發行多久以後可以非商業公開發表作品</dt>
         <dd><input [(ngModel)]="settings.exclusivityPeriod.value" title="專屬發行期" type="number" class="small">月後</dd>
         <dt>繪師非商業公開發表的限制</dt>
         <dd><textarea [(ngModel)]="settings.a_useLimit.value" placeholder="請填入要求繪師自己做非商業公開發表時的限制，例如說不能發布高解析度的圖檔或 psd/ai 等原始檔、要註明商家跟合本的名稱等等"></textarea></dd>
@@ -77,7 +77,13 @@
     <h3>授權金</h3>
     <dl class="dl-horizontal">
         <dt>首次發行的授權金數額</dt>
-        <dd>新台幣<input [(ngModel)]="settings.licensingFee.value" placeholder="授權金數額" type="number">元整</dd>
+        <dd>新台幣<input [(ngModel)]="settings.licensingFeeAmount.value" placeholder="授權金數額" type="number" class="large">元整</dd>
+        <dt>授權金交付期限</dt>
+        <dd>
+            簽約後
+            <input [(ngModel)]="settings.licensingFeePeriod.value" title="付授權金期間" type="number" class="small">
+            日內
+        </dd>
     </dl>
 
     <h4>繪師的匯款資訊</h4>
@@ -92,11 +98,11 @@
 
     <h4>後續發行合本時，要分紅給繪師的比例、結算支付方式</h4>
     <dl class="dl-horizontal">
-        <dt>分紅的比例</dt>
+        <dt>計算方式</dt>
         <dd>
-            <input [(ngModel)]="settings.dividend_calculation.value"
-                type="number" class="small"
-            >％
+            <textarea [(ngModel)]="settings.dividend_calculation.value"
+                placeholder="例：「銷售額百分之五」、「淨利百分之二十」"
+            ></textarea>
         </dd>
         <dt>分紅的期間</dt>
         <dd>

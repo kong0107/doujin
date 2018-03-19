@@ -57,6 +57,7 @@
 "利用範圍": "useLimitRange",
 
 "繪師指定公開發表名稱": "a_pseudonym",
+"繪師筆名": "a_pseudonym",
 "繪師利用範圍": "a_useRange",
 "繪師利用限制": "a_useLimit",
 "繪師利用時註明委託主": "attribution",
@@ -67,9 +68,9 @@
 "委託主利用限制": "b_useLimit",
 "委託主得改作": "derivable",
 
-"合本名稱": "anthology_title",
 "定稿繳交期限": "finalDeadline",
-"授權金數額": "licensingFee",
+"授權金數額": "licensingFeeAmount",
+"付授權金期間": "licensingFeePeriod",
 "專屬發行期": "exclusivityPeriod",
 
 "分紅的計算": "dividend_calculation",

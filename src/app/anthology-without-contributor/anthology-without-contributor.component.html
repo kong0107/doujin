@@ -1,10 +1,14 @@
 <p class="text-warning">說明：這邊假設是多人組成一社團名義出合本、沒有商家出資。除了約定繳交最後完稿期限，就沒有什麼大修、修正之類的規定了。這份契約在首次出版本子、首次公開發表時，會指定一個主揪（管理人），全權負責相關工作跟分紅，並且只有他能負責、其他人未經他許可不能自己來。</p>
 
+<button class="btn btn-warning"
+    (click)="display.contract = true;"
+>顯示契約</button>
+
 <section>
     <h3>基本資料</h3>
     <dl>
         <dt>合本的名稱</dt>
-        <dd><input [(ngModel)]="settings.anthology_title.value" placeholder="合本名稱"></dd>
+        <dd><input [(ngModel)]="settings.delegation_name.value" placeholder="合本名稱"></dd>
         <dt>社團名稱（即合本的著作人）</dt>
         <dd><input [(ngModel)]="settings.club_name.value" placeholder="社團名稱"></dd>
         <dt>這次合本有幾名繪師參與？</dt>
@@ -18,7 +22,7 @@
     </dl>
 
     <h4>所有繪師的資料</h4>
-    <section *ngFor="let party of parties.slice(0, settings.club_population.value); first as isFirst" class="col-md-6">
+    <section *ngFor="let party of parties.slice(0, settings.club_population.value); first as isFirst">
         <h5>
             {{party.alias}}方
             <small *ngIf="isFirst">（代表人）</small>
@@ -88,7 +92,7 @@
                 日內到期
             </div>
             <section *ngIf="settings.check('dividend_method', '匯款')">
-                <div *ngFor="let party of parties.slice(0, settings.club_population.value)" class="col-md-6">
+                <div *ngFor="let party of parties.slice(0, settings.club_population.value)">
                     <h5>{{party.alias}}方：{{party.name}}</h5>
                     <dl class="dl-horizontal">
                         <dt>銀行</dt>

@@ -119,7 +119,7 @@
                 </ng-container>
             </dl>
 
-            <p>緣簽約各方（下稱各方）同意合作創作/製作{{settings.anthology_title.value}}著作（下稱本著作），各方為此達成協議並約定條款如下：</p>
+            <p>緣簽約各方（下稱各方）同意合作創作/製作{{settings.delegation_name.value}}著作（下稱本著作），各方為此達成協議並約定條款如下：</p>
         </header>
 
         <section *ngFor="let articleGroup of articleGroups">
@@ -136,34 +136,52 @@
         <section id="personalData">
             <h3>簽約人</h3>
 
-            <section>
-                <h4>甲方：</h4>
-                <dl class="dl-horizontal">
-                    <dt>戶籍地址：</dt><dd>{{settings.a_permanentAddress.value}}</dd>
-                    <dt>身分證號：</dt><dd>{{settings.a_id.value}}</dd>
-                    <dt>電子郵件：</dt><dd>{{settings.a_email.value}}</dd>
-                    <dt>通訊地址：</dt><dd>{{settings.a_correspondenceAddress.value}}</dd>
-                    <dt>連絡電話：</dt><dd>{{settings.a_phone.value}}</dd>
-                </dl>
-            </section>
+            <ng-container *ngIf="!check('category', '合本') || withContributor()">
+                <section>
+                    <h4>甲方：{{settings.a_name.value}}</h4>
+                    <dl class="dl-horizontal">
+                        <dt>戶籍地址：</dt><dd>{{settings.a_permanentAddress.value}}</dd>
+                        <dt>身分證號：</dt><dd>{{settings.a_id.value}}</dd>
+                        <dt>電子郵件：</dt><dd>{{settings.a_email.value}}</dd>
+                        <dt>通訊地址：</dt><dd>{{settings.a_correspondenceAddress.value}}</dd>
+                        <dt>連絡電話：</dt><dd>{{settings.a_phone.value}}</dd>
+                    </dl>
+                </section>
 
-            <section>
-                <h4>乙方：</h4>
-                <dl class="dl-horizontal" *ngIf="withContributor()">
-                    <dt>登記地址：</dt><dd>{{settings.b_permanentAddress.value}}</dd>
-                    <dt>統一編號：</dt><dd>{{settings.b_id.value}}</dd>
-                    <dt>代表人：</dt><dd>{{settings.b_chairperson.value}}</dd>
-                    <dt>通訊地址：</dt><dd>{{settings.b_correspondenceAddress.value}}</dd>
-                    <dt>連絡電話：</dt><dd>{{settings.b_phone.value}}</dd>
-                </dl>
-                <dl class="dl-horizontal" *ngIf="!withContributor()">
-                    <dt>戶籍地址：</dt><dd>{{settings.b_permanentAddress.value}}</dd>
-                    <dt>身分證號：</dt><dd>{{settings.b_id.value}}</dd>
-                    <dt>電子郵件：</dt><dd>{{settings.b_email.value}}</dd>
-                    <dt>通訊地址：</dt><dd>{{settings.b_correspondenceAddress.value}}</dd>
-                    <dt>連絡電話：</dt><dd>{{settings.b_phone.value}}</dd>
-                </dl>
-            </section>
+                <section>
+                    <h4>乙方：{{settings.b_name.value}}</h4>
+                    <dl class="dl-horizontal" *ngIf="withContributor()">
+                        <dt>登記地址：</dt><dd>{{settings.b_permanentAddress.value}}</dd>
+                        <dt>統一編號：</dt><dd>{{settings.b_id.value}}</dd>
+                        <dt>代表人：</dt><dd>{{settings.b_chairperson.value}}</dd>
+                        <dt>通訊地址：</dt><dd>{{settings.b_correspondenceAddress.value}}</dd>
+                        <dt>連絡電話：</dt><dd>{{settings.b_phone.value}}</dd>
+                    </dl>
+                    <dl class="dl-horizontal" *ngIf="!withContributor()">
+                        <dt>戶籍地址：</dt><dd>{{settings.b_permanentAddress.value}}</dd>
+                        <dt>身分證號：</dt><dd>{{settings.b_id.value}}</dd>
+                        <dt>電子郵件：</dt><dd>{{settings.b_email.value}}</dd>
+                        <dt>通訊地址：</dt><dd>{{settings.b_correspondenceAddress.value}}</dd>
+                        <dt>連絡電話：</dt><dd>{{settings.b_phone.value}}</dd>
+                    </dl>
+                </section>
+            </ng-container>
+
+            <ng-container *ngIf="check('category', '合本') && !withContributor()">
+                <section *ngFor="let party of parties.slice(0, settings.club_population.value); first as isFirst">
+                    <h4>
+                        {{party.alias}}方：{{party.name}}
+                        <small *ngIf="isFirst">（代表人）</small>
+                    </h4>
+                    <dl class="dl-horizontal">
+                        <dt>戶籍地址</dt><dd>{{party.permanantAddress}}</dd>
+                        <dt>連絡電話</dt><dd>{{party.telephone}}</dd>
+                        <dt>手機號碼</dt><dd>{{party.cellphone}}</dd>
+                        <dt>電子郵件</dt><dd>{{party.email}}</dd>
+                        <dt>通訊地址</dt><dd>{{party.correspondenceAddress}}</dd>
+                    </dl>
+                </section>
+            </ng-container>
 
             <footer>
                 簽約日期：
@@ -201,12 +219,13 @@
                 </section>
                 <section>
                     <h2>【附件二】利用約定細項</h2>
+                    <h3>繪師非商業公開發表的限制</h3>
                     <p>{{settings.a_useLimit.value}}</p>
 
                     <h3>分紅機制</h3>
                     <dl class="dl-horizontal">
-                        <dt>甲方可得比例</dt>
-                        <dd>{{settings.dividend_calculation.value}}％</dd>
+                        <dt>計算方式</dt>
+                        <dd>{{settings.dividend_calculation.value}}</dd>
                         <dt>分紅時間</dt>
                         <dd>
                             {{settings.dividend_time.value}}起
