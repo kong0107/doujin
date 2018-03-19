@@ -162,10 +162,6 @@ export class MainComponent implements OnInit {
     withContributor = this.settings.withContributor;
     toggle = this.settings.toggle;
 
-    render = function(dump: any) {
-        this.renderArticles();
-    }
-
     renderArticles = function() {
         let ags = [];
         this.allArticleGroups.forEach(ag => {
@@ -309,6 +305,10 @@ export class MainComponent implements OnInit {
             bankAccount: ""
         });
     });
+  }
+
+  ngDoCheck() {
+    if(this.display.contract) this.renderArticles();
   }
 
   ngOnInit() {

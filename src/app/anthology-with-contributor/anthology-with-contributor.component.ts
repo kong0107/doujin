@@ -1,10 +1,4 @@
-import {
-    Component,
-    OnInit,
-    Input,
-    Output,
-    EventEmitter
-} from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-anthology-with-contributor',
@@ -15,8 +9,6 @@ export class AnthologyWithContributorComponent implements OnInit {
   @Input() settings: any;
   @Input() optionGroups: any;
   @Input() display: any;
-
-  @Output() render = new EventEmitter<any>();
 
   constructor() { }
 

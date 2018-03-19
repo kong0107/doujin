@@ -269,7 +269,7 @@
         <section>
             <h3>其他</h3>
             如果發生糾紛時，第一審管轄法院：
-            <select [(ngModel)]="settings.exerciseJurisdiction.value" (change)="render()">
+            <select [(ngModel)]="settings.exerciseJurisdiction.value">
                 <option *ngFor="let court of optionGroups.exerciseJurisdiction">
                     {{court}}
                 </option>
@@ -422,7 +422,7 @@
 
         <footer style="margin-top: 1em">
             <button *ngIf="settings.a_useRange.decided || settings.b_useRange.decided" class="btn btn-warning"
-                (click)="render.emit(); display.contract = true;"
+                (click)="display.contract = true;"
             >我已經選擇完畢，確認以上內容為正確。請直接讓我看契約範本吧！</button>
         </footer>
     </ng-container>

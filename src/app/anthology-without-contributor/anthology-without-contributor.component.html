@@ -122,8 +122,8 @@
         <dt>終止契約通知期限</dt>
         <dd>
             如果有人想要提前終止契約，必須在
-            <input [(ngModel)]="settings.terminationNoticeDeadline.value" type="date">
-            前書面通知其他人。
+            <input [(ngModel)]="settings.terminationNoticeDeadline.value" type="number" class="small">
+            日前書面通知其他人。
             （將在收到其他人的書面同意後才正式終止契約）
         </dd>
 
@@ -147,6 +147,6 @@
     </dl>
 </section>
 
-<button class="btn btn-warning" (click)="render.emit(); display.contract = true;">
+<button class="btn btn-warning" (click)="display.contract = true;">
     我已經輸入完畢，確認以上內容為正確。請直接讓我看契約範本吧！
 </button>
