@@ -1,5 +1,8 @@
 <header id="header">
-    <h1><a routerLink="/">{{ title }}</a></h1>
+    <h1>
+        <a routerLink="/">{{ title }}</a>
+        <small>{{version}}</small>
+    </h1>
     <nav>
         <ul>
             <li><a routerLink="/statement">聲明</a></li>
@@ -11,6 +14,6 @@
 <section id="main">
     <router-outlet></router-outlet>
 </section>
-<footer id="footer">
+<footer id="footer" class="text-right">
     <a target="_blank" href="https://github.com/kong0107/doujin">網站原始碼</a>
 </footer>

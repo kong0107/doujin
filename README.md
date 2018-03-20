@@ -1,6 +1,6 @@
 # Doujin
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.1.
+[This project](https://kong0107.github.io/doujin/) was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.1.
 
 ## FAQ
 
@@ -32,7 +32,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Unsolved Issues
 
-* fix download error on Safari on iPhone (and maybe other non-Chrome browsers)
+* check charset issue for downloading different MIME types
 * form validation
 * optimize user interface
 * terminology explanation

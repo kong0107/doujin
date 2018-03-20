@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import * as projectInfo from '../../package.json';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = '同人契約模板';
+  version = projectInfo['version'];
 }

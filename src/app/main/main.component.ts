@@ -250,14 +250,34 @@ export class MainComponent implements OnInit {
         this.display.contract = !!data;
     }
 
+
+    /**
+     * 觸發瀏覽器下載
+     *
+     * 利用 <a download="filename.ext" /> 的 click 事件來實作。
+     * 有 blob: URLs 和 data: URLs 兩種做法，但沒能成功排除 iPhone 在前者的錯誤訊息，就還是選了後者。
+     * data: URLs 的缺點有：
+     * 1. 長度受限－－幸好本專案需要處理的資料不多
+     * 2. window.btoa 對 Unicode 的支援問題
+     *
+     * refs:
+     * * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#attr-download
+     * * https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding#The_Unicode_Problem
+     */
     download = function(filename, content, type) {
         if(!type) type = "text/html";
         const a = document.createElement("a");
-        const blob = new Blob([content], {type: type});
-        a.href = URL.createObjectURL(blob);
+
+        //a.href = URL.createObjectURL(new Blob([content], {type: type}));
+        a.href = `data:${type};base64,` + btoa(window['unescape'](encodeURIComponent(content)));
+
         a.download = filename;
+        a.target = "_blank";
+        document.body.appendChild(a); //< Elements should be in DOM to work for Firefox
         a.click();
-        URL.revokeObjectURL(a.href);
+
+        //URL.revokeObjectURL(a.href);
+        document.body.removeChild(a);
     }
 
     downloadSettings = function() {
@@ -267,7 +287,7 @@ export class MainComponent implements OnInit {
             if(s[attr].hasOwnProperty("value"))
                 result[attr] = s[attr].value;
         }
-        this.download("settings.json", JSON.stringify(result, null, 2), "application/json");
+        this.download("settings.json", JSON.stringify(result, null, 2), "application/json;charset=UTF-8");
     }
 
     downloadText = function() {
@@ -330,6 +350,7 @@ export class MainComponent implements OnInit {
 
   ngOnInit() {
     this.settings.set("club_population", 3);
+    //window['mainComponent'] = this;
     //window["settings"] = this.settings;
     //window['allArticleGroups'] = this.allArticleGroups;
   }
