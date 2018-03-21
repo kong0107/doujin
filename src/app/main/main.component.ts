@@ -266,9 +266,11 @@ export class MainComponent implements OnInit {
      */
     download = function(filename, content, type) {
         if(!type) type = "text/html";
-        const a = document.createElement("a");
 
+        const a = document.createElement("a");
         //a.href = URL.createObjectURL(new Blob([content], {type: type}));
+
+        if(type.indexOf("charset") == -1) type += ";charset=UTF-8";
         a.href = `data:${type};base64,` + btoa(window['unescape'](encodeURIComponent(content)));
 
         a.download = filename;
@@ -287,7 +289,7 @@ export class MainComponent implements OnInit {
             if(s[attr].hasOwnProperty("value"))
                 result[attr] = s[attr].value;
         }
-        this.download("settings.json", JSON.stringify(result, null, 2), "application/json;charset=UTF-8");
+        this.download("settings.json", JSON.stringify(result, null, 2), "application/json");
     }
 
     downloadText = function() {

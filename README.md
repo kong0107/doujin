@@ -32,7 +32,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Unsolved Issues
 
-* check charset issue for downloading different MIME types
+* file upload
 * form validation
 * optimize user interface
 * terminology explanation
