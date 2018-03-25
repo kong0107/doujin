@@ -6,22 +6,21 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './/app-routing.module';
-import { StatementComponent } from './statement/statement.component';
+
+import { DisclaimerComponent } from './disclaimer/disclaimer.component';
 import { FaqComponent } from './faq/faq.component';
 import { MainComponent } from './main/main.component';
 
 import { SelectComponent } from './select/select.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
-
 import { DelegationComponent } from './delegation/delegation.component';
 import { AnthologyWithContributorComponent } from './anthology-with-contributor/anthology-with-contributor.component';
 import { AnthologyWithoutContributorComponent } from './anthology-without-contributor/anthology-without-contributor.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
-    StatementComponent,
+    DisclaimerComponent,
     FaqComponent,
     MainComponent,
     SelectComponent,

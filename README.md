@@ -32,6 +32,8 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Unsolved Issues
 
+* 網頁開頭聲明的部分請把「二創作者向原作著作財產權人請求授權」這個刪掉
+* 不管甚麼時候按下清空目前定之後，都會冒出一個是否有商家出資
 * file upload
 * form validation
 * optimize user interface
