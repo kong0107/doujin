@@ -25,13 +25,17 @@
             </div>
             <div style="margin-top: .5em">
                 <button class="btn btn-sm btn-info" (click)="downloadSettings()">下載現在的設定</button>
-                <button class="btn btn-sm btn-info" (click)="display.paste=true; display.category=false">貼上之前下載的設定</button>
+
+                <button class="btn btn-sm btn-info" (click)="fileSelect()">上傳設定檔</button>
+                <input type="file" id="fileElem" accept=".json" (change)="handleFile()" style="display: none">
+
+                <button class="btn btn-sm btn-info" (click)="display.paste=true">貼上之前下載的設定</button>
                 <fieldset *ngIf="display.paste">
-                    <legend>請貼上之前下載的 settings.json 的內容（可以用「記事本」打開）</legend>
-                    <textarea [(ngModel)]="userSettings"></textarea>
+                    <legend>格式須為 JSON</legend>
+                    <textarea [(ngModel)]="userSettings" style="height: 10em"></textarea>
                     <div>
                         <button class="btn btn-primary" (click)="loadUserSettings()">讀取</button>
-                        <button class="btn btn-warning" (click)="display.paste=false; display.category=true">取消</button>
+                        <button class="btn btn-warning" (click)="display.paste=false">關閉</button>
                     </div>
                     <div *ngIf="loadError">{{loadError}}</div>
                 </fieldset>

@@ -12,7 +12,7 @@ import * as ContractStyle from './contract.css';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.css', './contract.css']
+  styleUrls: ['./main.component.css', './contract.css', '../form.css']
 })
 export class MainComponent implements OnInit {
     dictionary = Dictionary;
@@ -339,17 +339,34 @@ export class MainComponent implements OnInit {
         this.download("contract.html", html, "text/html");
     }
 
+    fileSelect = function() {
+        document.getElementById("fileElem").click();
+    }
+    handleFile = function() {
+        const fileElem = document.getElementById("fileElem");
+        if(!fileElem["value"]) return;
+
+        const file = fileElem["files"][0];
+        const reader = new FileReader();
+        const component = this;
+
+        reader.addEventListener("load", (event) => {
+            component.userSettings = reader.result;
+            component.loadUserSettings();
+            component.display.paste = true;
+        });
+        reader.readAsText(file);
+    }
+
     loadUserSettings = function() {
         try {
             const us = JSON.parse(this.userSettings);
             this.load(us);
-            this.display.paste = false;
         } catch(e) {
             const d = new Date;
             this.loadError = `讀取錯誤 ${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`;
         }
     }
-
 
   constructor() {
     for(let key in this.dictionary) {
