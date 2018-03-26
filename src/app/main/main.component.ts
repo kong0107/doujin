@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
 import * as number2chinese from '../../number2chinese.js/number2chinese.js';
+
 import * as Dictionary from '../dictionary.json';
 import * as ArticleGroups from './articles.json';
 import * as OptionGroups from './options.json';
 import * as DemoData from './demo-data.json';
+
 import * as ContractStyle from './contract.css';
 
 @Component({
@@ -81,11 +83,12 @@ export class MainComponent implements OnInit {
                                 switch(value) {
                                     case "是":
                                         d.anthologyWithContributor = true;
-                                        console.log("合本契約、商家出資");
+                                        //console.log("合本契約、商家出資");
                                         break;
                                     case "否":
                                         d.anthologyWithoutContributor = true;
-                                        console.log("合本契約、無商家");
+                                        s.set("club_population", 3);
+                                        //console.log("合本契約、無商家");
                                         break;
                                     default:
                                         console.error(`unexpected value "${value}" for attribute "contributor"`);
@@ -245,6 +248,7 @@ export class MainComponent implements OnInit {
         else {
             for(let key in this.dictionary)
                 s.unset(this.dictionary[key], false);
+            this.display.contributor = false;
         }
         this.renderArticles();
         this.display.contract = !!data;
@@ -286,9 +290,11 @@ export class MainComponent implements OnInit {
         const result = {};
         const s = this.settings
         for(let attr in s) {
-            if(s[attr].hasOwnProperty("value"))
+            if(s[attr].hasOwnProperty("value") && s[attr].decided)
                 result[attr] = s[attr].value;
         }
+        if(this.check("category", "合本") && !this.withContributor())
+            result["parties"] = this.parties;
         this.download("settings.json", JSON.stringify(result, null, 2), "application/json");
     }
 
@@ -351,7 +357,6 @@ export class MainComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.settings.set("club_population", 3);
     //window['mainComponent'] = this;
     //window["settings"] = this.settings;
     //window['allArticleGroups'] = this.allArticleGroups;
