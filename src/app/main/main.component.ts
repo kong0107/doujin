@@ -132,26 +132,45 @@ export class MainComponent implements OnInit {
                         s.workType.decided = false;
                         s.copyrightBelonging.decided = false;
                         s.a_useRange.decided = false;
-
                         d.category = true;
                         d.contributor = false;
                         d.delegation = false;
                         d.copyright = false;
                         d.contract = false;
                         break;
+
                     case "contributor":
                         s.workType.decided = false;
                         s.copyrightBelonging.decided = false;
                         s.a_useRange.decided = false;
-
                         d.contributor = true;
                         d.delegation = false;
                         d.copyright = false;
                         d.contract = false;
                         break;
-                    case "copyrightBelonging":
 
+                    case "workType":
+                        s.copyrightBelonging.decided = false;
+                        s.a_useRange.decided = false;
+                        d.delegation = true;
+                        d.copyright = false;
+                        d.contract = false;
                         break;
+
+                    case "copyrightBelonging":
+                        s.a_useRange.decided = false;
+                        d.delegationDetails = false;
+                        d.copyright = true;
+                        d.contract = false;
+                        break;
+
+                    case "a_useRange":
+                        s.a_useRange.value = "";
+                        d.delegationDetails = false;
+                        d.copyright = true;
+                        d.contract = false;
+                        break;
+
                     default:
                         //console.log("uncaught attribute");
                 }
