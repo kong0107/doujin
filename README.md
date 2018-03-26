@@ -2,9 +2,9 @@
 
 [This project](https://kong0107.github.io/doujin/) was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.1.
 
-## FAQ
+## Warning
 
-See [frequently asked questions](./src/assets/faq.md).
+Read [disclaimer](./src/assets/faq.md) and [frequently asked questions](./src/assets/faq.md) before usage.
 
 ## Development server
 
