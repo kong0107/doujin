@@ -5,7 +5,7 @@ select {
 }
 
 input {
-    height: 1.3em;
+    /*height: 1.3em;*/
 }
 
 input:invalid, input.invalid,
