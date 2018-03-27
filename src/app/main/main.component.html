@@ -94,7 +94,8 @@
             契約內文
             <small>共{{getArticleCount()}}條</small>
         </h2>
-        <div>
+        <p class="text-danger" style="white-space: pre-line">{{invalidation}}</p>
+        <div *ngIf="!invalidation">
             <button class="btn btn-info" onclick="window.print()">列印</button>
             <button class="btn btn-info" (click)="downloadText()">下載純文字</button>
             <button class="btn btn-info" (click)="downloadHTML()">下載網頁</button>

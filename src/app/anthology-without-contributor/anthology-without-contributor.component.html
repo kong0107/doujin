@@ -14,7 +14,7 @@
         <dt>這次合本有幾名繪師參與？</dt>
         <dd>
             <input [(ngModel)]="settings.club_population.value"
-                type="number" class="small" min="3" max="10"
+                type="number" class="number-small" min="3" max="10"
             >人
         </dd>
         <dt>這次合本第一次出本的時間</dt>
@@ -87,7 +87,7 @@
             ></app-select>
             <div *ngIf="settings.check('dividend_method', '支票')">
                 <input [(ngModel)]="settings.checkExpirationPeriod.value"
-                    title="支票到期期間" type="number" class="small"
+                    title="支票到期期間" type="number" class="number-small"
                 >
                 日內到期
             </div>
@@ -107,14 +107,14 @@
         <dt>個別繪師向主揪提出財務查核時，主揪要多久以內安排日期時間</dt>
         <dd>
             <input [(ngModel)]="settings.financialCheckPeriod.value"
-                type="number" class="small"
+                type="number" class="number-small"
             >日內
         </dd>
 
         <dt>繪師在首次發行多久以後可以非商業公開發表作品</dt>
         <dd>
             <input [(ngModel)]="settings.exclusivityPeriod.value"
-                title="專屬發行期" type="number" class="small"
+                title="專屬發行期" type="number" class="number-small"
             >月後
         </dd>
     </dl>
@@ -126,7 +126,7 @@
         <dt>終止契約通知期限</dt>
         <dd>
             如果有人想要提前終止契約，必須在
-            <input [(ngModel)]="settings.terminationNoticeDeadline.value" type="number" class="small">
+            <input [(ngModel)]="settings.terminationNoticeDeadline.value" type="number" class="number-small">
             日前書面通知其他人。
             （將在收到其他人的書面同意後才正式終止契約）
         </dd>
@@ -135,7 +135,7 @@
         <dd>
             新台幣
             <input title="違約金數額" [(ngModel)]="settings.penaltyAmount.value"
-                type="number" class="large"
+                type="number" class="number-large"
             >
             元整
         </dd>

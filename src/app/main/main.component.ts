@@ -9,6 +9,11 @@ import * as DemoData from './demo-data.json';
 
 import * as ContractStyle from './contract.css';
 
+/*NodeList.prototype.forEach = function(callback, thisArg) {
+    for(let i = 0; i < this.length; ++i)
+        callback.apply(thisArg, this[i], i, this);
+};*/
+
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -21,7 +26,8 @@ export class MainComponent implements OnInit {
     articleGroups: any= [];
     demoData = DemoData;
     contractStyle = ContractStyle;
-    parties: any= [];
+    parties: any = [];
+    invalidation: string = "";
 
     display = {
         paste: false,
@@ -370,6 +376,39 @@ export class MainComponent implements OnInit {
         }
     }
 
+    validate = function() {
+        const errors = [];
+        let nodeList;
+
+        nodeList = document.querySelectorAll("input[type=number]");
+        for(let i = 0; i < nodeList.length; ++i) {
+            const value = + nodeList[i]["value"];
+            if(isNaN(value) || value <= 0) {
+                errors.push("數字欄位必須輸入正整數");
+            }
+        }
+
+        const now = new Date();
+        nodeList = document.querySelectorAll("input[type=date]");
+        for(let i = 0; i < nodeList.length; ++i) {
+            const elem = nodeList[i];
+            elem.classList.remove("invalid");
+
+            const value = elem["value"];
+            if(!value) {
+                errors.push("必須設定日期");
+                nodeList[i].classList.add("invalid");
+            }
+            else if((new Date(value)).getTime() < now.getTime()) {
+                errors.push("必須設定為未來的日期");
+                nodeList[i].classList.add("invalid");
+            }
+        }
+
+
+        this.invalidation = errors.join("\n");
+    }
+
   constructor() {
     for(let key in this.dictionary) {
       let attribute = this.dictionary[key];
@@ -391,7 +430,28 @@ export class MainComponent implements OnInit {
   }
 
   ngDoCheck() {
-    if(this.display.contract) this.renderArticles();
+    const now = new Date();
+    const todayString = `${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()}`;
+
+    const nodeList = document.querySelectorAll("input");
+    for(let i = 0; i < nodeList.length; ++i) {
+        const elem = nodeList[i];
+        switch(elem.type) {
+            case "file":
+                continue;
+            case "number":
+                elem.setAttribute("min", "1");
+                break;
+            case "date":
+                elem.setAttribute("min", todayString);
+                break;
+        }
+    }
+
+    if(this.display.contract) {
+        this.renderArticles();
+        this.validate();
+    }
   }
 
   ngOnInit() {

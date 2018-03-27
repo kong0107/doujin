@@ -5,10 +5,12 @@ select {
 }
 
 input {
-    height: 1.5em;
+    height: 1.3em;
 }
 
-input:invalid {
+input:invalid, input.invalid,
+select:invalid, select.invalid,
+textarea:invalid, textarea.invalid {
     border: 2px solid red;
 }
 
@@ -16,11 +18,11 @@ input[type=number] {
     text-align: right;
 }
 
-input[type=number].small {
+input[type=number].number-small {
     width: 4em;
 }
 
-input[type=number].large {
+input[type=number].number-large {
     width: 6em;
 }
 
