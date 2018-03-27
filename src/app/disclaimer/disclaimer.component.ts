@@ -5,7 +5,7 @@ import * as marked from 'marked';
 @Component({
   selector: 'app-disclaimer',
   templateUrl: './disclaimer.component.html',
-  styleUrls: ['./disclaimer.component.css']
+  styleUrls: []
 })
 export class DisclaimerComponent implements OnInit {
   disclaimer: string = '';

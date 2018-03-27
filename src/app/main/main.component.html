@@ -44,18 +44,20 @@
 
     <section *ngIf="display.category">
         <h3 (click)="settings.unset('category')">契約類型</h3>
-        <fieldset class="col-sm-3">
+        <div class="row">
+        <fieldset class="col-sm-4">
             <legend><h4>非出版性委託</h4></legend>
             <app-select [attribute]="'category'" [settings]="settings"
                 [options]="optionGroups.nonPublishDelegation"
             ></app-select>
         </fieldset>
-        <fieldset class="col-sm-3">
+        <fieldset class="col-sm-4">
             <legend><h4>出版性委託</h4></legend>
             <app-select [attribute]="'category'" [settings]="settings"
                 [options]="optionGroups.publishDelegation"
             ></app-select>
         </fieldset>
+        </div>
     </section>
 
     <section *ngIf="display.contributor">
@@ -94,7 +96,7 @@
             契約內文
             <small>共{{getArticleCount()}}條</small>
         </h2>
-        <div *ngIf="invalidation" class="bg-danger" style="padding: .2em .5em">
+        <div *ngIf="invalidation" class="alert alert-danger" role="alert">
             <h3>須修正的錯誤</h3>
             <p style="white-space: pre-line">{{invalidation}}</p>
         </div>
@@ -122,10 +124,10 @@
             <h2>多方合作約定共有著作權契約</h2>
 
             立約人：
-            <dl class="dl-horizontal">
+            <dl class="row">
                 <ng-container *ngFor="let party of parties.slice(0, settings.club_population.value)">
-                    <dt>{{party.alias}}方</dt>
-                    <dd>{{party.name}}</dd>
+                    <dt class="col-sm-2">{{party.alias}}方</dt>
+                    <dd class="col-sm-10">{{party.name}}</dd>
                 </ng-container>
             </dl>
 
@@ -149,30 +151,30 @@
             <ng-container *ngIf="!check('category', '合本') || withContributor()">
                 <section>
                     <h4>甲方：{{settings.a_name.value}}</h4>
-                    <dl class="dl-horizontal">
-                        <dt>戶籍地址：</dt><dd>{{settings.a_permanentAddress.value}}</dd>
-                        <dt>身分證號：</dt><dd>{{settings.a_id.value}}</dd>
-                        <dt>電子郵件：</dt><dd>{{settings.a_email.value}}</dd>
-                        <dt>通訊地址：</dt><dd>{{settings.a_correspondenceAddress.value}}</dd>
-                        <dt>連絡電話：</dt><dd>{{settings.a_phone.value}}</dd>
+                    <dl class="row">
+                        <dt class="col-sm-2">戶籍地址：</dt><dd class="col-sm-10">{{settings.a_permanentAddress.value}}</dd>
+                        <dt class="col-sm-2">身分證號：</dt><dd class="col-sm-10">{{settings.a_id.value}}</dd>
+                        <dt class="col-sm-2">電子郵件：</dt><dd class="col-sm-10">{{settings.a_email.value}}</dd>
+                        <dt class="col-sm-2">通訊地址：</dt><dd class="col-sm-10">{{settings.a_correspondenceAddress.value}}</dd>
+                        <dt class="col-sm-2">連絡電話：</dt><dd class="col-sm-10">{{settings.a_phone.value}}</dd>
                     </dl>
                 </section>
 
                 <section>
                     <h4>乙方：{{settings.b_name.value}}</h4>
-                    <dl class="dl-horizontal" *ngIf="withContributor()">
-                        <dt>登記地址：</dt><dd>{{settings.b_permanentAddress.value}}</dd>
-                        <dt>統一編號：</dt><dd>{{settings.b_id.value}}</dd>
-                        <dt>代表人：</dt><dd>{{settings.b_chairperson.value}}</dd>
-                        <dt>通訊地址：</dt><dd>{{settings.b_correspondenceAddress.value}}</dd>
-                        <dt>連絡電話：</dt><dd>{{settings.b_phone.value}}</dd>
+                    <dl class="row" *ngIf="withContributor()">
+                        <dt class="col-sm-2">登記地址：</dt><dd class="col-sm-10">{{settings.b_permanentAddress.value}}</dd>
+                        <dt class="col-sm-2">統一編號：</dt><dd class="col-sm-10">{{settings.b_id.value}}</dd>
+                        <dt class="col-sm-2">代表人：</dt><dd class="col-sm-10">{{settings.b_chairperson.value}}</dd>
+                        <dt class="col-sm-2">通訊地址：</dt><dd class="col-sm-10">{{settings.b_correspondenceAddress.value}}</dd>
+                        <dt class="col-sm-2">連絡電話：</dt><dd class="col-sm-10">{{settings.b_phone.value}}</dd>
                     </dl>
-                    <dl class="dl-horizontal" *ngIf="!withContributor()">
-                        <dt>戶籍地址：</dt><dd>{{settings.b_permanentAddress.value}}</dd>
-                        <dt>身分證號：</dt><dd>{{settings.b_id.value}}</dd>
-                        <dt>電子郵件：</dt><dd>{{settings.b_email.value}}</dd>
-                        <dt>通訊地址：</dt><dd>{{settings.b_correspondenceAddress.value}}</dd>
-                        <dt>連絡電話：</dt><dd>{{settings.b_phone.value}}</dd>
+                    <dl class="row" *ngIf="!withContributor()">
+                        <dt class="col-sm-2">戶籍地址：</dt><dd class="col-sm-10">{{settings.b_permanentAddress.value}}</dd>
+                        <dt class="col-sm-2">身分證號：</dt><dd class="col-sm-10">{{settings.b_id.value}}</dd>
+                        <dt class="col-sm-2">電子郵件：</dt><dd class="col-sm-10">{{settings.b_email.value}}</dd>
+                        <dt class="col-sm-2">通訊地址：</dt><dd class="col-sm-10">{{settings.b_correspondenceAddress.value}}</dd>
+                        <dt class="col-sm-2">連絡電話：</dt><dd class="col-sm-10">{{settings.b_phone.value}}</dd>
                     </dl>
                 </section>
             </ng-container>
@@ -183,12 +185,12 @@
                         {{party.alias}}方：{{party.name}}
                         <small *ngIf="isFirst">（代表人）</small>
                     </h4>
-                    <dl class="dl-horizontal">
-                        <dt>戶籍地址</dt><dd>{{party.permanantAddress}}</dd>
-                        <dt>連絡電話</dt><dd>{{party.telephone}}</dd>
-                        <dt>手機號碼</dt><dd>{{party.cellphone}}</dd>
-                        <dt>電子郵件</dt><dd>{{party.email}}</dd>
-                        <dt>通訊地址</dt><dd>{{party.correspondenceAddress}}</dd>
+                    <dl class="row">
+                        <dt class="col-sm-2">戶籍地址</dt><dd class="col-sm-10">{{party.permanantAddress}}</dd>
+                        <dt class="col-sm-2">連絡電話</dt><dd class="col-sm-10">{{party.telephone}}</dd>
+                        <dt class="col-sm-2">手機號碼</dt><dd class="col-sm-10">{{party.cellphone}}</dd>
+                        <dt class="col-sm-2">電子郵件</dt><dd class="col-sm-10">{{party.email}}</dd>
+                        <dt class="col-sm-2">通訊地址</dt><dd class="col-sm-10">{{party.correspondenceAddress}}</dd>
                     </dl>
                 </section>
             </ng-container>
@@ -233,20 +235,20 @@
                     <p>{{settings.a_useLimit.value}}</p>
 
                     <h3>分紅機制</h3>
-                    <dl class="dl-horizontal">
-                        <dt>計算方式</dt>
-                        <dd>{{settings.dividend_calculation.value}}</dd>
-                        <dt>分紅時間</dt>
-                        <dd>
+                    <dl class="row">
+                        <dt class="col-sm-3">計算方式</dt>
+                        <dd class="col-sm-9">{{settings.dividend_calculation.value}}</dd>
+
+                        <dt class="col-sm-3">分紅時間</dt>
+                        <dd class="col-sm-9">
                             {{settings.dividend_time.value}}起
                             {{settings.dividend_period.value}}
                         </dd>
-                        <dt>款項支付方式</dt>
-                        <dd>
+
+                        <dt class="col-sm-3">款項支付方式</dt>
+                        <dd class="col-sm-9">
                             {{settings.dividend_method.value}}
-                            <div *ngIf="settings.dividend_method.value=='支票'"
-                                class="dl-horizontal"
-                            >
+                            <div *ngIf="settings.dividend_method.value=='支票'">
                                 支票到期期間：{{settings.checkExpirationPeriod.value}}日
                             </div>
                         </dd>
@@ -280,9 +282,9 @@
 
                     <section>
                         <h3>收益結算</h3>
-                        <dl class="dl-horizontal">
-                            <dt>結算期間</dt><dd>{{settings.dividend_period.value}}</dd>
-                            <dt>結算日期</dt><dd>{{settings.dividend_time.value}}</dd>
+                        <dl class="row">
+                            <dt class="col-sm-2">結算期間</dt><dd class="col-sm-10">{{settings.dividend_period.value}}</dd>
+                            <dt class="col-sm-2">結算日期</dt><dd class="col-sm-10">{{settings.dividend_time.value}}</dd>
                         </dl>
                     </section>
 
@@ -290,11 +292,9 @@
                         <h3>匯款資訊</h3>
                         <div *ngFor="let party of parties.slice(0, settings.club_population.value)">
                             <h4>{{party.alias}}方：{{party.name}}</h4>
-                            <dl class="dl-horizontal">
-                                <dt>銀行</dt>
-                                <dd>{{party.bank}}</dd>
-                                <dt>帳號</dt>
-                                <dd>{{party.bankAccount}}</dd>
+                            <dl class="row">
+                                <dt class="col-sm-2">銀行</dt><dd class="col-sm-10">{{party.bank}}</dd>
+                                <dt class="col-sm-2">帳號</dt><dd class="col-sm-10">{{party.bankAccount}}</dd>
                             </dl>
                         </div>
                     </section>

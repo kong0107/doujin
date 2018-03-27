@@ -3,11 +3,11 @@
         <a routerLink="/">{{ title }}</a>
         <small>{{version}}</small>
     </h1>
-    <nav>
+    <nav aria-label="breadcrumb">
         <ul class="list-inline">
-            <li><a routerLink="/disclaimer" routerLinkActive="active">聲明</a></li>
-            <li><a routerLink="/main" routerLinkActive="active">自訂契約</a></li>
-            <li><a routerLink="/faq" routerLinkActive="active">常見問題</a></li>
+            <li class="list-inline-item"><a routerLink="/disclaimer" routerLinkActive="active">聲明</a></li>
+            <li class="list-inline-item"><a routerLink="/main" routerLinkActive="active">自訂契約</a></li>
+            <li class="list-inline-item"><a routerLink="/faq" routerLinkActive="active">常見問題</a></li>
         </ul>
     </nav>
 </header>

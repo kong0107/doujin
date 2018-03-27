@@ -36,6 +36,6 @@ textarea {
     font-family: monospace;
 }
 
-dl:not([class=dl-horizontal]) > dd {
+dl:not([class=row]) > dd {
     margin-left: 2em;
 }

@@ -235,10 +235,10 @@ export class MainComponent implements OnInit {
                     (match, key) => {
                         const attribute = this.dictionary[key];
                         if(!this.settings[attribute]) //< 根本沒有對應的變數，應確認 dictionary.json
-                            return `<strong class="bg-danger" title="找不到變數">「${key}」</strong>`;
+                            return `<strong class="alert-danger" title="找不到變數">「${key}」</strong>`;
 
                         let value = this.settings[attribute].value;
-                        if(!value) return `<strong class="bg-danger" title="未填入">「${key}」</strong>`;
+                        if(!value) return `<strong class="alert-danger" title="未填入資料">「${key}」</strong>`;
 
                         const number = +value; ///< 轉換成整數。跟 parseInt 不同，丟入日期字串的話會是 NaN
                         if(!isNaN(number)) {
@@ -248,7 +248,7 @@ export class MainComponent implements OnInit {
                         else if(/^\d{4}-\d{2}-\d{2}$/.test(value)) {
                             value = value.replace(/(\d{4})-(\d{2})-(\d{2})/, (match, y, m, d) => `${y}年${m}月${d}日`);
                         }
-                        return `<strong class="bg-success" title="${key}">${value}</strong>`;
+                        return `<strong class="alert-success" title="${key}">${value}</strong>`;
                     }
                 );
             });

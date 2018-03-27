@@ -189,66 +189,83 @@
             <h3>雙方資料</h3>
             <section>
                 <h4>甲方：繪師</h4>
-                <dl class="dl-horizontal">
-                    <dt>姓名</dt>
-                    <dd><input [(ngModel)]="settings.a_name.value"></dd>
-                    <dt>戶籍地址</dt>
-                    <dd><input [(ngModel)]="settings.a_permanentAddress.value" class="address"></dd>
-                    <dt>身分證號</dt>
-                    <dd><input [(ngModel)]="settings.a_id.value" pattern="[A-Z][12]\d{8}"></dd>
-                    <dt>電子郵件</dt>
-                    <dd><input [(ngModel)]="settings.a_email.value" type="email"></dd>
-                    <dt>通訊地址</dt>
-                    <dd><input [(ngModel)]="settings.a_correspondenceAddress.value" class="address"></dd>
-                    <dt>連絡電話</dt>
-                    <dd><input [(ngModel)]="settings.a_phone.value" type="tel"></dd>
+                <dl class="row">
+                    <dt class="col-sm-2">姓名</dt>
+                    <dd class="col-sm-10"><input [(ngModel)]="settings.a_name.value"></dd>
+
+                    <dt class="col-sm-2">戶籍地址</dt>
+                    <dd class="col-sm-10"><input [(ngModel)]="settings.a_permanentAddress.value" class="address"></dd>
+
+                    <dt class="col-sm-2">身分證號</dt>
+                    <dd class="col-sm-10"><input [(ngModel)]="settings.a_id.value" pattern="[A-Z][12]\d{8}"></dd>
+
+                    <dt class="col-sm-2">電子郵件</dt>
+                    <dd class="col-sm-10"><input [(ngModel)]="settings.a_email.value" type="email"></dd>
+
+                    <dt class="col-sm-2">通訊地址</dt>
+                    <dd class="col-sm-10"><input [(ngModel)]="settings.a_correspondenceAddress.value" class="address"></dd>
+
+                    <dt class="col-sm-2">連絡電話</dt>
+                    <dd class="col-sm-10"><input [(ngModel)]="settings.a_phone.value" type="tel"></dd>
                 </dl>
             </section>
             <section *ngIf="settings.withContributor()">
                 <h4>乙方：委託商</h4>
-                <dl class="dl-horizontal">
-                    <dt>商家名稱</dt>
-                    <dd><input [(ngModel)]="settings.b_name.value"></dd>
-                    <dt>登記地址</dt>
-                    <dd><input [(ngModel)]="settings.b_permanentAddress.value" class="address"></dd>
-                    <dt>統一編號</dt>
-                    <dd><input [(ngModel)]="settings.b_id.value" pattern="\d{8}"></dd>
-                    <dt>代表人</dt>
-                    <dd><input [(ngModel)]="settings.b_chairperson.value"></dd>
-                    <dt>通訊地址</dt>
-                    <dd><input [(ngModel)]="settings.b_correspondenceAddress.value" class="address"></dd>
-                    <dt>聯絡電話</dt>
-                    <dd><input [(ngModel)]="settings.b_phone.value" type="tel"></dd>
+                <dl class="row">
+                    <dt class="col-sm-2">商家名稱</dt>
+                    <dd class="col-sm-10"><input [(ngModel)]="settings.b_name.value"></dd>
+
+                    <dt class="col-sm-2">登記地址</dt>
+                    <dd class="col-sm-10"><input [(ngModel)]="settings.b_permanentAddress.value" class="address"></dd>
+
+                    <dt class="col-sm-2">統一編號</dt>
+                    <dd class="col-sm-10"><input [(ngModel)]="settings.b_id.value" pattern="\d{8}"></dd>
+
+                    <dt class="col-sm-2">代表人</dt>
+                    <dd class="col-sm-10"><input [(ngModel)]="settings.b_chairperson.value"></dd>
+
+                    <dt class="col-sm-2">通訊地址</dt>
+                    <dd class="col-sm-10"><input [(ngModel)]="settings.b_correspondenceAddress.value" class="address"></dd>
+
+                    <dt class="col-sm-2">聯絡電話</dt>
+                    <dd class="col-sm-10"><input [(ngModel)]="settings.b_phone.value" type="tel"></dd>
                 </dl>
             </section>
             <section *ngIf="!settings.withContributor()">
                 <h4>乙方：委託主</h4>
-                <dl class="dl-horizontal">
-                    <dt>姓名</dt>
-                    <dd><input [(ngModel)]="settings.b_name.value"></dd>
-                    <dt>戶籍地址</dt>
-                    <dd><input [(ngModel)]="settings.b_permanentAddress.value" class="address"></dd>
-                    <dt>身分證號</dt>
-                    <dd><input [(ngModel)]="settings.b_id.value" pattern="[A-Z][12]\d{8}"></dd>
-                    <dt>電子郵件</dt>
-                    <dd><input [(ngModel)]="settings.b_email.value" type="email"></dd>
-                    <dt>通訊地址</dt>
-                    <dd><input [(ngModel)]="settings.b_correspondenceAddress.value" class="address"></dd>
-                    <dt>連絡電話</dt>
-                    <dd><input [(ngModel)]="settings.b_phone.value" type="tel"></dd>
+                <dl class="row">
+                    <dt class="col-sm-2">姓名</dt>
+                    <dd class="col-sm-10"><input [(ngModel)]="settings.b_name.value"></dd>
+
+                    <dt class="col-sm-2">戶籍地址</dt>
+                    <dd class="col-sm-10"><input [(ngModel)]="settings.b_permanentAddress.value" class="address"></dd>
+
+                    <dt class="col-sm-2">身分證號</dt>
+                    <dd class="col-sm-10"><input [(ngModel)]="settings.b_id.value" pattern="[A-Z][12]\d{8}"></dd>
+
+                    <dt class="col-sm-2">電子郵件</dt>
+                    <dd class="col-sm-10"><input [(ngModel)]="settings.b_email.value" type="email"></dd>
+
+                    <dt class="col-sm-2">通訊地址</dt>
+                    <dd class="col-sm-10"><input [(ngModel)]="settings.b_correspondenceAddress.value" class="address"></dd>
+
+                    <dt class="col-sm-2">連絡電話</dt>
+                    <dd class="col-sm-10"><input [(ngModel)]="settings.b_phone.value" type="tel"></dd>
                 </dl>
             </section>
         </section>
 
         <section>
             <h3>匯款資料：繪師帳戶</h3>
-            <dl class="dl-horizontal">
-                <dt>銀行名稱-代號</dt>
-                <dd><input [(ngModel)]="settings.bank.value"></dd>
-                <dt>戶名</dt>
-                <dd><input [(ngModel)]="settings.accountName.value"></dd>
-                <dt>帳號</dt>
-                <dd><input [(ngModel)]="settings.accountNumber.value" type="tel"></dd>
+            <dl class="row">
+                <dt class="col-sm-2">銀行名稱-代號</dt>
+                <dd class="col-sm-10"><input [(ngModel)]="settings.bank.value"></dd>
+
+                <dt class="col-sm-2">戶名</dt>
+                <dd class="col-sm-10"><input [(ngModel)]="settings.accountName.value"></dd>
+
+                <dt class="col-sm-2">帳號</dt>
+                <dd class="col-sm-10"><input [(ngModel)]="settings.accountNumber.value" type="tel"></dd>
             </dl>
         </section>
 

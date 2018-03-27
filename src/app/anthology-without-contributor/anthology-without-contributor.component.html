@@ -27,13 +27,24 @@
             {{party.alias}}方
             <small *ngIf="isFirst">（代表人、主揪）</small>
         </h5>
-        <dl class="dl-horizontal">
-            <dt>繪師本名</dt><dd><input [(ngModel)]="party.name"></dd>
-            <dt>戶籍地址</dt><dd><input [(ngModel)]="party.permanantAddress" class="address"></dd>
-            <dt>聯絡電話</dt><dd><input [(ngModel)]="party.telephone" type="tel"></dd>
-            <dt>手機號碼</dt><dd><input [(ngModel)]="party.cellphone" type="tel"></dd>
-            <dt>電子郵件</dt><dd><input [(ngModel)]="party.email" type="email"></dd>
-            <dt>通訊地址</dt><dd><input [(ngModel)]="party.correspondenceAddress" class="address"></dd>
+        <dl class="row">
+            <dt class="col-sm-2">繪師本名</dt>
+            <dd class="col-sm-10"><input [(ngModel)]="party.name"></dd>
+
+            <dt class="col-sm-2">戶籍地址</dt>
+            <dd class="col-sm-10"><input [(ngModel)]="party.permanantAddress" class="address"></dd>
+
+            <dt class="col-sm-2">聯絡電話</dt>
+            <dd class="col-sm-10"><input [(ngModel)]="party.telephone" type="tel"></dd>
+
+            <dt class="col-sm-2">手機號碼</dt>
+            <dd class="col-sm-10"><input [(ngModel)]="party.cellphone" type="tel"></dd>
+
+            <dt class="col-sm-2">電子郵件</dt>
+            <dd class="col-sm-10"><input [(ngModel)]="party.email" type="email"></dd>
+
+            <dt class="col-sm-2">通訊地址</dt>
+            <dd class="col-sm-10"><input [(ngModel)]="party.correspondenceAddress" class="address"></dd>
         </dl>
     </section>
 </section>
@@ -94,11 +105,12 @@
             <section *ngIf="settings.check('dividend_method', '匯款')">
                 <div *ngFor="let party of parties.slice(0, settings.club_population.value)">
                     <h5>{{party.alias}}方：{{party.name}}</h5>
-                    <dl class="dl-horizontal">
-                        <dt>銀行</dt>
-                        <dd><input [(ngModel)]="party.bank"></dd>
-                        <dt>帳號</dt>
-                        <dd><input [(ngModel)]="party.bankAccount" type="tel"></dd>
+                    <dl class="row">
+                        <dt class="col-sm-2">銀行</dt>
+                        <dd class="col-sm-10"><input [(ngModel)]="party.bank"></dd>
+
+                        <dt class="col-sm-2">帳號</dt>
+                        <dd class="col-sm-10"><input [(ngModel)]="party.bankAccount" type="tel"></dd>
                     </dl>
                 </div>
             </section>
