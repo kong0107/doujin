@@ -31,6 +31,10 @@ nav a:hover {
     background-color: #369;
 }
 
+nav a.active {
+    background-color: #963;
+}
+
 #main {
     padding: 0 1rem;
     line-height: 150%;
