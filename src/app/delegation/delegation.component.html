@@ -307,7 +307,7 @@
             [options]="optionGroups.copyrightBelonging"
         ></app-select>
         <div>
-            <button class="btn btn-primary btn-xs"
+            <button class="btn btn-primary btn-sm"
                 *ngIf="settings.copyrightBelonging.decided"
                 (click)="settings.unset('copyrightBelonging')"
             >選擇其他方式</button>
@@ -327,7 +327,7 @@
                         [options]="optionGroups.a_useRange"
                     ></app-select>
                     <div>
-                        <button class="btn btn-primary btn-xs"
+                        <button class="btn btn-primary btn-sm"
                             *ngIf="settings.a_useRange.decided"
                             (click)="settings.unset('a_useRange')"
                         >選擇其他方式</button>
@@ -354,13 +354,13 @@
                         </dd>
                         <dd *ngIf="settings.a_useLimit.value=='限制'">
                             <textarea [(ngModel)]="settings.useLimitRange.value" placeholder="請填入地區、次數、方式"></textarea>
-                            <dl>
-                                <dt>地區</dt>
-                                <dd>僅限台澎金馬或不限區域，並可另外就「語言版本」為約定。</dd>
-                                <dt>次數</dt>
-                                <dd>如果是出版相關就是版數、刷數等對發行數量的規定</dd>
-                                <dt>方式</dt>
-                                <dd>詳細部分請參考著作權法第 22 條及第 29 條，或至少就線上電子/線下實體做約定。</dd>
+                            <dl class="row">
+                                <dt class="col-sm-1">地區</dt>
+                                <dd class="col-sm-11">僅限台澎金馬或不限區域，並可另外就「語言版本」為約定。</dd>
+                                <dt class="col-sm-1">次數</dt>
+                                <dd class="col-sm-11">如果是出版相關就是版數、刷數等對發行數量的規定</dd>
+                                <dt class="col-sm-1">方式</dt>
+                                <dd class="col-sm-11">詳細部分請參考著作權法第 22 條及第 29 條，或至少就線上電子/線下實體做約定。</dd>
                             </dl>
                         </dd>
                     </dl>
@@ -391,7 +391,7 @@
                         [options]="optionGroups.b_useRange"
                     ></app-select>
                     <div>
-                        <button class="btn btn-primary btn-xs"
+                        <button class="btn btn-primary btn-sm"
                             *ngIf="settings.b_useRange.decided"
                             (click)="settings.unset('b_useRange')"
                         >選擇其他方式</button>
@@ -416,15 +416,15 @@
                         </dd>
                         <dd *ngIf="settings.b_useLimit.value=='限制'">
                             <textarea [(ngModel)]="settings.useLimitRange.value" placeholder="請填入地區、次數、方式"></textarea>
-                            <dl>
-                                <dt>地區</dt>
-                                <dd>僅限台澎金馬或不限區域，並可另外就「語言版本」為約定；</dd>
-                                <dt>期間</dt>
-                                <dd>特定年數內或永久；</dd>
-                                <dt>次數</dt>
-                                <dd>如果是出版相關就是版數、刷數等對發行數量的規定</dd>
-                                <dt>方式</dt>
-                                <dd>詳細部分請參考<a target="_blank" href="https://law.moj.gov.tw/LawClass/LawSearchNo.aspx?PC=J0070017&SNo=22%2c29">著作權法第 22 條及第 29 條</a>，或至少就線上電子/線下實體做約定。</dd>
+                            <dl class="row">
+                                <dt class="col-sm-1">地區</dt>
+                                <dd class="col-sm-11">僅限台澎金馬或不限區域，並可另外就「語言版本」為約定；</dd>
+                                <dt class="col-sm-1">期間</dt>
+                                <dd class="col-sm-11">特定年數內或永久；</dd>
+                                <dt class="col-sm-1">次數</dt>
+                                <dd class="col-sm-11">如果是出版相關就是版數、刷數等對發行數量的規定</dd>
+                                <dt class="col-sm-1">方式</dt>
+                                <dd class="col-sm-11">詳細部分請參考<a target="_blank" href="https://law.moj.gov.tw/LawClass/LawSearchNo.aspx?PC=J0070017&SNo=22%2c29">著作權法第 22 條及第 29 條</a>，或至少就線上電子/線下實體做約定。</dd>
                             </dl>
                         </dd>
                         <dd *ngIf="settings.b_useLimit.value=='限制'">

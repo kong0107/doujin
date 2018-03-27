@@ -6,19 +6,22 @@
 
 <section>
     <h3>基本資料</h3>
-    <dl>
-        <dt>合本的名稱</dt>
-        <dd><input [(ngModel)]="settings.delegation_name.value" placeholder="合本名稱"></dd>
-        <dt>社團名稱（即合本的著作人）</dt>
-        <dd><input [(ngModel)]="settings.club_name.value" placeholder="社團名稱"></dd>
-        <dt>這次合本有幾名繪師參與？</dt>
-        <dd>
+    <dl class="row">
+        <dt class="col-sm-3">合本的名稱</dt>
+        <dd class="col-sm-9"><input [(ngModel)]="settings.delegation_name.value" placeholder="合本名稱"></dd>
+
+        <dt class="col-sm-3">社團名稱（即合本的著作人）</dt>
+        <dd class="col-sm-9"><input [(ngModel)]="settings.club_name.value" placeholder="社團名稱"></dd>
+
+        <dt class="col-sm-3">這次合本有幾名繪師參與？</dt>
+        <dd class="col-sm-9">
             <input [(ngModel)]="settings.club_population.value"
                 type="number" class="number-small" min="3" max="10"
             >人
         </dd>
-        <dt>這次合本第一次出本的時間</dt>
-        <dd><input [(ngModel)]="settings.firstPubliclyReleasedDate.value" type="date"></dd>
+
+        <dt class="col-sm-3">這次合本第一次出本的時間</dt>
+        <dd class="col-sm-9"><input [(ngModel)]="settings.firstPubliclyReleasedDate.value" type="date"></dd>
     </dl>
 
     <h4>所有繪師的資料</h4>

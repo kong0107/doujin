@@ -1,6 +1,6 @@
 <div (click)="settings.toggle(attribute)">
-    <button class="btn btn-xs" [class.btn-success]="settings[attribute].value">
-        <i class="glyphicon" [class.glyphicon-ok]="settings[attribute].value"></i>
+    <button class="btn btn-sm" [class.btn-success]="settings[attribute].value">
+        <strong class="lead">{{settings[attribute].value ? "&radic;" : "&nbsp;"}}</strong>
     </button>
     {{text}}
 </div>
