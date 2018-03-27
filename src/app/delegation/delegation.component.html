@@ -1,6 +1,8 @@
 <section *ngIf="display.delegation">
+    <p *ngIf="!settings.workType.decided" class="alert alert-warning">
+        說明：這是「非合本」的繪圖委託需要填的內容，如果是合本類型的委託，請點選「清空目前設定」、回到開頭重新選擇「多人合本」。
+    </p>
     <h3>委託資料及委託規格</h3>
-    <p *ngIf="!settings.workType.decided">說明：這個網頁是「非合本」的繪圖委託需要填的內容，如果是合本類型的委託，請關掉網頁、回到開頭重新選擇「多人合本」。</p>
     <section *ngIf="display.workType">
         <h4 (click)="settings.unset('workType')">工作方式</h4>
         <app-select [attribute]="'workType'" [settings]="settings"
@@ -342,12 +344,12 @@
                         <dt>繪師在前述目的下能利用之範圍</dt>
                         <dd>
                             <button class="btn"
-                                [class.btn-default]="settings.a_useLimit.value!='無限制'"
+                                [class.btn-outline-success]="settings.a_useLimit.value!='無限制'"
                                 [class.btn-success]="settings.a_useLimit.value=='無限制'"
                                 (click)="settings.set('a_useLimit', '無限制')"
                             >無限制</button>
                             <button class="btn"
-                                [class.btn-default]="settings.a_useLimit.value!='限制'"
+                                [class.btn-outline-success]="settings.a_useLimit.value!='限制'"
                                 [class.btn-success]="settings.a_useLimit.value=='限制'"
                                 (click)="settings.set('a_useLimit', '限制')"
                             >有限制</button>
@@ -415,10 +417,12 @@
                         <dt>委託主在前述目的下能利用之範圍</dt>
                         <dd>
                             <button class="btn"
+                                [class.btn-outline-success]="settings.b_useLimit.value!='無限制'"
                                 [class.btn-success]="settings.b_useLimit.value=='無限制'"
                                 (click)="settings.set('b_useLimit', '無限制')"
                             >無限制</button>
                             <button class="btn"
+                                [class.btn-outline-success]="settings.b_useLimit.value!='限制'"
                                 [class.btn-success]="settings.b_useLimit.value=='限制'"
                                 (click)="settings.set('b_useLimit', '限制')"
                             >有限制</button>

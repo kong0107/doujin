@@ -1,7 +1,7 @@
 <ng-container *ngFor="let option of options">
     <div class="option" *ngIf="!settings[attribute].decided || settings[attribute].value==option.value">
         <button class="btn"
-            [class.btn-default]="settings[attribute].value!=option.value"
+            [class.btn-outline-success]="settings[attribute].value!=option.value"
             [class.btn-success]="settings[attribute].value==option.value"
             (click)="settings.set(attribute, option.value)"
         >{{option.text || option.value}}</button>

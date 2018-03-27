@@ -27,19 +27,15 @@ section:after {
     cursor: pointer;
 }
 
-.btn:hover {
-    font-weight: bold;
-}
-
-@media screen {
-    article mark {
-        font-weight: bold;
-    }
-}
-
+/**
+ * 列印時不要設顏色
+ *
+ * 理想上這段應該放在 src/app/main/contract.css ，但目前條文內文是用 [innerHTML] ，從而其內的元素需要的 CSS 只能放在這。
+ */
 @media print {
-    #header, footer, #settings, .no-print {
-        display: none;
+    #contract article strong.alert-success {
+        background: none;
+        color: #000;
     }
 }
 

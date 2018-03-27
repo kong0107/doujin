@@ -1,4 +1,4 @@
-<header id="header">
+<header id="header" class="d-print-none">
     <h1>
         <a routerLink="/">{{ title }}</a>
         <small>{{version}}</small>
@@ -14,6 +14,6 @@
 <section id="main" class="container-fluid">
     <router-outlet></router-outlet>
 </section>
-<footer id="footer" class="text-right">
+<footer id="footer" class="text-right d-print-none">
     <a target="_blank" href="https://github.com/kong0107/doujin">網站原始碼</a>
 </footer>

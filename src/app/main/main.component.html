@@ -1,12 +1,41 @@
-<section id="settings" [ngClass]="display.contract?'col-md-6':'container'">
-    <header>
-        <h2>自訂契約</h2>
+<fieldset id="debug" class="d-print-none">
+    <legend onclick="this.parentNode.style.display='none';" title="Click to close.">Debug</legend>
+    <div>{{display | json}}</div>
+    <div>{{settings | json}}</div>
+</fieldset>
 
-        <fieldset id="debug">
-            <legend onclick="this.parentNode.style.display='none';" title="Click to close.">Debug</legend>
-            <div>{{display | json}}</div>
-            <div>{{settings | json}}</div>
-        </fieldset>
+<section id="settings" [ngClass]="display.contract?'col-md-6':'container'" class="d-print-none">
+    <header>
+        <div class="row">
+            <h2 class="col-md-4">自訂契約</h2>
+
+            <div class="col-md-8">
+                <div style="margin-top: .5em">
+                    <button class="btn btn-sm btn-info" (click)="load(demoData)">套用測試資料</button>
+                    <button class="btn btn-sm btn-info" (click)="load(false)">清空目前設定</button>
+                </div>
+                <div style="margin-top: .5em">
+                    <button class="btn btn-sm btn-info" (click)="downloadSettings()">下載現在的設定</button>
+
+                    <button class="btn btn-sm btn-info" (click)="fileSelect()">上傳設定檔</button>
+                    <input type="file" id="fileElem" accept=".json" (change)="handleFile()" style="display: none">
+
+                    <button class="btn btn-sm btn-info" (click)="display.paste=true">貼上之前下載的設定</button>
+                </div>
+            </div>
+        </div>
+                    <fieldset *ngIf="display.paste">
+                        <legend>
+                            貼上之前下載的設定
+                            <small class="text-muted">（格式須為 <abbr title="JavaScript Object Notation">JSON</abbr>）</small>
+                        </legend>
+                        <textarea [(ngModel)]="userSettings" style="height: 10em"></textarea>
+                        <div>
+                            <button class="btn btn-primary" (click)="loadUserSettings()">讀取</button>
+                            <button class="btn btn-warning" (click)="display.paste=false">關閉</button>
+                        </div>
+                        <div *ngIf="loadError">{{loadError}}</div>
+                    </fieldset>
 
         <ul id="breadcrumb">
             <li><span onclick="location.reload()">自訂契約</span></li>
@@ -16,30 +45,6 @@
             <li *ngIf="settings.copyrightBelonging.decided"><span (click)="settings.unset('copyrightBelonging')">著作財產權{{settings.copyrightBelonging.value.substr(2)}}</span></li>
             <li *ngIf="settings.a_useRange.decided"><span (click)="settings.unset('a_useRange')">繪師{{settings.a_useRange.value}}</span></li>
         </ul>
-
-        <section>
-            <div>
-                <button class="btn btn-sm btn-info" (click)="load(demoData)">套用測試資料</button>
-                <button class="btn btn-sm btn-info" (click)="load(false)">清空目前設定</button>
-            </div>
-            <div style="margin-top: .5em">
-                <button class="btn btn-sm btn-info" (click)="downloadSettings()">下載現在的設定</button>
-
-                <button class="btn btn-sm btn-info" (click)="fileSelect()">上傳設定檔</button>
-                <input type="file" id="fileElem" accept=".json" (change)="handleFile()" style="display: none">
-
-                <button class="btn btn-sm btn-info" (click)="display.paste=true">貼上之前下載的設定</button>
-                <fieldset *ngIf="display.paste">
-                    <legend>格式須為 JSON</legend>
-                    <textarea [(ngModel)]="userSettings" style="height: 10em"></textarea>
-                    <div>
-                        <button class="btn btn-primary" (click)="loadUserSettings()">讀取</button>
-                        <button class="btn btn-warning" (click)="display.paste=false">關閉</button>
-                    </div>
-                    <div *ngIf="loadError">{{loadError}}</div>
-                </fieldset>
-            </div>
-        </section>
     </header>
 
     <section *ngIf="display.category">
@@ -94,7 +99,7 @@
 </section>
 
 <section *ngIf="display.contract" id="contractContainer">
-    <header class="no-print">
+    <header class="d-print-none">
         <h2>
             契約內文
             <small>共{{getArticleCount()}}條</small>
@@ -108,8 +113,11 @@
             <button class="btn btn-info" (click)="downloadText()">下載純文字</button>
             <button class="btn btn-info" (click)="downloadHTML()">下載網頁</button>
             <button class="btn btn-info" (click)="downloadSettings()">下載設定檔</button>
-            <p class="text-muted small">如果瀏覽器支援，也許可以「印成 PDF 檔」。</p>
-            <p class="text-muted small">因為技術問題， iOS 系統上不會「下載」而是會另開新頁。</p>
+            <p class="alert alert-light small">
+                如果瀏覽器支援，也許可以「印成 PDF 檔」。
+                <br>
+                因為技術問題， iOS 系統上不會「下載」而是會另開新頁。
+            </p>
         </div>
     </header>
 
@@ -306,7 +314,7 @@
         </section>
     </section>
 
-    <footer>
+    <footer class="d-print-none">
         <button class="btn btn-info" onclick="window.print()">列印</button>
         <button class="btn btn-info" (click)="downloadText()">下載純文字</button>
         <button class="btn btn-info" (click)="downloadHTML()">下載網頁</button>

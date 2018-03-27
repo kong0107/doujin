@@ -26,11 +26,12 @@ article p, #attachments p {
         position: fixed;
         height: 100vh;
         overflow-y: scroll;
+        overflow-x: hidden;
         width: 50%;
         top: 0;
         right: 0;
         background: #fff;
-        padding: 0 .5em;
+        padding: 0 .5em 2em .5em;
         border-left: 2px dotted #ccc;
     }
 }
