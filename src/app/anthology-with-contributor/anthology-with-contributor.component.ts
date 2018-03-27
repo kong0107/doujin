@@ -9,6 +9,7 @@ export class AnthologyWithContributorComponent implements OnInit {
   @Input() settings: any;
   @Input() optionGroups: any;
   @Input() display: any;
+  @Input() modal: object;
 
   constructor() { }
 

@@ -9,11 +9,6 @@ import * as DemoData from './demo-data.json';
 
 import * as ContractStyle from './contract.css';
 
-/*NodeList.prototype.forEach = function(callback, thisArg) {
-    for(let i = 0; i < this.length; ++i)
-        callback.apply(thisArg, this[i], i, this);
-};*/
-
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -29,6 +24,10 @@ export class MainComponent implements OnInit {
     parties: any = [];
     invalidation: string = "";
     renderError: boolean = false;
+    modal = {
+        title: "",
+        content: ""
+    };
 
     display = {
         paste: false,

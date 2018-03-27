@@ -9,6 +9,7 @@ export class DelegationComponent implements OnInit {
   @Input() settings: object;
   @Input() optionGroups: any;
   @Input() display: any;
+  @Input() modal: object;
 
   constructor() { }
 

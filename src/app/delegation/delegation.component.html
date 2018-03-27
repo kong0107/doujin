@@ -360,7 +360,16 @@
                                 <dt class="col-sm-1">次數</dt>
                                 <dd class="col-sm-11">如果是出版相關就是版數、刷數等對發行數量的規定</dd>
                                 <dt class="col-sm-1">方式</dt>
-                                <dd class="col-sm-11">詳細部分請參考著作權法第 22 條及第 29 條，或至少就線上電子/線下實體做約定。</dd>
+                                <dd class="col-sm-11">
+                                    詳細部分請參考
+                                    <u class="clickable" data-toggle="modal" data-target="#exampleModal"
+                                        (click)="modal.title = '著作權法'; modal.content = '<article><header class=\'lead\'>第 22 條</header><p>著作人除本法另有規定外，專有重製其著作之權利。</p><p>表演人專有以錄音、錄影或攝影重製其表演之權利。</p><p>前二項規定，於專為網路合法中繼性傳輸，或合法使用著作，屬技術操作過程中必要之過渡性、附帶性而不具獨立經濟意義之暫時性重製，不適用之。但電腦程式著作，不在此限。</p><p>前項網路合法中繼性傳輸之暫時性重製情形，包括網路瀏覽、快速存取或其他為達成傳輸功能之電腦或機械本身技術上所不可避免之現象。</p></article><article><header class=\'lead\'>第 29 條</header><p>著作人除本法另有規定外，專有出租其著作之權利。</p><p>表演人就其經重製於錄音著作之表演，專有出租之權利。</p></article>'"
+                                    >
+                                        著作權法第 22 條及第 29 條
+                                    </u>，
+                                    或至少就線上電子/線下實體做約定。
+                                </dd>
+
                             </dl>
                         </dd>
                     </dl>
@@ -424,7 +433,15 @@
                                 <dt class="col-sm-1">次數</dt>
                                 <dd class="col-sm-11">如果是出版相關就是版數、刷數等對發行數量的規定</dd>
                                 <dt class="col-sm-1">方式</dt>
-                                <dd class="col-sm-11">詳細部分請參考<a target="_blank" href="https://law.moj.gov.tw/LawClass/LawSearchNo.aspx?PC=J0070017&SNo=22%2c29">著作權法第 22 條及第 29 條</a>，或至少就線上電子/線下實體做約定。</dd>
+                                <dd class="col-sm-11">
+                                    詳細部分請參考
+                                    <u class="clickable" data-toggle="modal" data-target="#exampleModal"
+                                        (click)="modal.title = '著作權法'; modal.content = '<article><header class=\'lead\'>第 22 條</header><p>著作人除本法另有規定外，專有重製其著作之權利。</p><p>表演人專有以錄音、錄影或攝影重製其表演之權利。</p><p>前二項規定，於專為網路合法中繼性傳輸，或合法使用著作，屬技術操作過程中必要之過渡性、附帶性而不具獨立經濟意義之暫時性重製，不適用之。但電腦程式著作，不在此限。</p><p>前項網路合法中繼性傳輸之暫時性重製情形，包括網路瀏覽、快速存取或其他為達成傳輸功能之電腦或機械本身技術上所不可避免之現象。</p></article><article><header class=\'lead\'>第 29 條</header><p>著作人除本法另有規定外，專有出租其著作之權利。</p><p>表演人就其經重製於錄音著作之表演，專有出租之權利。</p></article>'"
+                                    >
+                                        著作權法第 22 條及第 29 條
+                                    </u>，
+                                    或至少就線上電子/線下實體做約定。
+                                </dd>
                             </dl>
                         </dd>
                         <dd *ngIf="settings.b_useLimit.value=='限制'">

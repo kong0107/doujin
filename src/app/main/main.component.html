@@ -72,6 +72,7 @@
         [settings]="settings"
         [optionGroups]="optionGroups"
         [display]="display"
+        [modal]="modal"
     ></app-delegation>
 
     <app-anthology-with-contributor
@@ -79,6 +80,7 @@
         [settings]="settings"
         [optionGroups]="optionGroups"
         [display]="display"
+        [modal]="modal"
     ></app-anthology-with-contributor>
 
     <app-anthology-without-contributor
@@ -87,6 +89,7 @@
         [optionGroups]="optionGroups"
         [display]="display"
         [parties]="parties"
+        [modal]="modal"
     ></app-anthology-without-contributor>
 </section>
 
@@ -311,3 +314,22 @@
         <p class="text-muted">如果瀏覽器支援，也許可以「印成 PDF 檔」。</p>
     </footer>
 </section>
+
+<!-- Modal -->
+<!-- https://getbootstrap.com/docs/4.0/components/modal/ -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <section class="modal-content">
+      <header class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{modal.title}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </header>
+      <div class="modal-body" style="white-space: pre-line" [innerHTML]="modal.content"></div>
+      <footer class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </footer>
+    </section>
+  </div>
+</div>

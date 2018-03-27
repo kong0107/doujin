@@ -10,6 +10,7 @@ export class AnthologyWithoutContributorComponent implements OnInit {
   @Input() optionGroups: any;
   @Input() display: any;
   @Input() parties: any;
+  @Input() modal: object;
 
   constructor() { }
 
