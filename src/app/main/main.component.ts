@@ -28,6 +28,7 @@ export class MainComponent implements OnInit {
     contractStyle = ContractStyle;
     parties: any = [];
     invalidation: string = "";
+    renderError: boolean = false;
 
     display = {
         paste: false,
@@ -226,6 +227,7 @@ export class MainComponent implements OnInit {
             });
         });
 
+        this.renderError = false;
         let num = 0;
         ags.forEach(ag => {
             ag.articles.forEach(article => {
@@ -234,11 +236,16 @@ export class MainComponent implements OnInit {
                 article.output = article.content.replace(/{{([^{}]+)}}/g,
                     (match, key) => {
                         const attribute = this.dictionary[key];
-                        if(!this.settings[attribute]) //< 根本沒有對應的變數，應確認 dictionary.json
+                        if(!this.settings[attribute]) {//< 根本沒有對應的變數，應確認 dictionary.json
+                            this.renderError = true;
                             return `<strong class="alert-danger" title="找不到變數">「${key}」</strong>`;
+                        }
 
                         let value = this.settings[attribute].value;
-                        if(!value) return `<strong class="alert-danger" title="未填入資料">「${key}」</strong>`;
+                        if(!value) {
+                            this.renderError = true;
+                            return `<strong class="alert-danger" title="未填入資料">「${key}」</strong>`;
+                        }
 
                         const number = +value; ///< 轉換成整數。跟 parseInt 不同，丟入日期字串的話會是 NaN
                         if(!isNaN(number)) {
@@ -379,6 +386,9 @@ export class MainComponent implements OnInit {
         const errors = [];
         const now = new Date();
         const inputList = document.querySelectorAll("input");
+
+        if(this.renderError)
+            errors.push("還有未填入的欄位");
 
         for(let i = 0; i < inputList.length; ++i) {
             const input = inputList[i];

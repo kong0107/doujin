@@ -32,5 +32,5 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Unsolved Issues
 
-* form validation
+* form validation: 目前只會檢查條文裡的變數是否填入，還不會檢查附件裡的變數。
 * terminology explanation
