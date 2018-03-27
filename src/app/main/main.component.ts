@@ -234,22 +234,21 @@ export class MainComponent implements OnInit {
                 article.output = article.content.replace(/{{([^{}]+)}}/g,
                     (match, key) => {
                         const attribute = this.dictionary[key];
-                        let value = this.settings[attribute] ? this.settings[attribute].value : `?!${key}!?`; ///< 根本沒有對應的變數，確認 dictionary
+                        if(!this.settings[attribute]) //< 根本沒有對應的變數，應確認 dictionary.json
+                            return `<strong class="bg-danger" title="找不到變數">「${key}」</strong>`;
 
-                        if(value) {
-                            const number = +value; ///< 轉換成整數。跟 parseInt 不同，丟入日期字串的話會是 NaN
-                            if(!isNaN(number)) {
-                                if(["accountNumber", "a_phone", "b_phone"].indexOf(attribute) == -1)
-                                    value = number2chinese(number, "T", "upper");
-                            }
-                            else if(/^\d{4}-\d{2}-\d{2}$/.test(value)) {
-                                value = value.replace(/(\d{4})-(\d{2})-(\d{2})/, (match, y, m, d) => `${y}年${m}月${d}日`);
-                            }
+                        let value = this.settings[attribute].value;
+                        if(!value) return `<strong class="bg-danger" title="未填入">「${key}」</strong>`;
 
+                        const number = +value; ///< 轉換成整數。跟 parseInt 不同，丟入日期字串的話會是 NaN
+                        if(!isNaN(number)) {
+                            if(["accountNumber", "a_phone", "b_phone"].indexOf(attribute) == -1)
+                                value = number2chinese(number, "T", "upper");
                         }
-                        else value = `__${key}__`; ///< 使用者在此欄位沒有填資料
-                        return `<mark title="${key}">${value}</mark>`;
-
+                        else if(/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+                            value = value.replace(/(\d{4})-(\d{2})-(\d{2})/, (match, y, m, d) => `${y}年${m}月${d}日`);
+                        }
+                        return `<strong class="bg-success" title="${key}">${value}</strong>`;
                     }
                 );
             });
@@ -378,33 +377,31 @@ export class MainComponent implements OnInit {
 
     validate = function() {
         const errors = [];
-        let nodeList;
-
-        nodeList = document.querySelectorAll("input[type=number]");
-        for(let i = 0; i < nodeList.length; ++i) {
-            const value = + nodeList[i]["value"];
-            if(isNaN(value) || value <= 0) {
-                errors.push("數字欄位必須輸入正整數");
-            }
-        }
-
         const now = new Date();
-        nodeList = document.querySelectorAll("input[type=date]");
-        for(let i = 0; i < nodeList.length; ++i) {
-            const elem = nodeList[i];
-            elem.classList.remove("invalid");
+        const inputList = document.querySelectorAll("input");
 
-            const value = elem["value"];
-            if(!value) {
-                errors.push("必須設定日期");
-                nodeList[i].classList.add("invalid");
-            }
-            else if((new Date(value)).getTime() < now.getTime()) {
-                errors.push("必須設定為未來的日期");
-                nodeList[i].classList.add("invalid");
+        for(let i = 0; i < inputList.length; ++i) {
+            const input = inputList[i];
+            input.classList.remove("invalid");
+            let value: any = input.value;
+            switch(input.type) {
+                case "file":
+                    continue;
+                case "number":
+                    value = + value;
+                    if(isNaN(value) || value <= 0) {
+                        errors.push("數字欄位必須輸入正整數");
+                        input.classList.add("invalid");
+                    }
+                    break;
+                case "date":
+                    if(!value || (new Date(value)) < now) {
+                        errors.push("必須設定為未來日期");
+                        input.classList.add("invalid");
+                    }
+                    break;
             }
         }
-
 
         this.invalidation = errors.join("\n");
     }
@@ -430,24 +427,6 @@ export class MainComponent implements OnInit {
   }
 
   ngDoCheck() {
-    const now = new Date();
-    const todayString = `${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()}`;
-
-    const nodeList = document.querySelectorAll("input");
-    for(let i = 0; i < nodeList.length; ++i) {
-        const elem = nodeList[i];
-        switch(elem.type) {
-            case "file":
-                continue;
-            case "number":
-                elem.setAttribute("min", "1");
-                break;
-            case "date":
-                elem.setAttribute("min", todayString);
-                break;
-        }
-    }
-
     if(this.display.contract) {
         this.renderArticles();
         this.validate();

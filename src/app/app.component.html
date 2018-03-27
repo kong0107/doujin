@@ -4,14 +4,14 @@
         <small>{{version}}</small>
     </h1>
     <nav>
-        <ul>
+        <ul class="list-inline">
             <li><a routerLink="/disclaimer" routerLinkActive="active">聲明</a></li>
             <li><a routerLink="/main" routerLinkActive="active">自訂契約</a></li>
             <li><a routerLink="/faq" routerLinkActive="active">常見問題</a></li>
         </ul>
     </nav>
 </header>
-<section id="main">
+<section id="main" class="container-fluid">
     <router-outlet></router-outlet>
 </section>
 <footer id="footer" class="text-right">

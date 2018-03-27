@@ -94,14 +94,17 @@
             契約內文
             <small>共{{getArticleCount()}}條</small>
         </h2>
-        <p class="text-danger" style="white-space: pre-line">{{invalidation}}</p>
-        <div *ngIf="!invalidation">
+        <div *ngIf="invalidation" class="bg-danger" style="padding: .2em .5em">
+            <h3>須修正的錯誤</h3>
+            <p style="white-space: pre-line">{{invalidation}}</p>
+        </div>
+        <div>
             <button class="btn btn-info" onclick="window.print()">列印</button>
             <button class="btn btn-info" (click)="downloadText()">下載純文字</button>
             <button class="btn btn-info" (click)="downloadHTML()">下載網頁</button>
             <button class="btn btn-info" (click)="downloadSettings()">下載設定檔</button>
-            <p class="text-muted">如果瀏覽器支援，也許可以「印成 PDF 檔」。</p>
-            <p class="text-muted">因為技術問題， iOS 系統上不會「下載」而是會另開新頁。</p>
+            <p class="text-muted small">如果瀏覽器支援，也許可以「印成 PDF 檔」。</p>
+            <p class="text-muted small">因為技術問題， iOS 系統上不會「下載」而是會另開新頁。</p>
         </div>
     </header>
 

@@ -407,7 +407,7 @@
                                 <dt>次數</dt>
                                 <dd>如果是出版相關就是版數、刷數等對發行數量的規定</dd>
                                 <dt>方式</dt>
-                                <dd>詳細部分請參考著作權法第 22 條及第 29 條，或至少就線上電子/線下實體做約定。</dd>
+                                <dd>詳細部分請參考<a target="_blank" href="https://law.moj.gov.tw/LawClass/LawSearchNo.aspx?PC=J0070017&SNo=22%2c29">著作權法第 22 條及第 29 條</a>，或至少就線上電子/線下實體做約定。</dd>
                             </dl>
                         </dd>
                         <dd *ngIf="settings.b_useLimit.value=='限制'">
@@ -422,7 +422,7 @@
 
         <footer style="margin-top: 1em">
             <button *ngIf="settings.a_useRange.decided || settings.b_useRange.decided" class="btn btn-warning"
-                (click)="display.contract = true;"
+                (click)="display.contract = display.delegation = display.delegationDetails = true"
             >我已經選擇完畢，確認以上內容為正確。請直接讓我看契約範本吧！</button>
         </footer>
     </ng-container>

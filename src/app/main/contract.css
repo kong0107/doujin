@@ -15,10 +15,6 @@ article p, #attachments p {
     white-space: pre-line;
 }
 
-article mark {
-    font-weight: bold;
-}
-
 .underline {
     /*text-decoration: underline;*/
     border-bottom: 1px solid #000;
