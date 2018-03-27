@@ -263,6 +263,8 @@ export class MainComponent implements OnInit {
         if(data) {
             for(let attr in data)
                 if(s[attr]) s.set(attr, data[attr], false);
+            if(data.hasOwnProperty("parties"))
+                this.parties = data.parties;
         }
         else {
             for(let key in this.dictionary)

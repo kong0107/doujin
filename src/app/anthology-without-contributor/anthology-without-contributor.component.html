@@ -25,7 +25,7 @@
     <section *ngFor="let party of parties.slice(0, settings.club_population.value); first as isFirst">
         <h5>
             {{party.alias}}方
-            <small *ngIf="isFirst">（代表人）</small>
+            <small *ngIf="isFirst">（代表人、主揪）</small>
         </h5>
         <dl class="dl-horizontal">
             <dt>繪師本名</dt><dd><input [(ngModel)]="party.name"></dd>
