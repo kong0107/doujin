@@ -1,8 +1,7 @@
 <ng-container *ngFor="let option of options">
     <div class="option" *ngIf="!settings[attribute].decided || settings[attribute].value==option.value">
         <button class="btn"
-            [class.btn-outline-success]="settings[attribute].value!=option.value"
-            [class.btn-success]="settings[attribute].value==option.value"
+            [ngClass]="(settings[attribute].value==option.value) ? 'btn-success' : 'btn-outline-success'"
             (click)="settings.set(attribute, option.value)"
         >{{option.text || option.value}}</button>
         <div *ngIf="option.explanation" class="explanation">
@@ -10,7 +9,7 @@
         </div>
     </div>
 </ng-container>
-<div *ngIf="addResetButton" style="margin-top: .5em">
+<div *ngIf="addResetButton" style="margin-bottom: .5em">
     <button class="btn btn-primary btn-sm"
         *ngIf="settings[attribute].decided"
         (click)="settings.unset(attribute)"

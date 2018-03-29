@@ -344,13 +344,11 @@
                         <dt>繪師在前述目的下能利用之範圍</dt>
                         <dd>
                             <button class="btn"
-                                [class.btn-outline-success]="settings.a_useLimit.value!='無限制'"
-                                [class.btn-success]="settings.a_useLimit.value=='無限制'"
+                                [ngClass]="(settings.a_useLimit.value=='無限制') ? 'btn-success' : 'btn-outline-secondary'"
                                 (click)="settings.set('a_useLimit', '無限制')"
                             >無限制</button>
                             <button class="btn"
-                                [class.btn-outline-success]="settings.a_useLimit.value!='限制'"
-                                [class.btn-success]="settings.a_useLimit.value=='限制'"
+                                [ngClass]="(settings.a_useLimit.value=='限制') ? 'btn-success' : 'btn-outline-secondary'"
                                 (click)="settings.set('a_useLimit', '限制')"
                             >有限制</button>
                         </dd>
@@ -417,13 +415,11 @@
                         <dt>委託主在前述目的下能利用之範圍</dt>
                         <dd>
                             <button class="btn"
-                                [class.btn-outline-success]="settings.b_useLimit.value!='無限制'"
-                                [class.btn-success]="settings.b_useLimit.value=='無限制'"
+                                [ngClass]="(settings.b_useLimit.value=='無限制') ? 'btn-success' : 'btn-outline-success'"
                                 (click)="settings.set('b_useLimit', '無限制')"
                             >無限制</button>
                             <button class="btn"
-                                [class.btn-outline-success]="settings.b_useLimit.value!='限制'"
-                                [class.btn-success]="settings.b_useLimit.value=='限制'"
+                                [ngClass]="(settings.b_useLimit.value=='限制') ? 'btn-success' : 'btn-outline-success'"
                                 (click)="settings.set('b_useLimit', '限制')"
                             >有限制</button>
                         </dd>

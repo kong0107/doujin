@@ -1,5 +1,7 @@
 <div (click)="settings.toggle(attribute)">
-    <button class="btn btn-sm" [class.btn-success]="settings[attribute].value">
+    <button class="btn btn-sm"
+        [ngClass]="settings[attribute].value ? 'btn-success' : 'btn-outline-success'"
+    >
         <strong class="lead">{{settings[attribute].value ? "&radic;" : "&nbsp;"}}</strong>
     </button>
     {{text}}
