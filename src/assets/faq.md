@@ -1,6 +1,11 @@
 ### 你們是哪位？
 
-哈囉你好，我們（網站團隊）是阿空、威爾森、焰虎、誠誠跟鮪魚。
+哈囉你好，我們（網站團隊）是
+[阿空](https://kong0107.github.io)
+、[威爾森](https://www.plurk.com/SSWilsonKao)
+、[焰虎](https://www.plurk.com/KKILLER097)
+、[誠誠](https://www.plurk.com/WolfkyMakoto)
+跟[鮪魚](https://www.plurk.com/Afrit)。
 
 
 ### 為什麼要做這網頁？
