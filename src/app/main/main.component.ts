@@ -316,7 +316,7 @@ export class MainComponent implements OnInit {
         a.href = `data:${type};base64,` + btoa(window['unescape'](encodeURIComponent(content)));
 
         a.download = filename;
-        a.target = "_blank";
+        //a.target = "_blank";
         document.body.appendChild(a); //< Elements should be in DOM to work for Firefox
         a.click();
 
