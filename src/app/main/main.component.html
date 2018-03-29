@@ -9,7 +9,7 @@
         <div class="row">
             <h2 class="col-md-4">自訂契約</h2>
 
-            <div class="col-md-8">
+            <div class="col-md-8 text-right">
                 <!--button class="btn btn-sm btn-info" (click)="load(demoData)">套用測試資料</button-->
 
                 <div class="py-1">
@@ -50,13 +50,13 @@
     <section *ngIf="display.category">
         <h3 (click)="settings.unset('category')">契約類型</h3>
         <div class="row">
-        <fieldset class="col-sm-4">
+        <fieldset class="col-sm-5">
             <legend><h4>非出版性委託</h4></legend>
             <app-select [attribute]="'category'" [settings]="settings"
                 [options]="optionGroups.nonPublishDelegation"
             ></app-select>
         </fieldset>
-        <fieldset class="col-sm-4">
+        <fieldset class="col-sm-5">
             <legend><h4>出版性委託</h4></legend>
             <app-select [attribute]="'category'" [settings]="settings"
                 [options]="optionGroups.publishDelegation"

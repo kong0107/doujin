@@ -8,7 +8,7 @@ import * as marked from 'marked';
   styleUrls: []
 })
 export class FaqComponent implements OnInit {
-  faq: string = '';
+  faq: string;
 
   constructor(private http: HttpClient) { }
 

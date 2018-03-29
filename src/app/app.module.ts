@@ -16,6 +16,7 @@ import { CheckboxComponent } from './checkbox/checkbox.component';
 import { DelegationComponent } from './delegation/delegation.component';
 import { AnthologyWithContributorComponent } from './anthology-with-contributor/anthology-with-contributor.component';
 import { AnthologyWithoutContributorComponent } from './anthology-without-contributor/anthology-without-contributor.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { AnthologyWithoutContributorComponent } from './anthology-without-contri
     CheckboxComponent,
     DelegationComponent,
     AnthologyWithContributorComponent,
-    AnthologyWithoutContributorComponent
+    AnthologyWithoutContributorComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
