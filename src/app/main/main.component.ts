@@ -281,7 +281,12 @@ export class MainComponent implements OnInit {
             if(!window.confirm("確定要清空嗎？")) return;
             for(let key in this.dictionary)
                 s.unset(this.dictionary[key], false);
-            this.display.contributor = false;
+            s.category.value = "";
+
+            const d = this.display;
+            d.contributor = false;
+            d.anthologyWithContributor = false;
+            d.anthologyWithoutContributor = false;
         }
         this.renderArticles();
         this.display.contract = !!data;

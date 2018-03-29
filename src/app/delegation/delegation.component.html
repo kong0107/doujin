@@ -1,7 +1,9 @@
 <section *ngIf="display.delegation">
-    <p *ngIf="!settings.workType.decided" class="alert alert-warning">
-        說明：這是「非合本」的繪圖委託需要填的內容，如果是合本類型的委託，請點選「清空目前設定」、回到開頭重新選擇「多人合本」。
-    </p>
+    <div *ngIf="!settings.workType.decided" class="alert alert-warning">
+        <h4>說明</h4>
+        <p>這是「非合本」的繪圖委託需要填的內容，如果是合本類型的委託，請點選「清空目前設定」、回到開頭重新選擇「多人合本」。</p>
+        <p>這裡假設委託主在收到繪師草稿之後，可以在約定期限內，提出一次「重大修訂」（大修）改變目前工作方向；除了大修以外，還可以再另外約定期限、次數，做小幅度的修正（小修）。</p>
+    </div>
     <h3>委託資料及委託規格</h3>
     <section *ngIf="display.workType">
         <h4 (click)="settings.unset('workType')">工作方式</h4>
