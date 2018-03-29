@@ -278,6 +278,7 @@ export class MainComponent implements OnInit {
                 this.parties = data.parties;
         }
         else {
+            if(!window.confirm("確定要清空嗎？")) return;
             for(let key in this.dictionary)
                 s.unset(this.dictionary[key], false);
             this.display.contributor = false;

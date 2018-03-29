@@ -5,7 +5,8 @@
 、[威爾森](https://www.plurk.com/SSWilsonKao)
 、[焰虎](https://www.plurk.com/KKILLER097)
 、[誠誠](https://www.plurk.com/WolfkyMakoto)
-跟[鮪魚](https://www.plurk.com/Afrit)。
+跟[鮪魚](https://www.plurk.com/Afrit)
+。
 
 
 ### 為什麼要做這網頁？

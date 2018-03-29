@@ -1,4 +1,4 @@
-<fieldset id="debug" class="d-print-none">
+<fieldset id="debug" class="d-none">
     <legend onclick="this.parentNode.style.display='none';" title="Click to close.">Debug</legend>
     <div>{{display | json}}</div>
     <div>{{settings | json}}</div>
@@ -10,13 +10,13 @@
             <h2 class="col-md-4">自訂契約</h2>
 
             <div class="col-md-8">
-                <div style="margin-top: .5em">
-                    <button class="btn btn-sm btn-info" (click)="load(demoData)">套用測試資料</button>
+                <!--button class="btn btn-sm btn-info" (click)="load(demoData)">套用測試資料</button-->
+
+                <div class="py-1">
+                    <button class="btn btn-sm btn-info" (click)="downloadSettings()">下載現在的設定</button>
                     <button class="btn btn-sm btn-info" (click)="load(false)">清空目前設定</button>
                 </div>
-                <div style="margin-top: .5em">
-                    <button class="btn btn-sm btn-info" (click)="downloadSettings()">下載現在的設定</button>
-
+                <div class="py-1">
                     <button class="btn btn-sm btn-info" (click)="fileSelect()">上傳設定檔</button>
                     <input type="file" id="fileElem" accept=".json" (change)="handleFile()" style="display: none">
 

@@ -1,6 +1,6 @@
 {
   "name": "doujin",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "license": "CC0",
   "scripts": {
     "ng": "ng",
