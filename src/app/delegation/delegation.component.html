@@ -346,11 +346,11 @@
                         <dt>繪師在前述目的下能利用之範圍</dt>
                         <dd>
                             <button class="btn"
-                                [ngClass]="(settings.a_useLimit.value=='無限制') ? 'btn-success' : 'btn-outline-secondary'"
+                                [ngClass]="(settings.a_useLimit.value=='無限制') ? 'btn-success' : 'btn-outline-success'"
                                 (click)="settings.set('a_useLimit', '無限制')"
                             >無限制</button>
                             <button class="btn"
-                                [ngClass]="(settings.a_useLimit.value=='限制') ? 'btn-success' : 'btn-outline-secondary'"
+                                [ngClass]="(settings.a_useLimit.value=='限制') ? 'btn-success' : 'btn-outline-success'"
                                 (click)="settings.set('a_useLimit', '限制')"
                             >有限制</button>
                         </dd>
