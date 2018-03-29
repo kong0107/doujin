@@ -44,3 +44,9 @@
 如果有興趣的人其實可以自己參考相關法律、[經濟部智慧財產局提供的範本](https://www.tipo.gov.tw/ct.asp?xItem=567097&ctNode=6993&mp=1)自己弄。
 而且我們網站掛在 github 上，[原始碼](https://github.com/kong0107/doujin)也全都露給你看。
 所有我們自己創作的部分都以 [CC0](http://creativecommons.tw/cc0) 釋出。所以真的歡迎有志者自己弄出自己的計畫。
+
+
+### 網站操作問題回報
+
+若網頁運作錯誤，還請協助[回報問題](https://github.com/kong0107/doujin/issues)。
+請注意：這不是法律諮詢服務，而且我們也不保證會修復程式問題。
